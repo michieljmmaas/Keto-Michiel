@@ -2,6 +2,8 @@ package hello;
 
 import javax.persistence.*;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 @Table(name = "eten")
 public class Eten {
@@ -14,11 +16,16 @@ public class Eten {
 	private float prot;
 	private float carb;
 	private float price;
+	private String disc;
+	@Nullable
+	private int weight;
 
 	public Eten() {
 	}
 
-	public Eten(Integer id, String name, float kcal, float fat, float prot, float carb, float price) {
+
+	public Eten(Integer id, String name, float kcal, float fat, float prot, float carb, float price, String disc,
+			int weight) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -27,7 +34,10 @@ public class Eten {
 		this.prot = prot;
 		this.carb = carb;
 		this.price = price;
+		this.disc = disc;
+		this.weight = weight;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -83,6 +93,22 @@ public class Eten {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public String getDisc() {
+		return disc;
+	}
+
+	public void setDisc(String disc) {
+		this.disc = disc;
 	}
 
 }

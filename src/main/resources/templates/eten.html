@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="utf-8">
 
 	<title>Index</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}"/>
-
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,34 +25,112 @@
 						<th style="width: 12.5%">Proteins</th>
 						<th style="width: 12.5%">Fats</th>
 						<th style="width: 12.5%">Price</th>
-						<th style="width: 12.5%">Gewicht</th>
+						<th style="width: 12.5%">Beschrijving</th>
 						<th style="width: 12.5%">Edit</th>
 					</tr>
 				</thead>
 				<th:block th:each="food : ${foods}">
 				<tr>
-					<td class="align-middle" th:text="${food.getName()}">Eten</td>
-					<td class="align-middle" th:text="${food.getKcal()}">Eten</td>
-					<td class="align-middle" th:text="${food.getCarb()}">Eten</td>
-					<td class="align-middle" th:text="${food.getProt()}">Eten</td>
-					<td class="align-middle" th:text="${food.getFat()}">Eten</td>
+					<td class="align-middle" th:text="${food.getName()}"></td>
+					<td class="align-middle" th:text="${food.getKcal()}"></td>
+					<td class="align-middle" th:text="${food.getCarb()}"></td>
+					<td class="align-middle" th:text="${food.getProt()}"></td>
+					<td class="align-middle" th:text="${food.getFat()}"></td>
 					<td class="align-middle" th:text="${#numbers.formatCurrency(food.getPrice())}">Eten</td>
-					<td class="align-middle" >Gewicht</td>
-					<td class="align-middle" ><button class="btn btn-warning">Edit</button></td>
+					<td class="align-middle" th:text="${food.getDisc()}"></td>
+					<td class="align-middle">
+						<button class="btn btn-warning">Edit</button>
+					</td>
 				</tr>
 			</th:block>
 		</table>
 	</div>
 	<div class="row">
 		<div class="col-md-1">
-			<button type="button" class="btn btn-success">Voeg toe</button>
+			<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#MyModal">
+				Voeg toe
+			</button>
 		</div>
 		<div class="col-md-1">
+		</div>
+
+		<!-- Modal HTML Markup -->
+		<div id="MyModal" class="modal fade">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title">Eten toevoegen</h1>
+					</div>
+					<div class="modal-body">
+						<form role="form" method="POST" action="">
+							<input type="hidden" name="_token" value="">
+							<div class="form-group">
+								<label class="control-label">Naam</label>
+								<div>
+									<input type="text" class="form-control input-lg" name="Name" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Kcal</label>
+								<div>
+									<input type="number" step="0.01" class="form-control input-lg" name="Kcal" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Carbs</label>
+								<div>
+									<input type="number" step="0.01" class="form-control input-lg" name="carb" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Proteins</label>
+								<div>
+									<input type="number" step="0.01" class="form-control input-lg" name="prot" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Fat</label>
+								<div>
+									<input type="number" step="0.01" class="form-control input-lg" name="fat" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Gewicht</label>
+								<div>
+									<input type="checkbox" class="form-control input-lg">
+									<input type="number" class="form-control input-lg" name="weight" value="" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Price</label>
+								<div>
+									<input type="number" step="0.01" class="form-control input-lg" name="price" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Beschrijving</label>
+								<div>
+									<input type="text" class="form-control input-lg" name="disc" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<div>
+									<button type="submit" class="btn btn-success">
+										Add
+									</button>
+									<button data-dismiss="modal" class="btn btn-danger">
+										Cancel
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
 </body>
 
-</body>
 </html>
