@@ -1,10 +1,10 @@
 package hello;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 public class HelloController {
 
 	@Autowired
@@ -14,7 +14,7 @@ public class HelloController {
 	public String index() {
 		Eten e = AWEtenRepository.findByName("Boter");
 		System.out.println(e.getName());
-		return "Greetings from Spring Boot!";
+		return "index";
 	}
 
 }
