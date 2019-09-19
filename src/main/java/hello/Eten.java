@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 @Table(name = "eten")
 public class Eten {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private float kcal;
@@ -23,7 +23,6 @@ public class Eten {
 	public Eten() {
 	}
 
-
 	public Eten(Integer id, String name, float kcal, float fat, float prot, float carb, float price, String disc,
 			int weight) {
 		super();
@@ -37,7 +36,6 @@ public class Eten {
 		this.disc = disc;
 		this.weight = weight;
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -109,6 +107,18 @@ public class Eten {
 
 	public void setDisc(String disc) {
 		this.disc = disc;
+	}
+
+	public void printInfo() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Name: " + this.name + '\n');
+		sb.append("\tCarb: " + this.carb + '\n');
+		sb.append("\tProt: " + this.prot + '\n');
+		sb.append("\tFat: " + this.fat + '\n');
+		sb.append("\tPrice: " + this.price + '\n');
+		sb.append("\tWeight: " + this.weight + '\n');
+		sb.append("\n");
+		System.out.println(sb.toString());
 	}
 
 }
