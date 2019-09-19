@@ -53,84 +53,113 @@
 		</div>
 		<div class="col-md-1">
 		</div>
+	</div>
+</div>
 
-		<!-- Modal HTML Markup -->
-		<div id="MyModal" class="modal fade">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title">Eten toevoegen</h1>
-					</div>
-					<div class="modal-body">
-						<form role="form" method="POST" action="">
-							<input type="hidden" name="_token" value="">
-							<div class="form-group">
-								<label class="control-label">Naam</label>
-								<div>
-									<input type="text" class="form-control input-lg" name="Name" value="">
+<!-- Modal HTML Markup -->
+<div id="MyModal" class="modal fade">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title">Eten toevoegen</h1>
+			</div>
+			<div class="modal-body">
+				<form role="form" method="POST" action="">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<input type="hidden" name="_token" value="">
+								<div class="form-group">
+									<label class="control-label">Naam</label>
+									<div>
+										<input type="text" class="form-control input-lg" name="Name" value="">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Kcal</label>
-								<div>
-									<input type="number" step="0.01" class="form-control input-lg" name="Kcal" value="">
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label">Kcal</label>
+									<div>
+										<input type="number" step="0.01" class="form-control input-lg" name="Kcal" value="">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Carbs</label>
-								<div>
-									<input type="number" step="0.01" class="form-control input-lg" name="carb" value="">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label">Carbs</label>
+									<div>
+										<input type="number" step="0.01" class="form-control input-lg" name="carb" value="">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Proteins</label>
-								<div>
-									<input type="number" step="0.01" class="form-control input-lg" name="prot" value="">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label">Proteins</label>
+									<div>
+										<input type="number" step="0.01" class="form-control input-lg" name="prot" value="">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Fat</label>
-								<div>
-									<input type="number" step="0.01" class="form-control input-lg" name="fat" value="">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label">Fat</label>
+									<div>
+										<input type="number" step="0.01" class="form-control input-lg" name="fat" value="">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Gewicht</label>
-								<div>
-									<input type="checkbox" class="form-control input-lg">
-									<input type="number" class="form-control input-lg" name="weight" value="" disabled>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Gewicht</label>
+							<div class="row">
+								<div class="col-md-1">
+									<input type="checkbox" class="form-control input-lg" id="weightCheck">
+								</div>
+								<div class="col-md-11">
+									<input type="number" class="form-control input-lg" name="weight" value="" disabled id="weightField">
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Price</label>
-								<div>
-									<input type="number" step="0.01" class="form-control input-lg" name="price" value="">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Price</label>
+							<div>
+								<input type="number" step="0.01" class="form-control input-lg" name="price" value="">
 							</div>
-							<div class="form-group">
-								<label class="control-label">Beschrijving</label>
-								<div>
-									<input type="text" class="form-control input-lg" name="disc" value="">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Beschrijving</label>
+							<div>
+								<input type="text" class="form-control input-lg" name="disc" value="">
 							</div>
-							<div class="form-group">
-								<div>
-									<button type="submit" class="btn btn-success">
+						</div>
+						<div class="form-group">
+							<div>
+								<div class="d-flex justify-content-between">
+									<button type="submit" class="btn btn-success btn-lg">
 										Add
 									</button>
-									<button data-dismiss="modal" class="btn btn-danger">
+									<button data-dismiss="modal" class="btn btn-danger btn-lg">
 										Cancel
 									</button>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
 
 </body>
+<script th:inline="javascript">
+$( 'body' ).on( 'click', '#weightCheck', function(event) {  
+	$('#weightField').prop('disabled', function(i, v) { return !v; });  
+    // if( $("#weightField").hasClass( 'active' ) == true )    { $("#weightField").prop('disabled', false); }
+    // if( $("#weightField").hasClass( 'active' ) == false )   { $("#weightField").prop('disabled', true);  }
+});
+</script>
 
 </html>
