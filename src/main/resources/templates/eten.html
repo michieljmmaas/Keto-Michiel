@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}"/>
+
+</head>
+
+<body>
+	<div th:insert="fragments/header :: header">...</div>
+	<div class="container-fluid">
+		<div class="row col-md-9 table-responsive">
+			<table id="foodTable" class="table table-bordered table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th style="width: 12.5%">Name</th>
+						<th style="width: 12.5%">Kcal</th>
+						<th style="width: 12.5%">Carbs</th>
+						<th style="width: 12.5%">Proteins</th>
+						<th style="width: 12.5%">Fats</th>
+						<th style="width: 12.5%">Price</th>
+						<th style="width: 12.5%">Gewicht</th>
+						<th style="width: 12.5%">Edit</th>
+					</tr>
+				</thead>
+				<th:block th:each="food : ${foods}">
+				<tr>
+					<td class="align-middle" th:text="${food.getName()}">Eten</td>
+					<td class="align-middle" th:text="${food.getKcal()}">Eten</td>
+					<td class="align-middle" th:text="${food.getCarb()}">Eten</td>
+					<td class="align-middle" th:text="${food.getProt()}">Eten</td>
+					<td class="align-middle" th:text="${food.getFat()}">Eten</td>
+					<td class="align-middle" th:text="${#numbers.formatCurrency(food.getPrice())}">Eten</td>
+					<td class="align-middle" >Gewicht</td>
+					<td class="align-middle" ><button class="btn btn-warning">Edit</button></td>
+				</tr>
+			</th:block>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<button type="button" class="btn btn-success">Voeg toe</button>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+</div>
+
+</body>
+
+</body>
+</html>
