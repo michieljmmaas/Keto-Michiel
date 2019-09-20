@@ -7,9 +7,10 @@
 	<title>Index</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 
 <body>
@@ -19,14 +20,15 @@
 			<table id="foodTable" class="table table-bordered table-hover">
 				<thead class="thead-dark">
 					<tr>
-						<th style="width: 12.5%">Name</th>
-						<th style="width: 12.5%">Kcal</th>
-						<th style="width: 12.5%">Carbs</th>
-						<th style="width: 12.5%">Proteins</th>
-						<th style="width: 12.5%">Fats</th>
-						<th style="width: 12.5%">Price</th>
-						<th style="width: 12.5%">Beschrijving</th>
-						<th style="width: 12.5%">Edit</th>
+						<th style="width: 20%">Name</th>
+						<th style="width: 8%">Kcal</th>
+						<th style="width: 8%">Carbs</th>
+						<th style="width: 8%">Proteins</th>
+						<th style="width: 8%">Fats</th>
+						<th style="width: 10%">Price</th>
+						<th style="width: 38%">Beschrijving</th>
+						<th>Edit</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<th:block th:each="food : ${foods}">
@@ -39,7 +41,19 @@
 					<td class="align-middle" th:text="${#numbers.formatCurrency(food.getPrice())}">Eten</td>
 					<td class="align-middle" th:text="${food.getDisc()}"></td>
 					<td class="align-middle">
-						<button class="btn btn-warning">Edit</button>
+						<button type="button" class="btn btn-warning"
+						th:data-name="${food.getName()}"
+						th:data-kcal="${food.getKcal()}"
+						th:data-carb="${food.getCarb()}"
+						th:data-prot="${food.getProt()}" 
+						th:data-fat="${food.getFat()}" 
+						th:data-price="${food.getPrice()}" 
+						th:data-disc="${food.getDisc()}" 
+						th:data-id="${food.getId()}" 
+						data-toggle="modal" data-target="#foodModal">Edit</button>
+					</td>
+					<td class="align-middle">
+						<button class="btn btn-danger deleteButton">Delete</button>
 					</td>
 				</tr>
 			</th:block>
@@ -47,7 +61,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-2">
-			<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#MyModal">
+			<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#foodModal">
 				Voeg toe
 			</button>
 		</div>
@@ -57,7 +71,7 @@
 </div>
 
 <!-- Modal HTML Markup -->
-<div id="MyModal" class="modal fade">
+<div id="foodModal" class="modal fade">
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -66,13 +80,18 @@
 			<div class="modal-body">
 				<form method="POST" th:action="@{/foodPost}" th:object="${Eten}" modelAttribute="Eten">
 					<div class="container-fluid">
+						<div class="form-group" hidden>
+							<div>
+								<input type="number" class="form-control input-lg" name="id" value="" th:field= "*{id}" id="id-field">
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<input type="hidden" name="_token" value="">
 								<div class="form-group">
 									<label class="control-label">Naam</label>
 									<div>
-										<input type="text" class="form-control input-lg" name="name" value="" th:field= "*{name}"> 
+										<input type="text" class="form-control input-lg" name="name" value="" th:field= "*{name}" id="name-field"> 
 									</div>
 								</div>
 							</div>
@@ -82,7 +101,8 @@
 								<div class="form-group">
 									<label class="control-label">Kcal</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="kcal" value="" th:field= "*{kcal}">
+										<input type="number" step="0.01" class="form-control input-lg" name="kcal" value="" th:field= "*{kcal}" id="kcal-field">
+
 									</div>
 								</div>
 							</div>
@@ -90,7 +110,7 @@
 								<div class="form-group">
 									<label class="control-label">Carbs</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="carb" value="" th:field= "*{carb}">
+										<input type="number" step="0.01" class="form-control input-lg" name="carb" value="" th:field= "*{carb}" id="carb-field">
 									</div>
 								</div>
 							</div>
@@ -98,7 +118,7 @@
 								<div class="form-group">
 									<label class="control-label">Proteins</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="prot" value="" th:field= "*{prot}">
+										<input type="number" step="0.01" class="form-control input-lg" name="prot" value="" th:field= "*{prot}" id="prot-field">
 									</div>
 								</div>
 							</div>
@@ -106,7 +126,7 @@
 								<div class="form-group">
 									<label class="control-label">Fat</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="fat" value="" th:field= "*{fat}">
+										<input type="number" step="0.01" class="form-control input-lg" name="fat" value="" th:field= "*{fat}" id="fat-field">
 									</div>
 								</div>
 							</div>
@@ -125,13 +145,13 @@
 						<div class="form-group">
 							<label class="control-label">Price</label>
 							<div>
-								<input type="number" step="0.01" class="form-control input-lg" name="price" value="" th:field= "*{price}">
+								<input type="number" step="0.01" class="form-control input-lg" name="price" value="" th:field= "*{price}" id="price-field">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Beschrijving</label>
 							<div>
-								<input type="text" class="form-control input-lg" name="disc" value="" th:field= "*{disc}">
+								<input type="text" class="form-control input-lg" name="disc" value="" th:field= "*{disc}" id="disc-field">
 							</div>
 						</div>
 						<div class="form-group">
@@ -155,9 +175,39 @@
 
 </body>
 <script th:inline="javascript">
-$( 'body' ).on( 'click', '#weightCheck', function(event) {  
-	$('#weightField').prop('disabled', function(i, v) { return !v; });  
-});
+	$(document).ready(function() {
+
+		$('#weightCheck').click(function() {
+			$('#weightField').prop('disabled', function(i, v) {
+				console.log("Weight check")
+				return !v;
+			});
+		});
+
+
+		$('#foodModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var id = button.data('id');
+			var name = button.data('name');
+			var kcal = button.data('kcal');
+			var carb = button.data('carb');
+			var prot = button.data('prot');
+			var fat = button.data('fat');
+			var weight = button.data('weight');
+			var price = button.data('price');
+			var disc = button.data('disc');
+			var modal = $(this);
+			modal.find('.modal-body #id-field ').val(id);
+			modal.find('.modal-body #name-field ').val(name);
+			modal.find('.modal-body #kcal-field ').val(kcal);
+			modal.find('.modal-body #carb-field ').val(carb);
+			modal.find('.modal-body #prot-field ').val(prot);
+			modal.find('.modal-body #fat-field ').val(fat);
+			modal.find('.modal-body #weightField ').val(weight);
+			modal.find('.modal-body #price-field ').val(price);
+			modal.find('.modal-body #disc-field ').val(disc);
+		});
+	});
 </script>
 
 </html>
