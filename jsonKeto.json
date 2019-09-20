@@ -1,0 +1,1010 @@
+[
+ {
+   "name": "Avocado - 4",
+   "kcal": 358,
+   "carb": 3.2,
+   "prot": 3.4,
+   "fat": 35.1,
+   "price": 3.49,
+   "disc": "Netje van vier"
+ },
+ {
+   "name": "Avocado - Los",
+   "kcal": 89.5,
+   "carb": 0.8,
+   "prot": 0.85,
+   "fat": 8.775,
+   "price": 1.29,
+   "disc": "Losse Avocado"
+ },
+ {
+   "name": "Bloemkool - Bloemkoolrijst",
+   "kcal": 25,
+   "carb": 2.9,
+   "prot": 1.9,
+   "fat": 0.2,
+   "price": 1.74,
+   "disc": "Bloemkoolrijst gekoeld"
+ },
+ {
+   "name": "Bloemkool - Diepvries Rijst",
+   "kcal": 33,
+   "carb": 3.3,
+   "prot": 3,
+   "fat": 0,
+   "price": 1.69,
+   "disc": "600g Diepvries zak"
+ },
+ {
+   "name": "Bloemkool - Diepvries zak groot",
+   "kcal": 41.25,
+   "carb": 4.125,
+   "prot": 3.75,
+   "fat": 0,
+   "price": 2.3,
+   "disc": "Diepvries zak 750g"
+ },
+ {
+   "name": "Bloemkool - Diepvries zak klein",
+   "kcal": 21,
+   "carb": 2.2,
+   "prot": 2.8,
+   "fat": 0.5,
+   "price": 1.56,
+   "disc": "400g van Bonduelle"
+ },
+ {
+   "name": "Boter",
+   "kcal": 93.25,
+   "carb": 0.125,
+   "prot": 0.125,
+   "fat": 10.25,
+   "price": 0.38,
+   "disc": "50g "
+ },
+ {
+   "name": "Bouillon - Groente",
+   "kcal": 7,
+   "carb": 1,
+   "prot": 0.15,
+   "fat": 0.25,
+   "price": 0,
+   "disc": "1 Blokje van Jumbo"
+ },
+ {
+   "name": "Bouillon - Kip",
+   "kcal": 7,
+   "carb": 1,
+   "prot": 0.15,
+   "fat": 0.25,
+   "price": 0,
+   "disc": "1 Blokje van Jumbo"
+ },
+ {
+   "name": "Bouillon - Runder",
+   "kcal": 8,
+   "carb": 1,
+   "prot": 0.15,
+   "fat": 0.4,
+   "price": 0,
+   "disc": "1 Blokje van Jumbo"
+ },
+ {
+   "name": "Bouillon - Vis",
+   "kcal": 6.5,
+   "carb": 0.7,
+   "prot": 0.2,
+   "fat": 0.35,
+   "price": 0,
+   "disc": "1 Blokje van Jumbo"
+ },
+ {
+   "name": "Broccoli - Diepvries Rijst",
+   "kcal": 39,
+   "carb": 3,
+   "prot": 4.5,
+   "fat": 0,
+   "price": 1.69,
+   "disc": "600g Diepvries zak"
+ },
+ {
+   "name": "Broccoli - Diepvries Zak Groot",
+   "kcal": 47.25,
+   "carb": 3.5,
+   "prot": 5.25,
+   "fat": 0,
+   "price": 1.62,
+   "disc": "750g Zak"
+ },
+ {
+   "name": "Broccoli - Diepvries Zak Klein",
+   "kcal": 29.25,
+   "carb": 2.225,
+   "prot": 3.375,
+   "fat": 0,
+   "price": 0.98,
+   "disc": "1 Kleine Zak"
+ },
+ {
+   "name": "Champignons",
+   "kcal": 28,
+   "carb": 5,
+   "prot": 2.2,
+   "fat": 0.5,
+   "price": 1.26,
+   "disc": "400g"
+ },
+ {
+   "name": "Cherry Tomaat",
+   "kcal": 11.25,
+   "carb": 2.45,
+   "prot": 0.55,
+   "fat": 0.125,
+   "price": 0.89,
+   "disc": "250g Bakje"
+ },
+ {
+   "name": "Chinese Kool",
+   "kcal": 26,
+   "carb": 4.6,
+   "prot": 3.18,
+   "fat": 0.44,
+   "price": 1.49,
+   "disc": "Een kool"
+ },
+ {
+   "name": "Chorzio",
+   "kcal": 289.375,
+   "carb": 0.625,
+   "prot": 11.25,
+   "fat": 26.875,
+   "price": 1.51,
+   "disc": "1 Licht Pittge Chorizo"
+ },
+ {
+   "name": "Courgette",
+   "kcal": 64,
+   "carb": 12.1,
+   "prot": 4.8,
+   "fat": 1.2,
+   "price": 0.69,
+   "disc": "1 Stuk"
+ },
+ {
+   "name": "Crème Fraiche",
+   "kcal": 145,
+   "carb": 1.2,
+   "prot": 1.25,
+   "fat": 15,
+   "price": 1.18,
+   "disc": "200g Bkaje"
+ },
+ {
+   "name": "Echilada Kruiden",
+   "kcal": 19.04,
+   "carb": 2.1,
+   "prot": 0.77,
+   "fat": 0.504,
+   "price": 0.88,
+   "disc": "1/4 Enchilada"
+ },
+ {
+   "name": "Ei - 1 Ei",
+   "kcal": 90,
+   "carb": 0.2,
+   "prot": 8.4,
+   "fat": 6.2,
+   "price": 1.85,
+   "disc": "Doosje van 6 large eieren"
+ },
+ {
+   "name": "Ei - 12 Eieren",
+   "kcal": 225,
+   "carb": 0.5,
+   "prot": 21,
+   "fat": 15.5,
+   "price": 2.75,
+   "disc": "1/4 van een doos"
+ },
+ {
+   "name": "Garnalen",
+   "kcal": 61.5,
+   "carb": 0,
+   "prot": 12,
+   "fat": 1.5,
+   "price": 4.99,
+   "disc": "300g Diepvries"
+ },
+ {
+   "name": "Gemengd Gehakt",
+   "kcal": 229,
+   "carb": 0.1,
+   "prot": 17.9,
+   "fat": 17.4,
+   "price": 2.55,
+   "disc": "500g"
+ },
+ {
+   "name": "Griekse Yoggurt ",
+   "kcal": 45.375,
+   "carb": 1.575,
+   "prot": 1.3125,
+   "fat": 3.75,
+   "price": 0.44,
+   "disc": "150g bakje"
+ },
+ {
+   "name": "Groene pesto",
+   "kcal": 183.35,
+   "carb": 1.3775,
+   "prot": 1.9,
+   "fat": 18.715,
+   "price": 0.92,
+   "disc": "Potje 190g"
+ },
+ {
+   "name": "Hamburger",
+   "kcal": 238.7,
+   "carb": 4.18,
+   "prot": 18.59,
+   "fat": 16.28,
+   "price": 2.66,
+   "disc": "4 in een doos (3 voor 8)"
+ },
+ {
+   "name": "Kaas - Brie",
+   "kcal": 175,
+   "carb": 1,
+   "prot": 17,
+   "fat": 31,
+   "price": 0.99,
+   "disc": "200g pak"
+ },
+ {
+   "name": "Kaas - Cheddar",
+   "kcal": 140,
+   "carb": 2.6,
+   "prot": 6.5,
+   "fat": 11.3,
+   "price": 0.91,
+   "disc": "Pakje met 8 plakken"
+ },
+ {
+   "name": "Kaas - Feta",
+   "kcal": 140,
+   "carb": 1.5,
+   "prot": 14.7,
+   "fat": 11.5,
+   "price": 2.04,
+   "disc": "200g pak"
+ },
+ {
+   "name": "Kaas - Grozette Flakes",
+   "kcal": 91.25,
+   "carb": 0,
+   "prot": 7.25,
+   "fat": 7,
+   "price": 1.79,
+   "disc": "100g Zakje Zwart"
+ },
+ {
+   "name": "Kaas - Jong Blok",
+   "kcal": 328.125,
+   "carb": 0,
+   "prot": 21,
+   "fat": 27.125,
+   "price": 2.99,
+   "disc": "Blok 450g"
+ },
+ {
+   "name": "Kaas - Jonge Plakken",
+   "kcal": 82.03125,
+   "carb": 0,
+   "prot": 5.25,
+   "fat": 6.78125,
+   "price": 2.05,
+   "disc": "190g"
+ },
+ {
+   "name": "Kaas - Kaasplakken",
+   "kcal": 177.175,
+   "carb": 0,
+   "prot": 11.1625,
+   "fat": 14.535,
+   "price": 1.94,
+   "disc": "Pak 190g"
+ },
+ {
+   "name": "Kaas - Mozzarella",
+   "kcal": 134.75,
+   "carb": 0.825,
+   "prot": 9.9,
+   "fat": 10.175,
+   "price": 1.04,
+   "disc": "2 Goedkope pakjes"
+ },
+ {
+   "name": "Kaas - Padano",
+   "kcal": 99.5,
+   "carb": 0,
+   "prot": 8.25,
+   "fat": 7.25,
+   "price": 1.33,
+   "disc": "Rood zakje 100g"
+ },
+ {
+   "name": "Kaas - Ricotta",
+   "kcal": 105.625,
+   "carb": 3.125,
+   "prot": 5,
+   "fat": 8.125,
+   "price": 2.33,
+   "disc": "Galbani 250g"
+ },
+ {
+   "name": "Kaas - Strooikaas",
+   "kcal": 185,
+   "carb": 1.3,
+   "prot": 12.15,
+   "fat": 14.55,
+   "price": 1.97,
+   "disc": "1/4 Zakje"
+ },
+ {
+   "name": "Kaas - Strooikaas Groot",
+   "kcal": 230,
+   "carb": 1.625,
+   "prot": 14.875,
+   "fat": 18.25,
+   "price": 1.99,
+   "disc": "Grote Ok€ zak"
+ },
+ {
+   "name": "Kip - Kipfilet beleg",
+   "kcal": 63.4375,
+   "carb": 0.875,
+   "prot": 8.3125,
+   "fat": 2.23125,
+   "price": 1.74,
+   "disc": "175g"
+ },
+ {
+   "name": "Kip - Kipfilet borst",
+   "kcal": 106.275,
+   "carb": 0,
+   "prot": 23.01,
+   "fat": 1.56,
+   "price": 4.56,
+   "disc": "2 Stuks van 390 gram"
+ },
+ {
+   "name": "Kip - Kipgehakt",
+   "kcal": 136.5,
+   "carb": 0,
+   "prot": 13.7375,
+   "fat": 9.1,
+   "price": 3.25,
+   "disc": "350g"
+ },
+ {
+   "name": "Kip - Kippendij filet",
+   "kcal": 146.125,
+   "carb": 0,
+   "prot": 15.225,
+   "fat": 9.275,
+   "price": 2.5,
+   "disc": "1/4 van 350g"
+ },
+ {
+   "name": "Komkommer",
+   "kcal": 14,
+   "carb": 2.2,
+   "prot": 0.6,
+   "fat": 0.2,
+   "price": 0.79,
+   "disc": ""
+ },
+ {
+   "name": "Kruidenboter",
+   "kcal": 150,
+   "carb": 0.25,
+   "prot": 0.25,
+   "fat": 16.425,
+   "price": 1.1,
+   "disc": "100g bakje"
+ },
+ {
+   "name": "Lente ui",
+   "kcal": 6,
+   "carb": 1.37625,
+   "prot": 0.343125,
+   "fat": 0.035625,
+   "price": 0.75,
+   "disc": "75 gram"
+ },
+ {
+   "name": "Maza - Baba Anoesh",
+   "kcal": 130,
+   "carb": 3.25,
+   "prot": 0.75,
+   "fat": 13.2,
+   "price": 1.85,
+   "disc": "200g Bakje / Aubergine"
+ },
+ {
+   "name": "Maza - Esfenaj",
+   "kcal": 116.5,
+   "carb": 2.3,
+   "prot": 2.1,
+   "fat": 10.4,
+   "price": 1.99,
+   "disc": "200g Bakje / Spinazie Amandel"
+ },
+ {
+   "name": "Maza - Hummus",
+   "kcal": 156,
+   "carb": 3,
+   "prot": 3.2,
+   "fat": 15.2,
+   "price": 1.46,
+   "disc": "200g Bakje"
+ },
+ {
+   "name": "Maza - Hummus Kerrie",
+   "kcal": 154.5,
+   "carb": 3.7,
+   "prot": 3.2,
+   "fat": 14.75,
+   "price": 2.07,
+   "disc": "200g Bakje"
+ },
+ {
+   "name": "Maza - Hummus Tuinkruiden",
+   "kcal": 175,
+   "carb": 2.8,
+   "prot": 3.05,
+   "fat": 16.4,
+   "price": 1.99,
+   "disc": "200g Bakje"
+ },
+ {
+   "name": "Maza - Tahina",
+   "kcal": 155,
+   "carb": 3.35,
+   "prot": 5.75,
+   "fat": 13,
+   "price": 2.09,
+   "disc": "200g Bakje / Sesam Knoflook"
+ },
+ {
+   "name": "Noten mix",
+   "kcal": 146.25,
+   "carb": 2.3,
+   "prot": 5.05,
+   "fat": 12.6,
+   "price": 0.84,
+   "disc": "25g"
+ },
+ {
+   "name": "Olijven",
+   "kcal": 48.59,
+   "carb": 0,
+   "prot": 0.2825,
+   "fat": 5.085,
+   "price": 0.42,
+   "disc": "Huismerk 220"
+ },
+ {
+   "name": "Paprika",
+   "kcal": 20,
+   "carb": 4.6,
+   "prot": 0.9,
+   "fat": 0.2,
+   "price": 0.99,
+   "disc": "100g ongeveer 1 ding"
+ },
+ {
+   "name": "Pesto - Groene Pesto",
+   "kcal": 183.35,
+   "carb": 1.3775,
+   "prot": 4.275,
+   "fat": 5.8,
+   "price": 0.92,
+   "disc": "Potje 190g"
+ },
+ {
+   "name": "Philadelphia Kruidenkaas",
+   "kcal": 101.75,
+   "carb": 1.98875,
+   "prot": 2.45125,
+   "fat": 9.25,
+   "price": 1.85,
+   "disc": ""
+ },
+ {
+   "name": "Philadelphia Orignal",
+   "kcal": 117.5,
+   "carb": 2,
+   "prot": 2.75,
+   "fat": 10.75,
+   "price": 1.89,
+   "disc": ""
+ },
+ {
+   "name": "Pindakaas - 100g",
+   "kcal": 165.5,
+   "carb": 2.35,
+   "prot": 5.225,
+   "fat": 14.65,
+   "price": 0,
+   "disc": "100g Uit pak"
+ },
+ {
+   "name": "Pindakaas - Eetlepel",
+   "kcal": 99,
+   "carb": 1.4,
+   "prot": 3.1,
+   "fat": 8.8,
+   "price": 0,
+   "disc": "4 Eetlepels uit bestaande"
+ },
+ {
+   "name": "Pindakaas - Pot",
+   "kcal": 482.25,
+   "carb": 7.65,
+   "prot": 16.95,
+   "fat": 41.4,
+   "price": 1.38,
+   "disc": "300g huismerk"
+ },
+ {
+   "name": "Pure Chocolade 85",
+   "kcal": 132.5,
+   "carb": 4.75,
+   "prot": 2.75,
+   "fat": 11.5,
+   "price": 1.59,
+   "disc": "85% Pure Chocolade"
+ },
+ {
+   "name": "Roerbak - Champignon",
+   "kcal": 52,
+   "carb": 2.9,
+   "prot": 1.8,
+   "fat": 0.3,
+   "price": 1.99,
+   "disc": ""
+ },
+ {
+   "name": "Roerbak - Chinees",
+   "kcal": 29,
+   "carb": 4,
+   "prot": 1.7,
+   "fat": 0.2,
+   "price": 1.99,
+   "disc": ""
+ },
+ {
+   "name": "Roerbak - Hollands",
+   "kcal": 31,
+   "carb": 4.1,
+   "prot": 1.5,
+   "fat": 0.3,
+   "price": 1.99,
+   "disc": ""
+ },
+ {
+   "name": "Roerbak - Italiaans",
+   "kcal": 30,
+   "carb": 5,
+   "prot": 1.2,
+   "fat": 0.2,
+   "price": 1.99,
+   "disc": ""
+ },
+ {
+   "name": "Roerbak - Mexicaans",
+   "kcal": 43,
+   "carb": 6.2,
+   "prot": 2,
+   "fat": 0.5,
+   "price": 1.99,
+   "disc": ""
+ },
+ {
+   "name": "Roerbak - Nasi/Bami",
+   "kcal": 36.25,
+   "carb": 5.25,
+   "prot": 1.875,
+   "fat": 0.25,
+   "price": 1.79,
+   "disc": "500g Bami en Nasi Groente"
+ },
+ {
+   "name": "Roerbak - Thaise",
+   "kcal": 32,
+   "carb": 4,
+   "prot": 1.8,
+   "fat": 0.5,
+   "price": 2.05,
+   "disc": ""
+ },
+ {
+   "name": "Saucijzen - 1",
+   "kcal": 55.8,
+   "carb": 0.08,
+   "prot": 1.06875,
+   "fat": 1.45,
+   "price": 0.45,
+   "disc": "1 Worst"
+ },
+ {
+   "name": "Saucijzen - 4",
+   "kcal": 223.2,
+   "carb": 0.32,
+   "prot": 4.275,
+   "fat": 5.8,
+   "price": 1.8,
+   "disc": "4 Worsten"
+ },
+ {
+   "name": "Saus - Aioli",
+   "kcal": 231.4,
+   "carb": 1.0725,
+   "prot": 0.39,
+   "fat": 25.0575,
+   "price": 1.89,
+   "disc": "Potje 130g"
+ },
+ {
+   "name": "Saus - Knoflook saus",
+   "kcal": 94,
+   "carb": 3,
+   "prot": 0.25,
+   "fat": 9,
+   "price": 0.88,
+   "disc": "25ml"
+ },
+ {
+   "name": "Saus - Mayonaise",
+   "kcal": 94,
+   "carb": 0.5,
+   "prot": 0.1,
+   "fat": 10.1,
+   "price": 0,
+   "disc": "15ml"
+ },
+ {
+   "name": "Saus - Salsa - Hot",
+   "kcal": 6,
+   "carb": 1.1,
+   "prot": 1.2,
+   "fat": 0,
+   "price": 0.33,
+   "disc": "1 Eetlepel Potje 230g"
+ },
+ {
+   "name": "Saus - Salsa - Medium",
+   "kcal": 6,
+   "carb": 1.3,
+   "prot": 1,
+   "fat": 0,
+   "price": 0.28,
+   "disc": "1 Eetlepel Potje 230g"
+ },
+ {
+   "name": "Saus - Salsa - Mild",
+   "kcal": 7,
+   "carb": 1.4,
+   "prot": 0.2,
+   "fat": 0.3,
+   "price": 0.26,
+   "disc": "Eetlepel mild"
+ },
+ {
+   "name": "Saus - Sambal",
+   "kcal": 10.15,
+   "carb": 1.55,
+   "prot": 0.575,
+   "fat": 0.095,
+   "price": 2.8,
+   "disc": "Rawit en 1 Cayenne peper"
+ },
+ {
+   "name": "Schouderhamblokjes",
+   "kcal": 105.75,
+   "carb": 1.725,
+   "prot": 11.4,
+   "fat": 1.425,
+   "price": 1.97,
+   "disc": "300g pak"
+ },
+ {
+   "name": "Schouderkarbonade",
+   "kcal": 251.1,
+   "carb": 0,
+   "prot": 25.785,
+   "fat": 16.47,
+   "price": 3.07,
+   "disc": "540g pak"
+ },
+ {
+   "name": "Sesam Olie",
+   "kcal": 31.05,
+   "carb": 0,
+   "prot": 0,
+   "fat": 3.45,
+   "price": 0,
+   "disc": "1 Eetlepel"
+ },
+ {
+   "name": "Shoarma - Kippendij Gyros",
+   "kcal": 142,
+   "carb": 0.8,
+   "prot": 18.5,
+   "fat": 6.8,
+   "price": 2.66,
+   "disc": "400g Van de 3 voor 8"
+ },
+ {
+   "name": "Shoarma - Shoarma",
+   "kcal": 143,
+   "carb": 0.8,
+   "prot": 19.7,
+   "fat": 6.7,
+   "price": 5,
+   "disc": "100g"
+ },
+ {
+   "name": "Shoarma - Varkens Gyros",
+   "kcal": 271.875,
+   "carb": 1.3125,
+   "prot": 37.3125,
+   "fat": 12.75,
+   "price": 5.5,
+   "disc": "750g"
+ },
+ {
+   "name": "Shoarma - Varkens Shoarma",
+   "kcal": 168.75,
+   "carb": 1.625,
+   "prot": 25,
+   "fat": 6.875,
+   "price": 3.5,
+   "disc": "500g"
+ },
+ {
+   "name": "Sla - Botersla",
+   "kcal": 3.25,
+   "carb": 0.075,
+   "prot": 0.35,
+   "fat": 0.1,
+   "price": 1.67,
+   "disc": "100g"
+ },
+ {
+   "name": "Sla - Ijsbergsla gesneden",
+   "kcal": 32,
+   "carb": 0.9,
+   "prot": 0.45,
+   "fat": 0.15,
+   "price": 1,
+   "disc": "200g Zak"
+ },
+ {
+   "name": "Sla - Ijsbergsla krop",
+   "kcal": 57.6,
+   "carb": 1.62,
+   "prot": 0.81,
+   "fat": 0.27,
+   "price": 0.89,
+   "disc": ""
+ },
+ {
+   "name": "Sla - Rucola",
+   "kcal": 4.8875,
+   "carb": 0.02125,
+   "prot": 0.74375,
+   "fat": 0.10625,
+   "price": 1,
+   "disc": "Zakje 85g"
+ },
+ {
+   "name": "Slagroom",
+   "kcal": 210,
+   "carb": 1.875,
+   "prot": 1.4375,
+   "fat": 21.875,
+   "price": 1.08,
+   "disc": "1/4 bakje van 250g"
+ },
+ {
+   "name": "Sojasaus - Japans",
+   "kcal": 17.55,
+   "carb": 2.25,
+   "prot": 2.115,
+   "fat": 0,
+   "price": 0,
+   "disc": "6 Eetlepels Japans"
+ },
+ {
+   "name": "Sojasaus - Manis",
+   "kcal": 15.75,
+   "carb": 3.3,
+   "prot": 0.42,
+   "fat": 0,
+   "price": 0,
+   "disc": "1 eetlepel"
+ },
+ {
+   "name": "Sojasaus - Mix",
+   "kcal": 34.3125,
+   "carb": 7.0875,
+   "prot": 1.45125,
+   "fat": 0,
+   "price": 0,
+   "disc": "3 Eetlepels manis 3 eetlepes japans"
+ },
+ {
+   "name": "Spek - Ontbijtspek",
+   "kcal": 135.625,
+   "carb": 0.4375,
+   "prot": 6.125,
+   "fat": 12.25,
+   "price": 1.3,
+   "disc": "Pak 175g"
+ },
+ {
+   "name": "Spek - Spekjes zak",
+   "kcal": 210,
+   "carb": 0.375,
+   "prot": 11.25,
+   "fat": 18,
+   "price": 2.19,
+   "disc": "Een kwart van een 300g zakje"
+ },
+ {
+   "name": "Sperzie bonen",
+   "kcal": 34.875,
+   "carb": 4.725,
+   "prot": 2.1375,
+   "fat": 0.225,
+   "price": 0.71,
+   "disc": "Kwart van 450g zak"
+ },
+ {
+   "name": "Spinazie - Ala Crème Diepvries",
+   "kcal": 46.125,
+   "carb": 3.4875,
+   "prot": 2.025,
+   "fat": 2.1375,
+   "price": 0.54,
+   "disc": "450g Diepvires Deelblokjes"
+ },
+ {
+   "name": "Spinazie - Diepvries",
+   "kcal": 31.5,
+   "carb": 2.25,
+   "prot": 2.25,
+   "fat": 0.675,
+   "price": 0.48,
+   "disc": "450g Gehakte Spinazie Diepvries"
+ },
+ {
+   "name": "Spinazie - Vers 200g",
+   "kcal": 13,
+   "carb": 0.45,
+   "prot": 1.6,
+   "fat": 0.3,
+   "price": 1.19,
+   "disc": "Vers gewassen 200g"
+ },
+ {
+   "name": "Spinazie - Vers 400g",
+   "kcal": 26,
+   "carb": 0.9,
+   "prot": 3.2,
+   "fat": 0.6,
+   "price": 1.5,
+   "disc": "400g Vers"
+ },
+ {
+   "name": "Tofu",
+   "kcal": 150,
+   "carb": 0.25,
+   "prot": 17.25,
+   "fat": 8.5,
+   "price": 1.47,
+   "disc": "500g Natural Tofu"
+ },
+ {
+   "name": "Tomaten Blokjes",
+   "kcal": 20,
+   "carb": 3,
+   "prot": 1.2,
+   "fat": 0.2,
+   "price": 0.44,
+   "disc": "400g uit blik"
+ },
+ {
+   "name": "Vis - Tonijn",
+   "kcal": 180,
+   "carb": 0.1,
+   "prot": 23.5,
+   "fat": 9.5,
+   "price": 4.17,
+   "disc": "John west 400g"
+ },
+ {
+   "name": "Vis - Zalm",
+   "kcal": 61.25,
+   "carb": 0,
+   "prot": 12,
+   "fat": 1.4375,
+   "price": 2.77,
+   "disc": "2*125 gram"
+ },
+ {
+   "name": "Vis -Pangius filet",
+   "kcal": 114.75,
+   "carb": 0,
+   "prot": 23.355,
+   "fat": 2.43,
+   "price": 2.92,
+   "disc": "540g"
+ },
+ {
+   "name": "Whey Protein",
+   "kcal": 103,
+   "carb": 1,
+   "prot": 21,
+   "fat": 1.9,
+   "price": 0,
+   "disc": "25g"
+ },
+ {
+   "name": "Witte kool",
+   "kcal": 14,
+   "carb": 1.9,
+   "prot": 0.8,
+   "fat": 0.1,
+   "price": 1.25,
+   "disc": "50g"
+ },
+ {
+   "name": "Worst - Fuet",
+   "kcal": 172.125,
+   "carb": 0.85,
+   "prot": 10.625,
+   "fat": 14.025,
+   "price": 2.25,
+   "disc": "Spaanse fuet"
+ },
+ {
+   "name": "Worst - Gegrilde Worst",
+   "kcal": 222.75,
+   "carb": 2.1,
+   "prot": 9.75,
+   "fat": 19.5,
+   "price": 1.34,
+   "disc": "300g Gegrilde worst"
+ },
+ {
+   "name": "Worst - Rookorst",
+   "kcal": 286.875,
+   "carb": 1.59375,
+   "prot": 13.125,
+   "fat": 25.3125,
+   "price": 1.4,
+   "disc": "375g"
+ },
+ {
+   "name": "Worst - Smac",
+   "kcal": 228.65,
+   "carb": 2.72,
+   "prot": 10.88,
+   "fat": 19.38,
+   "price": 1.7,
+   "disc": "Jumbo Luncheon Meat"
+ }
+]

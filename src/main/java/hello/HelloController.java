@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ public class HelloController {
 	public Eten createEten() {
 		return new Eten();
 	}
-
+	
 	@Autowired
 	EtenRepository AWEtenRepository;
 
@@ -38,7 +39,7 @@ public class HelloController {
 
 	@RequestMapping("/eten")
 	public String eten(Model model) {
-		List<Eten> foods = AWEtenRepository.findAll(Sort.by(Sort.DEFAULT_DIRECTION.ASC, "name"));
+		List<Eten> foods = AWEtenRepository.findAll(Sort.by(Direction.ASC, "name"));
 		model.addAttribute("foods", foods);
 		model.addAttribute("Eten", new Eten());
 		return "eten";
@@ -51,6 +52,21 @@ public class HelloController {
 
 	@RequestMapping("/rotation")
 	public String rotation() {
+
+//		File file = ResourceUtils.getFile("jsonKeto.json");
+//
+//		// Read File Content
+//		String content = new String(Files.readAllBytes(file.toPath()));
+//
+//		ObjectMapper objectMapper = new ObjectMapper();
+//		List<Eten> listEten = objectMapper.readValue(content, new TypeReference<List<Eten>>() {
+//		});
+//
+//		for (Eten e : listEten) {
+//			AWEtenRepository.save(e);
+//			System.out.println("Saved: " + e.getName());
+//		}
+
 		return "rotation";
 	}
 
@@ -62,8 +78,20 @@ public class HelloController {
 			return new RedirectView("/");
 
 		}
+		if (eten.getWeight() != 0) {
+			eten.setKcal(PortionCalc(eten.getKcal(), eten.getWeight()));
+			eten.setCarb(PortionCalc(eten.getCarb(), eten.getWeight()));
+			eten.setProt(PortionCalc(eten.getProt(), eten.getWeight()));
+			eten.setFat(PortionCalc(eten.getFat(), eten.getWeight()));
+		}
+
 		AWEtenRepository.save(eten);
 		return new RedirectView("/eten");
+	}
+
+	public float PortionCalc(float value, int weight) {
+		float current = ((value * (weight / 100)) / 4);
+		return current;
 	}
 
 }
