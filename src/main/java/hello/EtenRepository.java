@@ -9,4 +9,6 @@ public interface EtenRepository extends CrudRepository<Eten, Integer> {
 	Eten findByName(String name);
 
 	ArrayList<Eten> findAll(Sort sort);
+
+	Eten findById(int id);
 }
