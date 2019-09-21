@@ -1,5 +1,7 @@
 package hello;
 
+import java.util.ArrayList;
+
 import javax.persistence.*;
 
 import org.springframework.lang.Nullable;
@@ -19,6 +21,9 @@ public class Eten {
 	private String disc;
 	@Nullable
 	private int weight;
+
+	@ManyToMany
+	private ArrayList<Eten> eten;
 
 	public Eten() {
 	}
