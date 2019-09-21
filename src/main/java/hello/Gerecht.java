@@ -1,5 +1,6 @@
 package hello;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,11 +18,8 @@ public class Gerecht {
 	private Date datum;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "gerecht_eten", 
-			joinColumns = {@JoinColumn(name = "gerecht_id")}, 
-			inverseJoinColumns = {@JoinColumn(name = "eten_id")}
-		)
+	@JoinTable(name = "gerecht_eten", joinColumns = { @JoinColumn(name = "gerecht_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "eten_id") })
 	private Set<Eten> ingredienten;
 
 	public Gerecht() {
@@ -58,6 +56,22 @@ public class Gerecht {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getDatum() {
+		return datum;
+	}
+
+	public void setDatum(Date datum) {
+		this.datum = datum;
+	}
+
+	public Set<Eten> getIngredienten() {
+		return ingredienten;
+	}
+
+	public void setIngredienten(Set<Eten> ingredienten) {
+		this.ingredienten = ingredienten;
 	}
 
 	public String getNaam() {

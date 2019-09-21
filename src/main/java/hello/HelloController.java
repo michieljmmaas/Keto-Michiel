@@ -57,12 +57,13 @@ public class HelloController {
 	}
 
 	@RequestMapping("/gerechten")
-	public String gerechten() {
+	public String gerechten(Model model) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll();
 		for (Gerecht g : gerechten) {
 			g.printInfo();
 		}
 
+		model.addAttribute("dishes", gerechten);
 		return "gerechten";
 	}
 

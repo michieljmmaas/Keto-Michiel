@@ -1,16 +1,43 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
 
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div th:insert="fragments/header :: header">...</div>
-</body>
+	<div th:insert="fragments/header :: header">...</div>
+	<div class="container-fluid">
+		<div class="row col-md-12">
+			<h1>Gerrechten</h1>
+		</div>
+
+		<div class="row col-md-12">
+			<ul id="myUL" class="w-100">
+				<li class="w-100" th:each="dish : ${dishes}">
+					<a th:text="${dish.getNaam()}" data-toggle="collapse" data-target="#IngredientList" aria-expanded="false" aria-controls="IngredientList"></a>
+					<div>
+						<ul id="IngredientList" class="collapse">
+							<li th:each="ing : ${dish.getIngredienten()}">
+								<a th:text="${ing.getName()}"></a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</div>
 
 </body>
 </html>
