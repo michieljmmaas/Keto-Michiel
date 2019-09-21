@@ -2,96 +2,142 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 
-	<title>Index</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery.min.js"></script>
-	<!-- <script src="jquery.tableTotal.js"></script> -->
-	<script th:src="@{/js/jquery.tableTotal.js}"></script>
-
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 </head>
 
 <body>
-	<div th:insert="fragments/header :: header">...</div>
-	<div class="container-fluid">
-		<div class="row col-md-12">
-			<h1>Gerrechten</h1>
-		</div>
+    <div th:insert="fragments/header :: header">...</div>
+    <div class="container-fluid">
+        <div class="row col-md-12">
+            <h1>Gerrechten</h1>
+        </div>
 
-		<div class="row col-md-12">
-			<ul id="myUL" class="w-100">
-				<li class="w-100" th:each="dish : ${dishes}" id="gerrechtItem">
-					<a th:text="${dish.getNaam()}" data-toggle="collapse" data-target="#IngredientList" aria-expanded="false" aria-controls="IngredientList"></a>
-					<div id="IngredientList" class="collapse pt-3 pb-3">
+        <div class="row col-md-12">
+            <ul id="myUL" class="w-100">
+                <li class="w-100" th:each="dish : ${dishes}" id="gerrechtItem">
+                    <a th:text="${dish.getNaam()}" data-toggle="collapse" data-target="#IngredientList" aria-expanded="false" aria-controls="IngredientList"></a>
+                    <div id="IngredientList" class="collapse pt-3 pb-3">
 
-						<table id="foodTable" class="table table-bordered table-hover">
-							<thead class="thead-dark">
-								<tr>
-									<th style="width: 20%">Name</th>
-									<th style="width: 8%">Kcal</th>
-									<th style="width: 8%">Carbs</th>
-									<th style="width: 8%">Proteins</th>
-									<th style="width: 8%">Fats</th>
-									<th style="width: 10%">Price</th>
-									<th style="width: 38%">Beschrijving</th>
-									<th>Delete</th>
-								</tr>
-							</thead>
-							<th:block th:each="ing : ${dish.getIngredienten()}">
-							<tr>
-								<td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
-								<td class="align-middle" th:text="${ing.getKcal()}"></td>
-								<td class="align-middle" th:text="${ing.getCarb()}"></td>
-								<td class="align-middle" th:text="${ing.getProt()}"></td>
-								<td class="align-middle" th:text="${ing.getFat()}"></td>
-								<td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
-								<td class="align-middle" th:text="${ing.getDisc()}"></td>
-								<td class="align-middle">
-									<button class="btn btn-danger deleteButton">Delete</button>
-								</td>
-							</tr>
-						</th:block>
-						<tr id="TotalRow">
-							<td>Total</td>
-							<td th:text="${dish.getTotalKcal()}"></td>
-							<td th:text="${dish.getTotalCarb()}"></td>
-							<td th:text="${dish.getTotalProt()}"></td>
-							<td th:text="${dish.getTotalFat()}"></td>
-							<td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-					<button class="btn btn-success addButton pl-3 btn-lg">Voeg toe</button>
-				</div>
-			</li>
-		</ul>
-	</div>
-</div>
+                        <table id="foodTable" class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width: 20%">Name</th>
+                                    <th style="width: 8%">Kcal</th>
+                                    <th style="width: 8%">Carbs</th>
+                                    <th style="width: 8%">Proteins</th>
+                                    <th style="width: 8%">Fats</th>
+                                    <th style="width: 10%">Price</th>
+                                    <th style="width: 38%">Beschrijving</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <th:block th:each="ing : ${dish.getIngredienten()}">
+                                <tr>
+                                    <td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
+                                    <td class="align-middle" th:text="${ing.getKcal()}"></td>
+                                    <td class="align-middle" th:text="${ing.getCarb()}"></td>
+                                    <td class="align-middle" th:text="${ing.getProt()}"></td>
+                                    <td class="align-middle" th:text="${ing.getFat()}"></td>
+                                    <td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
+                                    <td class="align-middle" th:text="${ing.getDisc()}"></td>
+                                    <td class="align-middle">
+                                        <button class="btn btn-danger deleteButton" th:data-ingid="${ing.getId()}" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            <tr id="TotalRow">
+                                <td>Total</td>
+                                <td th:text="${dish.getTotalKcal()}"></td>
+                                <td th:text="${dish.getTotalCarb()}"></td>
+                                <td th:text="${dish.getTotalProt()}"></td>
+                                <td th:text="${dish.getTotalFat()}"></td>
+                                <td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <button class="btn btn-success addButton pl-3 btn-lg">Voeg toe</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
+                        <input type="text" class="form-control" id="dishID" hidden>
+                        <input type="text" class="form-control" id="ingredientID" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="DeleteItem">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <script th:inline="javascript">
-	$(document).ready(function() {
+    $(document).ready(function() {
 
-		$('#gerrechtItem').click(function(event) {
-			console.log("Clicked")
-			var table = $(this);
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var dishID = button.data('dishid');
+            var ingredientID = button.data('ingid');
+            console.log("1: DishId: " + dishID);
+            console.log("1: ingredientID: " + ingredientID);
 
+            var modal = $(this);
+            modal.find('.modal-body #dishID').val(dishID);
+            modal.find('.modal-body #ingredientID').val(ingredientID);
+        });
 
-		});
-	});
+        //Deze actie triggerd op het drukken van de Delete Knop
+        $("#DeleteItem").click(function(event) {
+            event.preventDefault(); //De verwachte actie wordt onderschept en vervangen met een eigen API call
+            $("#deleteButton").prop("disabled", true); //Delete knopt wordt disable tot het proces is afgelopen
+            var ingredientID = $("#ingredientID").val();
+            var dishID = $("#dishID").val();
+            console.log("2: DishId: " + dishID);
+            console.log("2: ingredientID: " + ingredientID);
 
+            $.ajax({
+                type: "DELETE",
+                url: "Eten/DeleteIngredient/" + dishID + "/" + ingredientID,
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(e) {
+                    $("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
+                    $("#deleteButton").prop("disabled", false);
+                }
+            });
+        });
+
+    });
 </script>
-
 
 </html>
