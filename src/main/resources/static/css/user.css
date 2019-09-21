@@ -31,3 +31,6 @@ th     { background:#eee; }
 h1 {
 	color:red;
 }
+#TotalRow td {
+	font-weight: bold;	
+}

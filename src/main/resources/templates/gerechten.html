@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="utf-8">
 
 	<title>Index</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -13,6 +14,11 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<!-- <script src="jquery.tableTotal.js"></script> -->
+	<script th:src="@{/js/jquery.tableTotal.js}"></script>
+
+
 </head>
 
 <body>
@@ -24,20 +30,68 @@
 
 		<div class="row col-md-12">
 			<ul id="myUL" class="w-100">
-				<li class="w-100" th:each="dish : ${dishes}">
+				<li class="w-100" th:each="dish : ${dishes}" id="gerrechtItem">
 					<a th:text="${dish.getNaam()}" data-toggle="collapse" data-target="#IngredientList" aria-expanded="false" aria-controls="IngredientList"></a>
-					<div>
-						<ul id="IngredientList" class="collapse">
-							<li th:each="ing : ${dish.getIngredienten()}">
-								<a th:text="${ing.getName()}"></a>
-							</li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
+					<div id="IngredientList" class="collapse pt-3 pb-3">
 
+						<table id="foodTable" class="table table-bordered table-hover">
+							<thead class="thead-dark">
+								<tr>
+									<th style="width: 20%">Name</th>
+									<th style="width: 8%">Kcal</th>
+									<th style="width: 8%">Carbs</th>
+									<th style="width: 8%">Proteins</th>
+									<th style="width: 8%">Fats</th>
+									<th style="width: 10%">Price</th>
+									<th style="width: 38%">Beschrijving</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<th:block th:each="ing : ${dish.getIngredienten()}">
+							<tr>
+								<td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
+								<td class="align-middle" th:text="${ing.getKcal()}"></td>
+								<td class="align-middle" th:text="${ing.getCarb()}"></td>
+								<td class="align-middle" th:text="${ing.getProt()}"></td>
+								<td class="align-middle" th:text="${ing.getFat()}"></td>
+								<td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
+								<td class="align-middle" th:text="${ing.getDisc()}"></td>
+								<td class="align-middle">
+									<button class="btn btn-danger deleteButton">Delete</button>
+								</td>
+							</tr>
+						</th:block>
+						<tr id="TotalRow">
+							<td>Total</td>
+							<td th:text="${dish.getTotalKcal()}"></td>
+							<td th:text="${dish.getTotalCarb()}"></td>
+							<td th:text="${dish.getTotalProt()}"></td>
+							<td th:text="${dish.getTotalFat()}"></td>
+							<td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+					<button class="btn btn-success addButton pl-3 btn-lg">Voeg toe</button>
+				</div>
+			</li>
+		</ul>
 	</div>
-
+</div>
 </body>
+
+<script th:inline="javascript">
+	$(document).ready(function() {
+
+		$('#gerrechtItem').click(function(event) {
+			console.log("Clicked")
+			var table = $(this);
+
+
+		});
+	});
+
+</script>
+
+
 </html>

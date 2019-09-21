@@ -1,6 +1,5 @@
 package hello;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -100,5 +99,45 @@ public class Gerecht {
 
 	enum Type {
 		ONTBIJT, DINNER, SNACK, OTHER
+	}
+
+	public float getTotalKcal() {
+		float total = 0;
+		for (Eten e : this.ingredienten) {
+			total += e.getKcal();
+		}
+		return total;
+	}
+
+	public float getTotalCarb() {
+		float total = 0;
+		for (Eten e : this.ingredienten) {
+			total += e.getCarb();
+		}
+		return total;
+	}
+
+	public float getTotalProt() {
+		float total = 0;
+		for (Eten e : this.ingredienten) {
+			total += e.getProt();
+		}
+		return total;
+	}
+
+	public float getTotalFat() {
+		float total = 0;
+		for (Eten e : this.ingredienten) {
+			total += e.getFat();
+		}
+		return total;
+	}
+
+	public float getTotalPrice() {
+		float total = 0;
+		for (Eten e : this.ingredienten) {
+			total += e.getPrice();
+		}
+		return total;
 	}
 }
