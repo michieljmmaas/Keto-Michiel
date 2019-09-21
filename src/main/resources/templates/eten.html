@@ -19,10 +19,14 @@
 	<div th:insert="fragments/header :: header">...</div>
 	<div class="container-fluid">
 		<div class="row mb-2 mt-2">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#foodModal">
 					Voeg toe
 				</button>
+			</div>
+			<div class="col-md-6">
+				<input class="form-control w-100" type="text" placeholder="Search"
+				aria-label="Search" onkeyup="searchField()" id="searchTerm">
 			</div>
 		</div>
 		<div class="row col-md-12 tableFixHead">
@@ -42,7 +46,7 @@
 				</thead>
 				<th:block th:each="food : ${foods}">
 				<tr>
-					<td class="align-middle" th:text="${food.getName()}"></td>
+					<td id="foodName" class="align-middle" th:text="${food.getName()}"></td>
 					<td class="align-middle" th:text="${food.getKcal()}"></td>
 					<td class="align-middle" th:text="${food.getCarb()}"></td>
 					<td class="align-middle" th:text="${food.getProt()}"></td>
@@ -247,6 +251,26 @@
         	modal.find('.modal-body #disc-field ').val(disc);
         });
     });
+
+
+function searchField() {
+  // Declare variables
+  var input, filter, table, tr, a, i, txtValue;
+  input = document.getElementById('searchTerm');
+  filter = input.value.toUpperCase();
+  table = document.getElementById("foodTable");
+  tr = table.getElementsByTagName('tr');
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 1; i < tr.length; i++) {
+  	a = tr[i].getElementsByTagName('td')[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
+}
 </script>
 
 </html>
