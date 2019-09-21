@@ -1,5 +1,8 @@
 package hello;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +13,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@SuppressWarnings("unused")
 @Controller
 public class HelloController {
 
@@ -23,9 +31,12 @@ public class HelloController {
 	public Eten createEten() {
 		return new Eten();
 	}
-	
+
 	@Autowired
 	EtenRepository AWEtenRepository;
+
+	@Autowired
+	GerechtRepository AWGerechtRepository;
 
 	@RequestMapping("/")
 	public String index() {
@@ -47,11 +58,16 @@ public class HelloController {
 
 	@RequestMapping("/gerechten")
 	public String gerechten() {
+		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll();
+		for (Gerecht g : gerechten) {
+			g.printInfo();
+		}
+
 		return "gerechten";
 	}
 
 	@RequestMapping("/rotation")
-	public String rotation() {
+	public String rotation() throws IOException {
 
 //		File file = ResourceUtils.getFile("jsonKeto.json");
 //

@@ -1,6 +1,6 @@
 package hello;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -22,8 +22,8 @@ public class Eten {
 	@Nullable
 	private int weight;
 
-	@ManyToMany
-	private ArrayList<Eten> eten;
+	@ManyToMany(mappedBy = "ingredienten")
+	private Set<Gerecht> gerechten;
 
 	public Eten() {
 	}
