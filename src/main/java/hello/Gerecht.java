@@ -1,6 +1,8 @@
 package hello;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -8,6 +10,8 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "gerecht")
@@ -18,6 +22,7 @@ public class Gerecht {
 	private String naam;
 	@Enumerated(EnumType.STRING)
 	private Type type;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date datum;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -67,6 +72,11 @@ public class Gerecht {
 
 	public void setDatum(Date datum) {
 		this.datum = datum;
+	}
+
+	public void setDatum(String datum) throws ParseException {
+		Date foundDate = new SimpleDateFormat("yyyy/MM/dd").parse(datum);
+		this.datum = foundDate;
 	}
 
 	public String getDays() {

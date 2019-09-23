@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,22 +61,28 @@ public class HelloController {
 	public RedirectView gerechtPost(@Valid @ModelAttribute("Gerecht") Gerecht gerecht, BindingResult bindResult,
 			HttpServletRequest request, Model model) {
 		if (bindResult.hasErrors()) {
-			System.out.println("---Binding has Error");
+			List<FieldError> s = bindResult.getFieldErrors();
+			for (FieldError t : s) {
+				System.out.println(t.getDefaultMessage());
+			}
+
 			return new RedirectView("/");
 		}
 
 		AWGerechtRepository.save(gerecht);
-		return new RedirectView("/gerecht");
+		return new RedirectView("/gerechten");
 	}
 
 	@RequestMapping("/gerechten")
 	public String gerechten(Model model) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll();
+		List<Eten> foods = AWEtenRepository.findAll(Sort.by(Direction.ASC, "name"));
 //		for (Gerecht g : gerechten) {
 //			g.printInfo();
 //		}
 		model.addAttribute("Gerecht", new Gerecht());
 		model.addAttribute("dishes", gerechten);
+		model.addAttribute("ingredienten", foods);
 		return "gerechten";
 	}
 
