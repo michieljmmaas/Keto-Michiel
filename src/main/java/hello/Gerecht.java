@@ -1,5 +1,8 @@
 package hello;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Set;
 
@@ -63,6 +66,41 @@ public class Gerecht {
 
 	public void setDatum(Date datum) {
 		this.datum = datum;
+	}
+
+	public String getDays() {
+		String result = "Nog niet gemaakt";
+		if (this.datum != null) {
+			Date datum = this.datum;
+			LocalDateTime now = LocalDateTime.now();
+			LocalDateTime lastMade = datum.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+			Duration duration = Duration.between(now, lastMade);
+			int diff = (int) Math.abs(duration.toDays());
+
+			result = "Dagen Sinds: " + diff;
+		}
+
+		return result;
+	}
+
+	public void setType(String type) {
+		switch (type) {
+		case "ONTBIJT":
+			this.type = Type.ONTBIJT;
+			break;
+		case "DINNER":
+			this.type = Type.DINNER;
+			break;
+		case "SNACK":
+			this.type = Type.SNACK;
+			break;
+		case "OTHER":
+			this.type = Type.OTHER;
+			break;
+		default:
+			break;
+
+		}
 	}
 
 	public Set<Eten> getIngredienten() {

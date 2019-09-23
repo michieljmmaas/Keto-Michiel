@@ -3,7 +3,7 @@
 
 /* Just common table stuff. Really. */
 table  { border-collapse: collapse; width: 100%; }
-th, td { padding: 8px 16px; }
+th, td { padding: 8px 16px; background: white;}
 th     { background:#eee; }
 
 #myUL {
@@ -13,21 +13,28 @@ th     { background:#eee; }
   margin: 0;
 }
 
-#myUL li a {	
-  border: 1px solid #ddd; /* Add a border to all links */
+#myUL li .flex-row {	
   margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6; /* Grey background color */
+  background-color: #343a40; /* Grey background color */
   padding: 12px; /* Add some padding */
   text-decoration: none; /* Remove default text underline */
   font-size: 18px; /* Increase the font-size */
-  color: black; /* Add a black text color */
+  color: white; /* Add a black text color */
   display: block; /* Make it into a block element to fill the whole list */
 }
 
 #myUL li a:hover:not(.header) {
-  background-color: #eee; /* Add a hover effect to all links, except for headers */
+  background-color: #4d4d4e; /* Add a hover effect to all links, except for headers */
 }
 
 #TotalRow td {
 	font-weight: bold;	
+}
+
+#IngredientList{
+	background: #eee;
+}
+
+#infoContainer {
+	width: 95%;
 }

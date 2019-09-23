@@ -56,13 +56,25 @@ public class HelloController {
 		return "eten";
 	}
 
+	@PostMapping("/gerechtPost")
+	public RedirectView gerechtPost(@Valid @ModelAttribute("Gerecht") Gerecht gerecht, BindingResult bindResult,
+			HttpServletRequest request, Model model) {
+		if (bindResult.hasErrors()) {
+			System.out.println("---Binding has Error");
+			return new RedirectView("/");
+		}
+
+		AWGerechtRepository.save(gerecht);
+		return new RedirectView("/gerecht");
+	}
+
 	@RequestMapping("/gerechten")
 	public String gerechten(Model model) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll();
-		for (Gerecht g : gerechten) {
-			g.printInfo();
-		}
-
+//		for (Gerecht g : gerechten) {
+//			g.printInfo();
+//		}
+		model.addAttribute("Gerecht", new Gerecht());
 		model.addAttribute("dishes", gerechten);
 		return "gerechten";
 	}
