@@ -34,4 +34,10 @@ public class EtenController {
 		AWGerechtRepository.save(gerrecht);
 	}
 
+	@DeleteMapping(value = "DeleteDish/{dishID}")
+	public void deleteDish(@PathVariable int dishID) {
+		Gerecht gerrecht = AWGerechtRepository.findById(dishID);
+		AWGerechtRepository.delete(gerrecht);
+	}
+
 }
