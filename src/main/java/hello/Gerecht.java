@@ -94,6 +94,29 @@ public class Gerecht {
 		return result;
 	}
 
+	public String getTypeDisplay() {
+		String result = "";
+		switch (this.type) {
+		case DINNER:
+			result = "Dinner";
+			break;
+		case ONTBIJT:
+			result = "Ontbijt";
+			break;
+		case SNACK:
+			result = "Snack";
+			break;
+		case OTHER:
+			result = "Anders";
+			break;
+		default:
+			break;
+
+		}
+		return result;
+
+	}
+
 	public void setType(String type) {
 		switch (type) {
 		case "ONTBIJT":
