@@ -1,5 +1,6 @@
 package hello;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -139,36 +140,42 @@ public class Gerecht {
 		ONTBIJT, DINNER, SNACK, OTHER
 	}
 
-	public float getTotalKcal() {
+	public String format2Decimals(float a) {
+		DecimalFormat decimalFormat = new DecimalFormat("#.00");
+		String numberAsString = decimalFormat.format(a);
+		return numberAsString;
+	}
+
+	public String getTotalKcal() {
 		float total = 0;
 		for (Eten e : this.ingredienten) {
 			total += e.getKcal();
 		}
-		return total;
+		return format2Decimals(total);
 	}
 
-	public float getTotalCarb() {
+	public String getTotalCarb() {
 		float total = 0;
 		for (Eten e : this.ingredienten) {
 			total += e.getCarb();
 		}
-		return total;
+		return format2Decimals(total);
 	}
 
-	public float getTotalProt() {
+	public String getTotalProt() {
 		float total = 0;
 		for (Eten e : this.ingredienten) {
 			total += e.getProt();
 		}
-		return total;
+		return format2Decimals(total);
 	}
 
-	public float getTotalFat() {
+	public String getTotalFat() {
 		float total = 0;
 		for (Eten e : this.ingredienten) {
 			total += e.getFat();
 		}
-		return total;
+		return format2Decimals(total);
 	}
 
 	public float getTotalPrice() {
