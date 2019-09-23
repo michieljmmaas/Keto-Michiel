@@ -35,8 +35,9 @@
 		<div class="row col-md-12">
 			<ul id="myUL" class="w-100">
 				<li class="w-100 gerrechtItem" th:each="dish : ${dishes}" id="gerrechtItem">
+					<a th:text="${dish.getNaam()}" hidden></a>
 					<div class="flex-row mb-3 d-flex justify-content-between gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
-						<div  class="p-2" th:text="${dish.getNaam()}"></div>
+						<div class="p-2" th:text="${dish.getNaam()}" id="gerrechtNaam"></div>
 						<div class="p-2 align-self-center" th:text="${dish.getDays()}"></div>
 						<div class="p-2" th:text="${dish.getType()}"></div>
 					</div>
@@ -317,7 +318,7 @@
             event.preventDefault(); //De verwachte actie wordt onderschept en vervangen met een eigen API call
             $("#addIngredientButton").prop("disabled", true); //Delete knopt wordt disable tot het proces is afgelopen
             var dishID = $("#ingredientToevoegenID").val();
- 			var ingredients = $("#IngredientSelector").val();
+            var ingredients = $("#IngredientSelector").val();
 
             $.ajax({
             	type: "POST",
@@ -345,10 +346,26 @@
         		return !v;
         	});
         });
-
-
-
     });
+
+function searchField() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('searchTerm');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName('li');
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+  	a = li[i].getElementsByTagName('a')[0];
+  	txtValue = a.textContent || a.innerText;
+  	if (txtValue.toUpperCase().indexOf(filter) > -1) {
+  		li[i].style.display = "";
+  	} else {
+  		li[i].style.display = "none";
+  	}
+  }
+}
 </script>
 
 </html>
