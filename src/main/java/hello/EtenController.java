@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,17 @@ public class EtenController {
 	public void deleteDish(@PathVariable int dishID) {
 		Gerecht gerrecht = AWGerechtRepository.findById(dishID);
 		AWGerechtRepository.delete(gerrecht);
+	}
+
+	@PostMapping(value = "AddIngredient/{dishID}/{ingredients}")
+	public void addIngredient(@PathVariable int dishID, @PathVariable int[] ingredients) {
+		Gerecht gerrecht = AWGerechtRepository.findById(dishID);
+		Set<Eten> ingredienten = gerrecht.getIngredienten();
+		for (int i : ingredients) {
+			Eten e = AWEtenRepository.findById(i);
+			ingredienten.add(e);
+		}
+		AWGerechtRepository.save(gerrecht);
 	}
 
 }
