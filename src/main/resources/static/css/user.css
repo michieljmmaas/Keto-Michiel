@@ -1,4 +1,4 @@
-.tableFixHead          { overflow-y: auto; height: 90vh; }
+.tableFixHead          { overflow-y: auto; height: 85vh; }
 .tableFixHead thead th { position: sticky; top: 0; }
 
 /* Just common table stuff. Really. */
@@ -13,7 +13,7 @@ th     { background:#eee; }
   margin: 0;
 }
 
-#myUL li a {
+#myUL li a {	
   border: 1px solid #ddd; /* Add a border to all links */
   margin-top: -1px; /* Prevent double borders */
   background-color: #f6f6f6; /* Grey background color */
@@ -28,9 +28,6 @@ th     { background:#eee; }
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
 
-h1 {
-	color:red;
-}
 #TotalRow td {
 	font-weight: bold;	
 }

@@ -102,6 +102,8 @@ public class HelloController {
 			eten.setFat(PortionCalc(eten.getFat(), eten.getWeight()));
 		}
 
+		eten.setWeight(0);
+
 		AWEtenRepository.save(eten);
 		return new RedirectView("/eten");
 	}
