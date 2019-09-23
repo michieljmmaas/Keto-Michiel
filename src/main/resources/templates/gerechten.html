@@ -31,7 +31,7 @@
                 <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search" onkeyup="searchField()" id="searchTerm">
             </div>
         </div>
-        <div class="row col-md-12">
+        <div class="row col-md-12 gerrechtenList">
             <ul id="myUL" class="w-100">
                 <li class="w-100 gerrechtItem" th:each="dish : ${dishes}" id="gerrechtItem">
                     <a th:text="${dish.getNaam()}" hidden></a>

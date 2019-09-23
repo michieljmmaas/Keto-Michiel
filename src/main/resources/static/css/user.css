@@ -7,24 +7,24 @@ th, td { padding: 8px 16px; background: white;}
 th     { background:#eee; }
 
 #myUL {
-  /* Remove default list styling */
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+	/* Remove default list styling */
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 #myUL li .flex-row {	
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #343a40; /* Grey background color */
-  padding: 12px; /* Add some padding */
-  text-decoration: none; /* Remove default text underline */
-  font-size: 18px; /* Increase the font-size */
-  color: white; /* Add a black text color */
-  display: block; /* Make it into a block element to fill the whole list */
+	margin-top: -1px; /* Prevent double borders */
+	background-color: #343a40; /* Grey background color */
+	padding: 12px; /* Add some padding */
+	text-decoration: none; /* Remove default text underline */
+	font-size: 18px; /* Increase the font-size */
+	color: white; /* Add a black text color */
+	display: block; /* Make it into a block element to fill the whole list */
 }
 
 #myUL li a:hover:not(.header) {
-  background-color: #4d4d4e; /* Add a hover effect to all links, except for headers */
+	background-color: #4d4d4e; /* Add a hover effect to all links, except for headers */
 }
 
 #TotalRow td {
@@ -37,4 +37,8 @@ th     { background:#eee; }
 
 #infoContainer {
 	width: 95%;
+}
+
+.gerrechtenList {
+	overflow-y: auto; height: 90vh;
 }
