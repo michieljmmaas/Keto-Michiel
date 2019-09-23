@@ -35,7 +35,7 @@
 		<div class="row col-md-12">
 			<ul id="myUL" class="w-100">
 				<li class="w-100 gerrechtItem" th:each="dish : ${dishes}" id="gerrechtItem">
-					<div class="flex-row mb-3 d-flex justify-content-between" aria-expanded="false" aria-controls="IngredientList" id="listItem">
+					<div class="flex-row mb-3 d-flex justify-content-between gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
 						<div  class="p-2" th:text="${dish.getNaam()}"></div>
 						<div class="p-2 align-self-center" th:text="${dish.getDays()}"></div>
 						<div class="p-2" th:text="${dish.getType()}"></div>
@@ -280,9 +280,8 @@
 
 
 
-        $('.gerrechtItem').click(function() {
-        	console.log("Click")
-        	var modal = $(this);
+        $('.gerechtHeader').click(function() {
+        	var modal = $(this).parent();
         	modal.find('#IngredientList').collapse("toggle");
         });
 
