@@ -82,6 +82,7 @@ public class HelloController {
 
 //		Gerecht dish = AWGerechtRepository.findById(8);
 		model.addAttribute("set", set);
+		model.addAttribute("mealSet", mealset);
 		return "index";
 	}
 

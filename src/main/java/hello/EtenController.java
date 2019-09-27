@@ -19,6 +19,9 @@ public class EtenController {
 	@Autowired
 	GerechtRepository AWGerechtRepository;
 
+	@Autowired
+	MealSetRepository AWMealSetRepository;
+
 	@DeleteMapping(value = "/{id}")
 	public void deleteID(@PathVariable int id) {
 		Eten toDelete = AWEtenRepository.findById(id);
@@ -37,8 +40,29 @@ public class EtenController {
 
 	@DeleteMapping(value = "DeleteDish/{dishID}")
 	public void deleteDish(@PathVariable int dishID) {
-		Gerecht gerrecht = AWGerechtRepository.findById(dishID);		
+		Gerecht gerrecht = AWGerechtRepository.findById(dishID);
 		AWGerechtRepository.delete(gerrecht);
+	}
+
+	@PostMapping(value = "UpdateSet/{set}/{meal}/{gerecht}")
+	public void updateSet(@PathVariable int set, @PathVariable int meal, @PathVariable int gerecht) {
+		MealSet mealSet = AWMealSetRepository.findById(set);
+//		Gerecht g = AWGerechtRepository.findById(gerecht);
+		switch (meal) {
+		case 0:
+			mealSet.setOntbijtID(gerecht);
+			break;
+		case 1:
+			mealSet.setSnackID(gerecht);
+			break;
+		case 2:
+			mealSet.setDinnerID(gerecht);
+			break;
+		default:
+			break;
+		}
+		AWMealSetRepository.save(mealSet);
+
 	}
 
 	@PostMapping(value = "AddIngredient/{dishID}/{ingredients}")
