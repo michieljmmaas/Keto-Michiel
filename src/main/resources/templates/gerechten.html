@@ -2,271 +2,303 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 </head>
 
 <body>
-    <div th:insert="fragments/header :: header">...</div>
-    <div class="container-fluid">
-        <div class="row mb-2 mt-2">
-            <div class="col-md-2">
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#gerechtModal">
-                    Voeg toe
-                </button>
-            </div>
-            <div class="col-md-6">
-                <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search" onkeyup="searchField()" id="searchTerm">
-            </div>
-        </div>
-        <div class="row col-md-12 gerrechtenList">
-            <ul id="myUL" class="w-100">
-                <li class="w-100 gerrechtItem" th:each="dish : ${dishes}" id="gerrechtItem">
-                    <a th:text="${dish.getNaam()}" hidden></a>
-                    <div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
-                        <div class="p-2 col-md-5" th:text="${dish.getNaam()}"></div>
-                        <div class="p-2" th:text="${dish.getDays()}"></div>
-                        <div class="p-2 ml-auto" th:text="${dish.getTypeDisplay()}"></div>
-                    </div>
-                    <div id="IngredientList" class="collapse pt-3 pb-3 mb-3">
-                        <div class="container w-95">
-                            <table id="foodTable" class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th style="width: 20%">Name</th>
-                                        <th style="width: 8%">Kcal</th>
-                                        <th style="width: 8%">Carbs</th>
-                                        <th style="width: 8%">Proteins</th>
-                                        <th style="width: 8%">Fats</th>
-                                        <th style="width: 10%">Price</th>
-                                        <th style="width: 38%">Beschrijving</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </thead>
-                                <th:block th:each="ing : ${dish.getIngredienten()}">
-                                    <tr>
-                                        <td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
-                                        <td class="align-middle" th:text="${ing.getKcal()}"></td>
-                                        <td class="align-middle" th:text="${ing.getCarb()}"></td>
-                                        <td class="align-middle" th:text="${ing.getProt()}"></td>
-                                        <td class="align-middle" th:text="${ing.getFat()}"></td>
-                                        <td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
-                                        <td class="align-middle" th:text="${ing.getDisc()}"></td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-danger deleteButton" th:data-ingid="${ing.getId()}" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#deleteModal">Delete</button>
-                                        </td>
-                                    </tr>
-                                </th:block>
-                                <tr id="TotalRow">
-                                    <td>Total</td>
-                                    <td th:text="${dish.getTotalKcal()}"></td>
-                                    <td th:text="${dish.getTotalCarb()}"></td>
-                                    <td th:text="${dish.getTotalProt()}"></td>
-                                    <td th:text="${dish.getTotalFat()}"></td>
-                                    <td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-success addButton pl-3 btn-lg" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#addIngredientModal">Voeg toe</button>
-                                <button class="btn btn-danger pl-3 btn-lg" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#deleteModalGerrecht">Verwijder</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
+	<div th:insert="fragments/header :: header">...</div>
+	<div class="container-fluid">
+		<div class="row mb-2 mt-2">
+			<div class="col-md-2">
+				<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#gerechtModal">
+					Voeg toe
+				</button>
+			</div>
+			<div class="col-md-6">
+				<input class="form-control w-100" type="text" placeholder="Search" aria-label="Search" onkeyup="searchField()" id="searchTerm">
+			</div>
+		</div>
+		<div class="row mb-2 ml-1">
+			<div class="d-flex justify-content-start">
+				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="alGemaaktFilter()">
+					<label class="btn btn-secondary active">
+						<input type="checkbox" checked autocomplete="off"> Al gemaakt
+					</label>
+				</div>
+				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="OntbijtFilter()">
+					<label class="btn btn-secondary active">
+						<input type="checkbox" checked autocomplete="off"> Ontbijt
+					</label>
+				</div>
+				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="SnackFilter()">
+					<label class="btn btn-secondary active">
+						<input type="checkbox" checked autocomplete="off" > Snacks
+					</label>
+				</div>
+				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="DinnerFilter()">
+					<label class="btn btn-secondary active">
+						<input type="checkbox" checked autocomplete="off" > Dinner
+					</label>
+				</div>
+				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="OtherFilter()">
+					<label class="btn btn-secondary active">
+						<input type="checkbox" checked autocomplete="off"> Other
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row col-md-12 gerrechtenList">
+				<ul id="myUL" class="w-100">
+					<li class="w-100 gerrechtItem" th:each="dish : ${dishes}" id="gerrechtItem">
+						<a th:text="${dish.getNaam()}" hidden></a>
+						<p th:text="${dish.getDays()}" hidden></p>
+						<b th:text="${dish.getTypeDisplay()}" hidden></b>
+						<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
+							<div class="p-2 col-md-5" th:text="${dish.getNaam()}"></div>
+							<div class="p-2" th:text="${dish.getDays()}" id="gemaakt"></div>
+							<div class="p-2 ml-auto" th:text="${dish.getTypeDisplay()}"></div>
+						</div>
+						<div id="IngredientList" class="collapse pt-3 pb-3 mb-3">
+							<div class="container w-95">
+								<table id="foodTable" class="table table-bordered table-hover">
+									<thead class="thead-dark">
+										<tr>
+											<th style="width: 20%">Name</th>
+											<th style="width: 8%">Kcal</th>
+											<th style="width: 8%">Carbs</th>
+											<th style="width: 8%">Proteins</th>
+											<th style="width: 8%">Fats</th>
+											<th style="width: 10%">Price</th>
+											<th style="width: 38%">Beschrijving</th>
+											<th>Delete</th>
+										</tr>
+									</thead>
+									<th:block th:each="ing : ${dish.getIngredienten()}">
+									<tr>
+										<td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
+										<td class="align-middle" th:text="${ing.getKcal()}"></td>
+										<td class="align-middle" th:text="${ing.getCarb()}"></td>
+										<td class="align-middle" th:text="${ing.getProt()}"></td>
+										<td class="align-middle" th:text="${ing.getFat()}"></td>
+										<td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
+										<td class="align-middle" th:text="${ing.getDisc()}"></td>
+										<td class="align-middle">
+											<button class="btn btn-danger deleteButton" th:data-ingid="${ing.getId()}" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#deleteModal">Delete</button>
+										</td>
+									</tr>
+								</th:block>
+								<tr id="TotalRow">
+									<td>Total</td>
+									<td th:text="${dish.getTotalKcal()}"></td>
+									<td th:text="${dish.getTotalCarb()}"></td>
+									<td th:text="${dish.getTotalProt()}"></td>
+									<td th:text="${dish.getTotalFat()}"></td>
+									<td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+							<div class="d-flex justify-content-between">
+								<button class="btn btn-success addButton pl-3 btn-lg" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#addIngredientModal">Voeg toe</button>
+								<button class="btn btn-danger pl-3 btn-lg" th:data-dishid="${dish.getId()}" data-toggle="modal" data-target="#deleteModalGerrecht">Verwijder</button>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
-                        <input type="text" class="form-control" id="dishID" hidden>
-                        <input type="text" class="form-control" id="ingredientID" hidden>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger" id="DeleteItem">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
+						<input type="text" class="form-control" id="dishID" hidden>
+						<input type="text" class="form-control" id="ingredientID" hidden>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-danger" id="DeleteItem">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="modal fade" id="deleteModalGerrecht" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
-                        <input type="text" class="form-control" id="deleteGerechtID" hidden>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger" id="DeleteGerecht">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal fade" id="deleteModalGerrecht" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
+						<input type="text" class="form-control" id="deleteGerechtID" hidden>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-danger" id="DeleteGerecht">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Toevoegen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Welk ingredient wil je toevoegen?</label>
-                        <input type="text" class="form-control" id="ingredientToevoegenID" hidden>
-                    </div>
-                    <div class="form-group">
-                        <label>Ingredienten</label>
-                        <select class="selectpicker" multiple data-live-search="true" id="IngredientSelector">
-                            <option th:each="food : ${ingredienten}" th:value="${food.getId()}" th:text="${food.getName()}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success" id="addIngredientButton">Toevoegen</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Toevoegen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">Welk ingredient wil je toevoegen?</label>
+						<input type="text" class="form-control" id="ingredientToevoegenID" hidden>
+					</div>
+					<div class="form-group">
+						<label>Ingredienten</label>
+						<select class="selectpicker" multiple data-live-search="true" id="IngredientSelector">
+							<option th:each="food : ${ingredienten}" th:value="${food.getId()}" th:text="${food.getName()}">
+							</option>
+						</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-success" id="addIngredientButton">Toevoegen</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div id="gerechtModal" class="modal fade">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title">Gerecht toevoegen</h1>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" th:action="@{/gerechtPost}" th:object="${Gerecht}" modelAttribute="Gerecht">
-                        <div class="container-fluid">
-                            <div class="form-group" hidden>
-                                <div>
-                                    <input type="number" class="form-control input-lg" name="id" value="" th:field="*{id}" id="id-field">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="hidden" name="_token" value="">
-                                    <div class="form-group">
-                                        <label class="control-label">Naam</label>
-                                        <div>
-                                            <input type="text" class="form-control input-lg" name="naam" value="" th:field="*{naam}" id="name-field">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Type</label>
-                                <select class="control-label form-control" name="type" value="" id="typeField" th:field="*{type}">
-                                    <option th:value="ONTBIJT" th:text="Ontbijt"></option>
-                                    <option th:value="DINNER" th:text="Dinner"></option>
-                                    <option th:value="SNACK" th:text="Snack"></option>
-                                    <option th:value="OTHER" th:text="Other"></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Datum</label>
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <input type="checkbox" class="form-control input-lg" id="datumCheck">
-                                    </div>
-                                    <div class="col-md-11">
-                                        <input type="date" class="form-control input-lg" name="datum" disabled id="datumField" th:field="*{datum}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Ingredienten</label>
-                                <select class="selectpicker w-75" multiple data-live-search="true" th:field="*{ingredienten}">
-                                    <option th:each="food : ${ingredienten}" th:value="${food.getId()}" th:text="${food.getName()}">
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="d-flex justify-content-between">
-                                        <button type="submit" class="btn btn-success btn-lg">
-                                            Add
-                                        </button>
-                                        <button data-dismiss="modal" class="btn btn-danger btn-lg">
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div id="gerechtModal" class="modal fade">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title">Gerecht toevoegen</h1>
+				</div>
+				<div class="modal-body">
+					<form method="POST" th:action="@{/gerechtPost}" th:object="${Gerecht}" modelAttribute="Gerecht">
+						<div class="container-fluid">
+							<div class="form-group" hidden>
+								<div>
+									<input type="number" class="form-control input-lg" name="id" value="" th:field="*{id}" id="id-field">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<input type="hidden" name="_token" value="">
+									<div class="form-group">
+										<label class="control-label">Naam</label>
+										<div>
+											<input type="text" class="form-control input-lg" name="naam" value="" th:field="*{naam}" id="name-field">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Type</label>
+								<select class="control-label form-control" name="type" value="" id="typeField" th:field="*{type}">
+									<option th:value="ONTBIJT" th:text="Ontbijt"></option>
+									<option th:value="DINNER" th:text="Dinner"></option>
+									<option th:value="SNACK" th:text="Snack"></option>
+									<option th:value="OTHER" th:text="Other"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Datum</label>
+								<div class="row">
+									<div class="col-md-1">
+										<input type="checkbox" class="form-control input-lg" id="datumCheck">
+									</div>
+									<div class="col-md-11">
+										<input type="date" class="form-control input-lg" name="datum" disabled id="datumField" th:field="*{datum}">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Ingredienten</label>
+								<select class="selectpicker w-75" multiple data-live-search="true" th:field="*{ingredienten}">
+									<option th:each="food : ${ingredienten}" th:value="${food.getId()}" th:text="${food.getName()}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<div>
+									<div class="d-flex justify-content-between">
+										<button type="submit" class="btn btn-success btn-lg">
+											Add
+										</button>
+										<button data-dismiss="modal" class="btn btn-danger btn-lg">
+											Cancel
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 
 <script th:inline="javascript">
-    $(document).ready(function() {
+	$(document).ready(function() {
 
-        $('#deleteModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var dishID = button.data('dishid');
-            var ingredientID = button.data('ingid');
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var dishID = button.data('dishid');
+			var ingredientID = button.data('ingid');
 
-            var modal = $(this);
-            modal.find('.modal-body #dishID').val(dishID);
-            modal.find('.modal-body #ingredientID').val(ingredientID);
-        });
+			var modal = $(this);
+			modal.find('.modal-body #dishID').val(dishID);
+			modal.find('.modal-body #ingredientID').val(ingredientID);
+		});
 
-        $('#deleteModalGerrecht').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var dishID = button.data('dishid');
-            var modal = $(this);
-            modal.find('.modal-body #deleteGerechtID').val(dishID);
-        });
+		$('#deleteModalGerrecht').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var dishID = button.data('dishid');
+			var modal = $(this);
+			modal.find('.modal-body #deleteGerechtID').val(dishID);
+		});
 
-        $('#addIngredientModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var dishID = button.data('dishid');
-            var modal = $(this);
-            modal.find('.modal-body #ingredientToevoegenID').val(dishID);
-        });
+		$('#addIngredientModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var dishID = button.data('dishid');
+			var modal = $(this);
+			modal.find('.modal-body #ingredientToevoegenID').val(dishID);
+		});
 
         //Deze actie triggerd op het drukken van de Delete Knop
         $("#DeleteItem").click(function(event) {
@@ -276,15 +308,15 @@
             var dishID = $("#dishID").val();
 
             $.ajax({
-                type: "DELETE",
-                url: "Eten/DeleteIngredient/" + dishID + "/" + ingredientID,
-                success: function(data) {
-                    window.location.reload();
-                },
-                error: function(e) {
-                    $("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
-                    $("#deleteButton").prop("disabled", false);
-                }
+            	type: "DELETE",
+            	url: "Eten/DeleteIngredient/" + dishID + "/" + ingredientID,
+            	success: function(data) {
+            		window.location.reload();
+            	},
+            	error: function(e) {
+            		$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
+            		$("#deleteButton").prop("disabled", false);
+            	}
             });
         });
 
@@ -295,15 +327,15 @@
             var dishID = $("#deleteGerechtID").val();
 
             $.ajax({
-                type: "DELETE",
-                url: "Eten/DeleteDish/" + dishID,
-                success: function(data) {
-                    window.location.reload();
-                },
-                error: function(e) {
-                    $("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
-                    $("#deleteButton").prop("disabled", false);
-                }
+            	type: "DELETE",
+            	url: "Eten/DeleteDish/" + dishID,
+            	success: function(data) {
+            		window.location.reload();
+            	},
+            	error: function(e) {
+            		$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
+            		$("#deleteButton").prop("disabled", false);
+            	}
             });
         });
 
@@ -314,47 +346,135 @@
             var ingredients = $("#IngredientSelector").val();
 
             $.ajax({
-                type: "POST",
-                url: "Eten/AddIngredient/" + dishID + "/" + ingredients,
-                success: function(data) {
-                    window.location.reload();
-                },
-                error: function(e) {
-                    $("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
-                    $("#deleteButton").prop("disabled", false);
-                }
+            	type: "POST",
+            	url: "Eten/AddIngredient/" + dishID + "/" + ingredients,
+            	success: function(data) {
+            		window.location.reload();
+            	},
+            	error: function(e) {
+            		$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
+            		$("#deleteButton").prop("disabled", false);
+            	}
             });
         });
 
         $('.gerechtHeader').click(function() {
-            var modal = $(this).parent();
-            modal.find('#IngredientList').collapse("toggle");
+        	var modal = $(this).parent();
+        	modal.find('#IngredientList').collapse("toggle");
         });
 
         $('#datumCheck').click(function() {
-            $('#datumField').prop('disabled', function(i, v) {
-                return !v;
-            });
+        	$('#datumField').prop('disabled', function(i, v) {
+        		return !v;
+        	});
         });
+
     });
+
+	var gemaaktFilter = false;
+	var ontbijtFilter = false;
+	var snackFilter = false;
+	var dinnerFilter = false;
+	var otherFilter = false;
+
+	function filter() {
+		 // Declare variables
+		 var ul, li, i;
+		 ul = document.getElementById("myUL");
+		 li = ul.getElementsByTagName('li');
+
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+        	type = li[i].getElementsByTagName('b')[0];
+        	gemaakt = li[i].getElementsByTagName('p')[0];
+        	typeValue = type.textContent || type.innerText;
+        	gemaaktValue =  gemaakt.textContent || gemaakt.innerText;
+
+        	if (typeValue == "Ontbijt"){
+        		if(ontbijtFilter == true){
+        			li[i].style.display = "none";
+        		} else{
+        			li[i].style.display = "";
+        		}
+        	}
+
+        	if (typeValue == "Snack"){
+        		if(snackFilter == true){
+        			li[i].style.display = "none";
+        		} else{
+        			li[i].style.display = "";
+        		}
+        	}
+
+        	if (typeValue == "Dinner"){
+        		if(dinnerFilter == true){
+        			li[i].style.display = "none";
+        		} else{
+        			li[i].style.display = "";
+        		}
+        	}
+
+        	if (typeValue == "Other"){
+        		if(otherFilter == true){
+        			li[i].style.display = "none";
+        		} else{
+        			li[i].style.display = "";
+        		}
+        	}
+
+        	if (gemaaktValue == "Nog niet gemaakt"){
+        		if(gemaaktFilter == true){
+        			li[i].style.display = "none";
+        		} else{
+        			li[i].style.display = "";
+        		}
+        	}
+        }
+    }
 
     function searchField() {
         // Declare variables
-        var input, filter, ul, li, a, i, txtValue;
+        var input, check, ul, li, a, i, txtValue;
         input = document.getElementById('searchTerm');
-        filter = input.value.toUpperCase();
+        check = input.value.toUpperCase();
         ul = document.getElementById("myUL");
         li = ul.getElementsByTagName('li');
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName('a')[0];
-            txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
+        	a = li[i].getElementsByTagName('a')[0];
+        	txtValue = a.textContent || a.innerText;
+        	if (txtValue.toUpperCase().indexOf(check) > -1) {
+        		li[i].style.display = "";
+        	} else {
+        		li[i].style.display = "none";
+        	}
         }
+    }
+
+
+    function alGemaaktFilter() {
+    	gemaaktFilter = !gemaaktFilter;
+    	filter();
+    }
+
+    function OntbijtFilter() {
+    	ontbijtFilter = !ontbijtFilter;
+    	filter();
+    }
+
+    function DinnerFilter() {
+    	dinnerFilter = !dinnerFilter;
+    	filter();
+    }
+
+    function SnackFilter() {
+    	snackFilter = !snackFilter;
+    	filter();
+    }
+    function OtherFilter() {
+    	otherFilter = !otherFilter;
+    	filter();
     }
 </script>
 

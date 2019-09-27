@@ -40,5 +40,10 @@ th     { background:#eee; }
 }
 
 .gerrechtenList {
-	overflow-y: auto; height: 85vh;
+	overflow-y: auto; height: 80vh;
+}
+
+.filterButton{
+	margin-left: 10px;
+	margin-right: 10px;
 }

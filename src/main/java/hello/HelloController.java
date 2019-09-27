@@ -3,6 +3,8 @@ package hello;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +82,9 @@ public class HelloController {
 		model.addAttribute("Gerecht", new Gerecht());
 		model.addAttribute("dishes", gerechten);
 		model.addAttribute("ingredienten", foods);
+		ArrayList<String> types = new ArrayList<String>(Arrays.asList("Dinner", "Ontbijt", "Other", "Snack"));
+		model.addAttribute("types", types);
+
 		return "gerechten";
 	}
 
