@@ -2,6 +2,7 @@ package hello;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +53,42 @@ public class HelloController {
 		Gerecht snack = AWGerechtRepository.findById(mealset.getSnackID());
 		Gerecht dinner = AWGerechtRepository.findById(mealset.getDinnerID());
 		ArrayList<Gerecht> set = new ArrayList<Gerecht>(Arrays.asList(ontbijt, snack, dinner));
-		for (Gerecht g : set) {
-			g.printInfo();
-		}
 		model.addAttribute("dishes", gerechten);
+		float kcalSum = 0;
+		float carbSum = 0;
+		float protSum = 0;
+		float fatSum = 0;
+		float priceSum = 0;
+
+		for (Gerecht g : set) {
+			kcalSum += Float.valueOf(g.getTotalKcal());
+			carbSum += Float.valueOf(g.getTotalCarb());
+			protSum += Float.valueOf(g.getTotalProt());
+			fatSum += Float.valueOf(g.getTotalFat());
+			priceSum += Float.valueOf(g.getTotalPrice());
+
+		}
+		model.addAttribute("kcalSum", kcalSum);
+		model.addAttribute("carbSum", carbSum);
+		model.addAttribute("protSum", protSum);
+		model.addAttribute("fatSum", fatSum);
+		model.addAttribute("priceSum", priceSum);
+
+		model.addAttribute("kcalDiff", round(1500 - kcalSum, 2));
+		model.addAttribute("carbDiff", round(20 - carbSum, 2));
+		model.addAttribute("protDiff", round(96 - protSum, 2));
+		model.addAttribute("fatDiff", round(118 - fatSum, 2));
+		model.addAttribute("priceDay", round(priceSum / 4, 2));
+
 //		Gerecht dish = AWGerechtRepository.findById(8);
 		model.addAttribute("set", set);
 		return "index";
+	}
+
+	public static BigDecimal round(float d, int decimalPlace) {
+		BigDecimal bd = new BigDecimal(Float.toString(d));
+		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+		return bd;
 	}
 
 	@RequestMapping("/gewicht")

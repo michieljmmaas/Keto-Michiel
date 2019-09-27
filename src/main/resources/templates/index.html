@@ -13,9 +13,11 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="/js/Chart.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 
@@ -23,65 +25,104 @@
 	<div th:insert="fragments/header :: header">...</div>
 
 	<div class="container-fluid">
-		<div class="row col-md-8 mealSetList pt-2">
-			<ul class=w-100 id="myUL">
-				<li class="w-100 gerrechtItem" id="gerrechtItem" th:each="dish : ${set}">
-					<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
-						<div class="p-2 col-md-5" th:text="${dish.getTypeDisplay()}"></div>
-						<div class="p-2" th:text="${dish.getNaam()}"></div>
-						<div class="p-2 ml-auto"></div>
-					</div>
-					<div id="IngredientList" class="collapse pl-5 pt-3 pb-3 mb-3">
-						<h1 th:text="${dish.getNaam()}"></h1>
-						<div class="d-flex flex-row">
-							<table id="startTable" class="table table-bordered table-hover">
-								<thead class="thead-dark">
+		<div class="row">
+			<div class="col-md-8 mealSetList pt-2">
+				<ul class=w-100 id="myUL">
+					<li class="w-100 gerrechtItem" id="gerrechtItem" th:each="dish : ${set}">
+						<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
+							<div class="p-2 col-md-5" th:text="${dish.getTypeDisplay()}"></div>
+							<div class="p-2" th:text="${dish.getNaam()}"></div>
+							<div class="p-2 ml-auto"></div>
+						</div>
+						<div id="IngredientList" class="collapse pl-5 pt-3 pb-3 mb-3">
+							<h1 th:text="${dish.getNaam()}"></h1>
+							<div class="d-flex flex-row">
+								<table id="startTable" class="table table-bordered table-hover">
+									<thead class="thead-dark">
+										<tr>
+											<th style="width: 20%">Name</th>
+											<th style="width: 8%">Kcal</th>
+											<th style="width: 8%">Carbs</th>
+											<th style="width: 8%">Proteins</th>
+											<th style="width: 8%">Fats</th>
+											<th style="width: 10%">Price</th>
+											<th style="width: 38%">Beschrijving</th>
+										</tr>
+									</thead>
+									<th:block th:each="ing : ${dish.getIngredienten()}">
 									<tr>
-										<th style="width: 20%">Name</th>
-										<th style="width: 8%">Kcal</th>
-										<th style="width: 8%">Carbs</th>
-										<th style="width: 8%">Proteins</th>
-										<th style="width: 8%">Fats</th>
-										<th style="width: 10%">Price</th>
-										<th style="width: 38%">Beschrijving</th>
+										<td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
+										<td class="align-middle" th:text="${ing.getKcal()}"></td>
+										<td class="align-middle" th:text="${ing.getCarb()}"></td>
+										<td class="align-middle" th:text="${ing.getProt()}"></td>
+										<td class="align-middle" th:text="${ing.getFat()}"></td>
+										<td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
+										<td class="align-middle" th:text="${ing.getDisc()}"></td>
 									</tr>
-								</thead>
-								<th:block th:each="ing : ${dish.getIngredienten()}">
-								<tr>
-									<td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
-									<td class="align-middle" th:text="${ing.getKcal()}"></td>
-									<td class="align-middle" th:text="${ing.getCarb()}"></td>
-									<td class="align-middle" th:text="${ing.getProt()}"></td>
-									<td class="align-middle" th:text="${ing.getFat()}"></td>
-									<td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
-									<td class="align-middle" th:text="${ing.getDisc()}"></td>
+								</th:block>
+								<tr id="TotalRow">
+									<td>Total</td>
+									<td th:text="${dish.getTotalKcal()}"></td>
+									<td th:text="${dish.getTotalCarb()}"></td>
+									<td th:text="${dish.getTotalProt()}"></td>
+									<td th:text="${dish.getTotalFat()}"></td>
+									<td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
+									<td></td>
 								</tr>
-							</th:block>
-							<tr id="TotalRow">
-								<td>Total</td>
-								<td th:text="${dish.getTotalKcal()}"></td>
-								<td th:text="${dish.getTotalCarb()}"></td>
-								<td th:text="${dish.getTotalProt()}"></td>
-								<td th:text="${dish.getTotalFat()}"></td>
-								<td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
-								<td></td>
-							</tr>
-						</table>
-					</div>
-					<div class="row">
-						<div class="col-md-10">
-							<select class="selectpicker pb-2 pt-1" data-width="100%" data-live-search="true" id="gerrechtSelector">
-								<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
-								</option>
-							</select>
+							</table>
 						</div>
-						<div class="col-md-2">
-							<button type="button" class="pl-3 btn btn-success btn-lg">Update</button>
+						<div class="row">
+							<div class="col-md-10">
+								<select class="selectpicker pb-2 pt-1" data-width="100%" data-live-search="true" id="gerrechtSelector">
+									<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
+									</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<button type="button" class="pl-3 btn btn-success btn-lg">Update</button>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>
-		</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-4 pt-2">
+			<table class="table table-bordered pt-1">
+				<thead class="thead-dark">
+					<tr>
+						<th>Name</th>
+						<th>Kcal</th>
+						<th>Carbs</th>
+						<th>Proteins</th>
+						<th>Fats</th>
+					</tr>
+				</thead>
+				<tr>
+					<td class="align-middle">Total</td>
+					<td class="align-middle" th:text="${kcalSum}"></td>
+					<td class="align-middle" th:text="${carbSum}"></td>
+					<td class="align-middle" th:text="${protSum}"></td>
+					<td class="align-middle" th:text="${fatSum}"></td>
+				</tr>
+				<tr>
+					<td class="align-middle">Goal</td>
+					<td class="align-middle">1500</td>
+					<td class="align-middle">20</td>
+					<td class="align-middle">96</td>
+					<td class="align-middle">118</td>
+				</tr>
+				<tr>
+					<td class="align-middle">Difference</td>
+					<td class="align-middle" th:text="${kcalDiff}"></td>
+					<td class="align-middle" th:text="${carbDiff}"></td>
+					<td class="align-middle" th:text="${protDiff}"></td>
+					<td class="align-middle" th:text="${fatDiff}"></td>
+				</tr>
+
+			</table>
+
+			<canvas id="myChart" width="400" height="400"></canvas>
+		</div>
 	</div>
 </div>
 </body>
@@ -92,6 +133,44 @@
 		$('.gerechtHeader').click(function() {
 			var modal = $(this).parent();
 			modal.find('#IngredientList').collapse("toggle");
+		});
+
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+				datasets: [{
+					label: '# of Votes',
+					data: [12, 19, 3, 5, 2, 3],
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+					],
+					borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
 		});
 	});
 </script>
