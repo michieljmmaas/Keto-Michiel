@@ -75,11 +75,8 @@ public class HelloController {
 
 	@RequestMapping("/gerechten")
 	public String gerechten(Model model) {
-		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll();
+		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
 		List<Eten> foods = AWEtenRepository.findAll(Sort.by(Direction.ASC, "name"));
-//		for (Gerecht g : gerechten) {
-//			g.printInfo();
-//		}
 		model.addAttribute("Gerecht", new Gerecht());
 		model.addAttribute("dishes", gerechten);
 		model.addAttribute("ingredienten", foods);
