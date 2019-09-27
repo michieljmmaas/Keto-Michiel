@@ -117,6 +117,7 @@ public class Eten {
 	public void printInfo() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Name: " + this.name + '\n');
+		sb.append("\tID: " + this.id + '\n');
 		sb.append("\tCarb: " + this.carb + '\n');
 		sb.append("\tProt: " + this.prot + '\n');
 		sb.append("\tFat: " + this.fat + '\n');

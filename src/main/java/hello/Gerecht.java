@@ -25,7 +25,7 @@ public class Gerecht {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date datum;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "gerecht_eten", joinColumns = { @JoinColumn(name = "gerecht_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "eten_id") })
 	private Set<Eten> ingredienten;

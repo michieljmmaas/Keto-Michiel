@@ -38,6 +38,12 @@ public class EtenController {
 	@DeleteMapping(value = "DeleteDish/{dishID}")
 	public void deleteDish(@PathVariable int dishID) {
 		Gerecht gerrecht = AWGerechtRepository.findById(dishID);
+		System.out.println("Deleting dish id= " + dishID);
+		gerrecht.printInfo();
+		for (Eten e : gerrecht.getIngredienten()) {
+			e.printInfo();
+		}
+		
 		AWGerechtRepository.delete(gerrecht);
 	}
 
