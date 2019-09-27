@@ -78,6 +78,11 @@ public class Gerecht {
 		Date foundDate = new SimpleDateFormat("yyyy/MM/dd").parse(datum);
 		this.datum = foundDate;
 	}
+	
+	public void setDashDatum(String datum) throws ParseException {
+		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
+		this.datum = foundDate;
+	}
 
 	public String getDays() {
 		String result = "Nog niet gemaakt";

@@ -24,9 +24,10 @@
 	<div th:insert="fragments/header :: header">...</div>
 
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2">
-				<button type="button" class="pl-3 btn btn-success btn-lg Submit">Submit</button>
+		<div class="d-flex flex-row">
+			<button type="button" class="pl-3 btn btn-success btn-lg Submit">Submit</button>
+			<div class="pl-3 pt-1 w-25">
+				<input type="date" class="form-control input-lg" id="datumField">
 			</div>
 		</div>
 		<div class="row">
@@ -74,8 +75,9 @@
 									<td></td>
 								</tr>
 							</table>
+							<div th:text="${dish.getId()}" hidden id="currentDishId"></div>
 						</div>
-						<div class="row">
+						<div class="row gerrechtInfo">
 							<div class="col-md-10">
 								<select class="selectpicker pb-2 pt-1" data-width="100%" data-live-search="true" id="gerrechtSelector">
 									<option th:each="food : ${dishes}" th:text="${food.getNaam()}" th:value="${food.getId()}">
@@ -126,8 +128,8 @@
 				</tr>
 
 			</table>
-			<h1 th:text="'Prijs per dag: ' + ${#numbers.formatCurrency(priceDay)}"></h1>
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<h1 th:text="'Prijs per dag: ' + ${#numbers.formatCurrency(priceDay)}" class="pb-4 pt-2 text-center"></h1>
+			<canvas id="myChart" ></canvas>
 		</div>
 	</div>
 </div>
@@ -135,8 +137,6 @@
 
 <script th:inline="javascript">
 	$(document).ready(function() {
-		$('#datetimepicker1').datetimepicker();
-
 		$('.gerechtHeader').click(function() {
 			var modal = $(this).parent();
 			modal.find('#IngredientList').collapse("toggle");
@@ -154,6 +154,45 @@
 			$.ajax({
 				type: "POST",
 				url: "Eten/UpdateSet/" + setNumber + "/" + mealNumber + "/" + dish,
+				success: function(data) {
+					window.location.reload();
+				},
+				error: function(e) {
+					$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
+					$("#deleteButton").prop("disabled", false);
+				}
+			});
+
+		});
+
+		$('.Submit').click(function() {
+			var submitList = $(this).parent().parent();
+			var datum = submitList.find("#datumField").val();
+
+			var items = submitList.find("#myUL");
+			var lis = items.find('li');
+
+			// console.log(lis);
+
+			var ontbijt = lis.first(); 
+
+			var setNumber = ontbijt.find('#setNumber').text();
+			var ontbijtDish = ontbijt.find('#currentDishId').text();
+
+			var snack = ontbijt.next();
+			var snackDish = snack.find('#currentDishId').text();
+
+			var dinner = snack.next();
+			var dinnerDish = dinner.find('#currentDishId').text();
+
+			console.log("Datum:" + datum);
+			console.log("Ontbijt:" + ontbijtDish);
+			console.log("snackDish:" + snackDish);
+			console.log("dinnerDish:" + dinnerDish);
+
+			$.ajax({
+				type: "POST",
+				url: "Eten/NewMealSet/" + datum + "/" + ontbijtDish + "/" + snackDish + "/" + dinnerDish,
 				success: function(data) {
 					window.location.reload();
 				},

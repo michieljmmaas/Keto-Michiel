@@ -1,5 +1,7 @@
 package hello;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,6 +17,11 @@ public class MealSet {
 	private int snackID;
 	private int dinnerID;
 	private Date date;
+
+	public void setDate(String datum) throws ParseException {
+		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
+		this.date = foundDate;
+	}
 
 	public int getId() {
 		return id;

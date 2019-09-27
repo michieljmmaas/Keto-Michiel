@@ -48,7 +48,7 @@ public class HelloController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
-		MealSet mealset = AWMealSetRepository.findById(1);
+		MealSet mealset = AWMealSetRepository.findAll(Sort.by(Direction.ASC, "date")).get(0);
 		Gerecht ontbijt = AWGerechtRepository.findById(mealset.getOntbijtID());
 		Gerecht snack = AWGerechtRepository.findById(mealset.getSnackID());
 		Gerecht dinner = AWGerechtRepository.findById(mealset.getDinnerID());

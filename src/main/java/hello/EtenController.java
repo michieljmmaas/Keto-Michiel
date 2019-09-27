@@ -1,5 +1,6 @@
 package hello;
 
+import java.text.ParseException;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,28 @@ public class EtenController {
 		AWGerechtRepository.delete(gerrecht);
 	}
 
+	@PostMapping(value = "NewMealSet/{datum}/{ontbijtDish}/{snackDish}/{dinnerDish}")
+	public void newMealSet(@PathVariable String datum, @PathVariable int ontbijtDish, @PathVariable int snackDish,
+			@PathVariable int dinnerDish) throws ParseException {
+		System.out.println(datum);
+		Gerecht ontbijt = AWGerechtRepository.findById(ontbijtDish);
+		ontbijt.setDashDatum(datum);
+		Gerecht snack = AWGerechtRepository.findById(snackDish);
+		snack.setDashDatum(datum);
+		Gerecht dinner = AWGerechtRepository.findById(dinnerDish);
+		dinner.setDashDatum(datum);
+		MealSet meal = new MealSet();
+		meal.setOntbijtID(ontbijtDish);
+		meal.setSnackID(snackDish);
+		meal.setDinnerID(dinnerDish);
+		meal.setDate(datum);
+
+		AWMealSetRepository.save(meal);
+	}
+
 	@PostMapping(value = "UpdateSet/{set}/{meal}/{gerecht}")
 	public void updateSet(@PathVariable int set, @PathVariable int meal, @PathVariable int gerecht) {
 		MealSet mealSet = AWMealSetRepository.findById(set);
-//		Gerecht g = AWGerechtRepository.findById(gerecht);
 		switch (meal) {
 		case 0:
 			mealSet.setOntbijtID(gerecht);
