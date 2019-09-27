@@ -42,7 +42,11 @@ public class HelloController {
 	GerechtRepository AWGerechtRepository;
 
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
+		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
+		model.addAttribute("dishes", gerechten);
+		Gerecht dish = AWGerechtRepository.findById(8);
+		model.addAttribute("dish", dish);
 		return "index";
 	}
 

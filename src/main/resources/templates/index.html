@@ -1,17 +1,135 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
 
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/user.css}"/>
+<head>
+	<meta charset="utf-8">
+
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
 </head>
 
 <body>
-    <div th:insert="fragments/header :: header">...</div>
+	<div th:insert="fragments/header :: header">...</div>
+
+	<div class="container-fluid">
+		<div class="row col-md-12 gerrechtenList	">
+			<ul class=w-100 id="myUL">
+				<li class="w-100 gerrechtItem" id="gerrechtItem">
+					<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
+						<div class="p-2 col-md-5">Ontbijt</div>
+						<div class="p-2" th:text="${dish.getNaam()}"></div>
+						<div class="p-2 ml-auto"></div>
+					</div>
+					<div id="IngredientList" class="collapse pl-5 pt-3 pb-3 mb-3">
+						<h1 th:text="${dish.getNaam()}"></h1>
+						<div class="d-flex flex-row">
+							<table id="startTable" class="table table-bordered table-hover">
+								<thead class="thead-dark">
+									<tr>
+										<th style="width: 20%">Name</th>
+										<th style="width: 8%">Kcal</th>
+										<th style="width: 8%">Carbs</th>
+										<th style="width: 8%">Proteins</th>
+										<th style="width: 8%">Fats</th>
+										<th style="width: 10%">Price</th>
+										<th style="width: 38%">Beschrijving</th>
+									</tr>
+								</thead>
+								<th:block th:each="ing : ${dish.getIngredienten()}">
+								<tr>
+									<td id="foodName" class="align-middle" th:text="${ing.getName()}"></td>
+									<td class="align-middle" th:text="${ing.getKcal()}"></td>
+									<td class="align-middle" th:text="${ing.getCarb()}"></td>
+									<td class="align-middle" th:text="${ing.getProt()}"></td>
+									<td class="align-middle" th:text="${ing.getFat()}"></td>
+									<td class="align-middle" th:text="${#numbers.formatCurrency(ing.getPrice())}">Eten</td>
+									<td class="align-middle" th:text="${ing.getDisc()}"></td>
+								</tr>
+							</th:block>
+							<tr id="TotalRow">
+								<td>Total</td>
+								<td th:text="${dish.getTotalKcal()}"></td>
+								<td th:text="${dish.getTotalCarb()}"></td>
+								<td th:text="${dish.getTotalProt()}"></td>
+								<td th:text="${dish.getTotalFat()}"></td>
+								<td th:text="${#numbers.formatCurrency(dish.getTotalPrice())}"></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<select class="selectpicker pb-2 pt-1" data-width="100%" data-live-search="true" id="gerrechtSelector">
+								<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
+								</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="pl-3 btn btn-success btn-lg">Update</button>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="w-100" id="myUL">
+				<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
+					<div class="p-2 col-md-5">Snack</div>
+					<div class="p-2" th:text="${dish.getNaam()}"></div>
+					<div class="p-2 ml-auto"></div>
+				</div>
+				<div id="IngredientList" class="collapse pt-3 mb-b">
+					<div class="d-flex flex-row">
+						<div class="d-flex flex-column">
+							<label>Gerrechten</label>
+							<select class="selectpicker" data-live-search="true" id="gerrechtSelector">
+								<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="w-100" id="myUL">
+				<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
+					<div class="p-2 col-md-5">Dinner</div>
+					<div class="p-2">Naam</div>
+					<div class="p-2 ml-auto"></div>
+				</div>
+				<div class="d-flex flex-row">
+					<div class="d-flex flex-column">
+						<div id="IngredientList" class="collapse pt-3 pb-3 mb-3">
+							<label>Gerrechten</label>
+							<select class="selectpicker" data-live-search="true" id="gerrechtSelector">
+								<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+			</li>
+		</ul>
+	</div>
+</div>
 </body>
 
-</body>
+<script th:inline="javascript">
+	$(document).ready(function() {
+
+		$('.gerechtHeader').click(function() {
+			var modal = $(this).parent();
+			modal.find('#IngredientList').collapse("toggle");
+		});
+	});
+</script>
 </html>
