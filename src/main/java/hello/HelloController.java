@@ -68,10 +68,10 @@ public class HelloController {
 			priceSum += Float.valueOf(g.getTotalPrice());
 
 		}
-		model.addAttribute("kcalSum", kcalSum);
-		model.addAttribute("carbSum", carbSum);
-		model.addAttribute("protSum", protSum);
-		model.addAttribute("fatSum", fatSum);
+		model.addAttribute("kcalSum", round(kcalSum, 2));
+		model.addAttribute("carbSum", round(carbSum, 2));
+		model.addAttribute("protSum", round(protSum, 2));
+		model.addAttribute("fatSum", round(fatSum, 2));
 		model.addAttribute("priceSum", priceSum);
 
 		model.addAttribute("kcalDiff", round(1500 - kcalSum, 2));

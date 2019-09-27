@@ -52,6 +52,6 @@ th     { background:#eee; }
 	width: 50%;
 }
 
-.mealSetList {
- 	overflow-y: auto; height: 95vh;
+.mealSetList	 {
+ 	overflow-y: auto; height: 90vh;
 }
