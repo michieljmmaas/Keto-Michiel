@@ -23,12 +23,12 @@
 	<div th:insert="fragments/header :: header">...</div>
 
 	<div class="container-fluid">
-		<div class="row col-md-12 gerrechtenList	">
+		<div class="row col-md-12 gerrechtenList">
 			<ul class=w-100 id="myUL">
 				<li class="w-100 gerrechtItem" id="gerrechtItem">
 					<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
 						<div class="p-2 col-md-5">Ontbijt</div>
-						<div class="p-2" th:text="${dish.getNaam()}"></div>
+						<div class="p-2" th:text="${ontbijt.getNaam()}"></div>
 						<div class="p-2 ml-auto"></div>
 					</div>
 					<div id="IngredientList" class="collapse pl-5 pt-3 pb-3 mb-3">

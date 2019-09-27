@@ -41,12 +41,19 @@ public class HelloController {
 	@Autowired
 	GerechtRepository AWGerechtRepository;
 
+	@Autowired
+	MealSetRepository AWMealSetRepository;
+
 	@RequestMapping("/")
 	public String index(Model model) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
+		MealSet mealset = AWMealSetRepository.findById(1);
+		Gerecht ontbijt = AWGerechtRepository.findById(mealset.getOntbijtID());
+		Gerecht snack = AWGerechtRepository.findById(mealset.getSnackID());
+		Gerecht dinner = AWGerechtRepository.findById(mealset.getDinnerID());
 		model.addAttribute("dishes", gerechten);
-		Gerecht dish = AWGerechtRepository.findById(8);
-		model.addAttribute("dish", dish);
+//		Gerecht dish = AWGerechtRepository.findById(8);
+		model.addAttribute("dish", ontbijt);
 		return "index";
 	}
 
