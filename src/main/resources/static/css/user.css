@@ -56,3 +56,5 @@ th     { background:#eee; }
 	overflow-y: scroll; 
 	height: 90vh;
 }
+
+.mealSetList::-webkit-scrollbar { width: 0 !important }
