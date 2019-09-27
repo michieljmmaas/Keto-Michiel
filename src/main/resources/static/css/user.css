@@ -51,3 +51,7 @@ th     { background:#eee; }
 #gerrechtSelector {
 	width: 50%;
 }
+
+.mealSetList {
+ 	overflow-y: auto; height: 95vh;
+}

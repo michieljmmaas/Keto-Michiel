@@ -51,9 +51,13 @@ public class HelloController {
 		Gerecht ontbijt = AWGerechtRepository.findById(mealset.getOntbijtID());
 		Gerecht snack = AWGerechtRepository.findById(mealset.getSnackID());
 		Gerecht dinner = AWGerechtRepository.findById(mealset.getDinnerID());
+		ArrayList<Gerecht> set = new ArrayList<Gerecht>(Arrays.asList(ontbijt, snack, dinner));
+		for (Gerecht g : set) {
+			g.printInfo();
+		}
 		model.addAttribute("dishes", gerechten);
 //		Gerecht dish = AWGerechtRepository.findById(8);
-		model.addAttribute("dish", ontbijt);
+		model.addAttribute("set", set);
 		return "index";
 	}
 

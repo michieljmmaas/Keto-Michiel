@@ -23,12 +23,12 @@
 	<div th:insert="fragments/header :: header">...</div>
 
 	<div class="container-fluid">
-		<div class="row col-md-12 gerrechtenList">
+		<div class="row col-md-8 mealSetList pt-2">
 			<ul class=w-100 id="myUL">
-				<li class="w-100 gerrechtItem" id="gerrechtItem">
+				<li class="w-100 gerrechtItem" id="gerrechtItem" th:each="dish : ${set}">
 					<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
-						<div class="p-2 col-md-5">Ontbijt</div>
-						<div class="p-2" th:text="${ontbijt.getNaam()}"></div>
+						<div class="p-2 col-md-5" th:text="${dish.getTypeDisplay()}"></div>
+						<div class="p-2" th:text="${dish.getNaam()}"></div>
 						<div class="p-2 ml-auto"></div>
 					</div>
 					<div id="IngredientList" class="collapse pl-5 pt-3 pb-3 mb-3">
@@ -80,43 +80,6 @@
 						</div>
 					</div>
 				</div>
-			</li>
-			<li class="w-100" id="myUL">
-				<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
-					<div class="p-2 col-md-5">Snack</div>
-					<div class="p-2" th:text="${dish.getNaam()}"></div>
-					<div class="p-2 ml-auto"></div>
-				</div>
-				<div id="IngredientList" class="collapse pt-3 mb-b">
-					<div class="d-flex flex-row">
-						<div class="d-flex flex-column">
-							<label>Gerrechten</label>
-							<select class="selectpicker" data-live-search="true" id="gerrechtSelector">
-								<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
-								</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="w-100" id="myUL">
-				<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
-					<div class="p-2 col-md-5">Dinner</div>
-					<div class="p-2">Naam</div>
-					<div class="p-2 ml-auto"></div>
-				</div>
-				<div class="d-flex flex-row">
-					<div class="d-flex flex-column">
-						<div id="IngredientList" class="collapse pt-3 pb-3 mb-3">
-							<label>Gerrechten</label>
-							<select class="selectpicker" data-live-search="true" id="gerrechtSelector">
-								<option th:each="food : ${dishes}" th:text="${food.getNaam()}">
-								</option>
-							</select>
-						</div>
-					</div>
-				</div>
-
 			</li>
 		</ul>
 	</div>
