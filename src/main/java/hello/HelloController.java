@@ -42,6 +42,9 @@ public class HelloController {
 	EtenRepository AWEtenRepository;
 
 	@Autowired
+	WeightRepository AWWeightRepository;
+
+	@Autowired
 	GerechtRepository AWGerechtRepository;
 
 	@Autowired
@@ -91,7 +94,6 @@ public class HelloController {
 
 		model.addAttribute("allSets", allSets);
 
-//		Gerecht dish = AWGerechtRepository.findById(8);
 		model.addAttribute("set", set);
 		model.addAttribute("mealSet", mealset);
 		return "index";
@@ -120,19 +122,6 @@ public class HelloController {
 		}
 		model.addAttribute("list", eten);
 
-//		StringBuilder sb = new StringBuilder();
-//		for (Eten e : ontbijtList) {
-//			sb.append(e.getName() + "\n");
-//		}
-//		for (Eten e : snackList) {
-//			sb.append(e.getName() + "\n");
-//		}
-//		for (Eten e : dinnerList) {
-//			sb.append(e.getName() + "\n");
-//		}
-//		String eten = sb.toString();
-//		model.addAttribute("list", eten);
-
 		return "export";
 	}
 
@@ -143,7 +132,9 @@ public class HelloController {
 	}
 
 	@RequestMapping("/gewicht")
-	public String gewicht() {
+	public String gewicht(Model model) {
+		ArrayList<Weight> weightList = AWWeightRepository.findAll();
+		model.addAttribute("weightList", weightList);
 		return "gewicht";
 	}
 
@@ -187,18 +178,22 @@ public class HelloController {
 	@RequestMapping("/rotation")
 	public String rotation() throws IOException {
 
-//		File file = ResourceUtils.getFile("jsonKeto.json");
+//		File file = ResourceUtils.getFile("weight.json");
 //
 //		// Read File Content
 //		String content = new String(Files.readAllBytes(file.toPath()));
 //
 //		ObjectMapper objectMapper = new ObjectMapper();
-//		List<Eten> listEten = objectMapper.readValue(content, new TypeReference<List<Eten>>() {
+//		List<Weight> listWeight = objectMapper.readValue(content, new TypeReference<List<Weight>>() {
 //		});
 //
-//		for (Eten e : listEten) {
-//			AWEtenRepository.save(e);
-//			System.out.println("Saved: " + e.getName());
+//		int i = 1;
+//
+//		for (Weight w : listWeight) {
+//			w.setId(i);
+//			AWWeightRepository.save(w);
+//			System.out.println("Saved: " + w.getDatum());
+//			i++;
 //		}
 
 		return "rotation";
