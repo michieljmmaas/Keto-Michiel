@@ -25,10 +25,18 @@
 
 	<div class="container-fluid">
 		<div class="d-flex flex-row">
-			<button type="button" class="pl-3 btn btn-success btn-lg Submit">Submit</button>
-			<div class="pl-3 pt-1 w-25">
+			<button type="button" class="pl-3 btn btn-success btn-lg pt-1" id="Submit">Submit</button>
+			<div class="pl-3 pt-2 w-25">
 				<input type="date" class="form-control input-lg" id="datumField">
 			</div>
+			<div class="pl-3 pt-1 w-50">
+				<button type="button" hidden ></button>
+			</div>
+			<select class="selectpicker pb-2 pt-2 pr-2" data-width="25%" id="mealSetSelector">
+				<option th:each="set : ${allSets}" th:text="${set.getDateDisplay()}" th:value="${set.getId()}" th:selected="${MealSetId==set.getId()}">
+				</option>
+			</select>
+			<button id="changeDate" type="button" class="pl-3 btn btn-success btn-lg pt-1 changeDate">Update</button>
 		</div>
 		<div class="row">
 			<div class="col-md-8 mealSetList pt-2">
@@ -165,7 +173,13 @@
 
 		});
 
-		$('.Submit').click(function() {
+		$('#changeDate').click(function(e){
+			var dateSelect = $(this).parent().find("#mealSetSelector").val();
+			console.log("Date Select: " +  dateSelect);
+			window.location.href= "http://localhost:8080/" + dateSelect;
+		});
+
+		$('#Submit').click(function() {
 			var submitList = $(this).parent().parent();
 			var datum = submitList.find("#datumField").val();
 
@@ -194,6 +208,7 @@
 				type: "POST",
 				url: "Eten/NewMealSet/" + datum + "/" + ontbijtDish + "/" + snackDish + "/" + dinnerDish,
 				success: function(data) {
+					console.log("API Call");
 					window.location.reload();
 				},
 				error: function(e) {

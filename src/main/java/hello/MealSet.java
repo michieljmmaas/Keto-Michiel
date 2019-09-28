@@ -1,5 +1,6 @@
 package hello;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,6 +58,15 @@ public class MealSet {
 
 	public Date getDate() {
 		return date;
+	}
+
+	public String getDateDisplay() {
+		String foundDate = "Test";
+		if (this.id != 1) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			foundDate = dateFormat.format(this.date);
+		}
+		return foundDate;
 	}
 
 	public void setDate(Date date) {

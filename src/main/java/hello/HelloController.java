@@ -20,6 +20,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -46,9 +47,15 @@ public class HelloController {
 	MealSetRepository AWMealSetRepository;
 
 	@RequestMapping("/")
-	public String index(Model model) {
+	public RedirectView redirect() {
+		return new RedirectView("/1");
+	}
+
+	@RequestMapping("/{id}")
+	public String index(Model model, @PathVariable int id) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
-		MealSet mealset = AWMealSetRepository.findAll(Sort.by(Direction.ASC, "date")).get(0);
+		MealSet mealset = AWMealSetRepository.findById(id);
+		ArrayList<MealSet> allSets = AWMealSetRepository.findAll();
 		Gerecht ontbijt = AWGerechtRepository.findById(mealset.getOntbijtID());
 		Gerecht snack = AWGerechtRepository.findById(mealset.getSnackID());
 		Gerecht dinner = AWGerechtRepository.findById(mealset.getDinnerID());
@@ -79,6 +86,9 @@ public class HelloController {
 		model.addAttribute("protDiff", round(96 - protSum, 2));
 		model.addAttribute("fatDiff", round(118 - fatSum, 2));
 		model.addAttribute("priceDay", round(priceSum / 4, 2));
+		model.addAttribute("MealSetId", id);
+
+		model.addAttribute("allSets", allSets);
 
 //		Gerecht dish = AWGerechtRepository.findById(8);
 		model.addAttribute("set", set);

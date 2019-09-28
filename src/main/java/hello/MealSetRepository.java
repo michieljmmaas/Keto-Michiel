@@ -9,4 +9,6 @@ public interface MealSetRepository extends CrudRepository<MealSet, Integer> {
 	MealSet findById(int id);
 
 	ArrayList<MealSet> findAll(Sort sort);
+
+	ArrayList<MealSet> findAll();
 }
