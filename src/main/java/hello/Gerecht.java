@@ -91,9 +91,14 @@ public class Gerecht {
 			LocalDateTime now = LocalDateTime.now();
 			LocalDateTime lastMade = datum.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 			Duration duration = Duration.between(now, lastMade);
-			int diff = (int) Math.abs(duration.toDays());
 
-			result = "Dagen Sinds: " + diff;
+			int diff = (int) Math.abs(duration.toDays());
+			
+			if(duration.toDays() > 0) {
+				result = "Geplanned over: " + diff + " dagen";
+			} else {
+				result = "Dagen Sinds: " + diff;	
+			}
 		}
 
 		return result;
