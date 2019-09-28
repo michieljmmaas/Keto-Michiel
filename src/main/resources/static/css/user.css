@@ -25,6 +25,7 @@ th     { background:#eee; }
 
 #TotalRow td {
 	font-weight: bold;	
+	white-space: nowrap;
 }
 
 #IngredientList{

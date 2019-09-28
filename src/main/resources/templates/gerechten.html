@@ -33,11 +33,6 @@
 		</div>
 		<div class="row mb-2 ml-1">
 			<div class="d-flex justify-content-start">
-				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="alGemaaktFilter()">
-					<label class="btn btn-secondary active">
-						<input type="checkbox" checked autocomplete="off"> Al gemaakt
-					</label>
-				</div>
 				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="OntbijtFilter()">
 					<label class="btn btn-secondary active">
 						<input type="checkbox" checked autocomplete="off"> Ontbijt
@@ -371,7 +366,6 @@
 
     });
 
-	var gemaaktFilter = false;
 	var ontbijtFilter = false;
 	var snackFilter = false;
 	var dinnerFilter = false;
@@ -417,14 +411,6 @@
 
         	if (typeValue == "Other"){
         		if(otherFilter == true){
-        			li[i].style.display = "none";
-        		} else{
-        			li[i].style.display = "";
-        		}
-        	}
-
-        	if (gemaaktValue == "Nog niet gemaakt"){
-        		if(gemaaktFilter == true){
         			li[i].style.display = "none";
         		} else{
         			li[i].style.display = "";

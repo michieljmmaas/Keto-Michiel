@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<ul style="list-style-type: none">
+		<li th:each="eten : ${list}">
+			<div th:text="${eten.getName()}"></div>
+		</li>
+	</ul>
+</body>
+
+</body>
+</html>

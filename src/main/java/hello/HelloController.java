@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -94,6 +95,45 @@ public class HelloController {
 		model.addAttribute("set", set);
 		model.addAttribute("mealSet", mealset);
 		return "index";
+	}
+
+	@RequestMapping("export/{id}")
+	public String export(@PathVariable int id, Model model) {
+		MealSet set = AWMealSetRepository.findById(id);
+		Gerecht ontbijt = AWGerechtRepository.findById(set.getOntbijtID());
+		Set<Eten> ontbijtList = ontbijt.getIngredienten();
+		Gerecht snack = AWGerechtRepository.findById(set.getSnackID());
+		Set<Eten> snackList = snack.getIngredienten();
+		Gerecht dinner = AWGerechtRepository.findById(set.getDinnerID());
+		Set<Eten> dinnerList = dinner.getIngredienten();
+
+		ArrayList<Eten> eten = new ArrayList<Eten>();
+
+		for (Eten e : ontbijtList) {
+			eten.add(e);
+		}
+		for (Eten e : snackList) {
+			eten.add(e);
+		}
+		for (Eten e : dinnerList) {
+			eten.add(e);
+		}
+		model.addAttribute("list", eten);
+
+//		StringBuilder sb = new StringBuilder();
+//		for (Eten e : ontbijtList) {
+//			sb.append(e.getName() + "\n");
+//		}
+//		for (Eten e : snackList) {
+//			sb.append(e.getName() + "\n");
+//		}
+//		for (Eten e : dinnerList) {
+//			sb.append(e.getName() + "\n");
+//		}
+//		String eten = sb.toString();
+//		model.addAttribute("list", eten);
+
+		return "export";
 	}
 
 	public static BigDecimal round(float d, int decimalPlace) {
