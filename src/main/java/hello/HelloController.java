@@ -55,6 +55,18 @@ public class HelloController {
 		return new RedirectView("/1");
 	}
 
+	public ArrayList<Float> getLinearProgression(ArrayList<Weight> list) {
+
+		float num = 0;
+		float dem = 0;
+		for (Weight w : list) {
+			
+
+		}
+
+		return null;
+	}
+
 	@RequestMapping("/{id}")
 	public String index(Model model, @PathVariable int id) {
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
@@ -135,6 +147,8 @@ public class HelloController {
 	public String gewicht(Model model) {
 		ArrayList<Weight> weightList = AWWeightRepository.findAll();
 		model.addAttribute("weightList", weightList);
+		getLinearProgression(weightList);
+
 		return "gewicht";
 	}
 

@@ -1,5 +1,6 @@
 package hello;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,6 +55,14 @@ public class Weight {
 	}
 
 	public Weight() {
+
+	}
+
+	public String getDisplayDate() {
+		Date date = this.datum;
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+		String display = dateFormat.format(date);
+		return display;
 
 	}
 

@@ -23,6 +23,18 @@ th     { background:#eee; }
 	display: block; /* Make it into a block element to fill the whole list */
 }
 
+.test123 {	
+	margin-top: -1px; /* Prevent double borders */
+	background-color: #343a40; /* Grey background color */
+	padding: 12px; /* Add some padding */
+	text-decoration: none; /* Remove default text underline */
+	font-size: 18px; /* Increase the font-size */
+	color: white; /* Add a black text color */
+	display: block; /* Make it into a block element to fill the whole list */
+}
+
+
+
 #TotalRow td {
 	font-weight: bold;	
 	white-space: nowrap;
@@ -58,4 +70,6 @@ th     { background:#eee; }
 	height: 90vh;
 }
 
-.mealSetList::-webkit-scrollbar { width: 0 !important }
+.mealSetList::-webkit-scrollbar { 
+	width: 0 !important 
+}

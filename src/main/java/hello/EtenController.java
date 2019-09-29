@@ -23,10 +23,19 @@ public class EtenController {
 	@Autowired
 	MealSetRepository AWMealSetRepository;
 
+	@Autowired
+	WeightRepository AWWeightRepository;
+
 	@DeleteMapping(value = "/{id}")
 	public void deleteID(@PathVariable int id) {
 		Eten toDelete = AWEtenRepository.findById(id);
 		AWEtenRepository.delete(toDelete);
+	}
+
+	@DeleteMapping(value = "weight/{id}")
+	public void deleteWeight(@PathVariable int id) {
+		Weight toDelete = AWWeightRepository.findById(id);
+		AWWeightRepository.delete(toDelete);
 	}
 
 	@DeleteMapping(value = "DeleteIngredient/{dishID}/{ingredientID}")
