@@ -11,6 +11,7 @@ public class weightCalculations {
 	private float start;
 	private float delta;
 	private Date startDate;
+	private float linearStarting;
 
 	public float getWeight() {
 		return weight;
@@ -40,11 +41,19 @@ public class weightCalculations {
 		return startDate;
 	}
 
+	public float getLinearStarting() {
+		return linearStarting;
+	}
+
+	public void setLinearStarting(float linearStarting) {
+		this.linearStarting = linearStarting;
+	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public weightCalculations(int weight, float start, float delta, Date startDate) {
+	public weightCalculations(int weight, float start, float delta, Date startDate, float linearStarting) {
 		super();
 		this.weight = weight;
 		this.start = start;
@@ -59,11 +68,11 @@ public class weightCalculations {
 	}
 
 	public int getDagenTot() {
-		return (int) (getVerschil() / delta);
+		return (int) Math.ceil((getVerschil() / delta));
 	}
 
 	public int getSets() {
-		return getDagenTot() / 4;
+		return (int) Math.ceil(getDagenTot() / 4);
 	}
 
 	public String getDatum() {

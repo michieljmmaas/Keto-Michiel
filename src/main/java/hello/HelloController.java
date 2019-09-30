@@ -161,9 +161,9 @@ public class HelloController {
 		float tegaan = startGewicht - 70 - afgevallen;
 		float percentage = (afgevallen / (startGewicht - 70)) * 100;
 
-		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate);
-		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate);
-		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate);
+		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate, linearStarting);
+		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate, linearStarting);
+		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate, linearStarting);
 
 		ArrayList<weightCalculations> weightItems = new ArrayList<weightCalculations>(Arrays.asList(w80, w75, w70));
 
