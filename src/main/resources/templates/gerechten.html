@@ -33,24 +33,18 @@
 		</div>
 		<div class="row mb-2 ml-1">
 			<div class="d-flex justify-content-start">
-				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="OntbijtFilter()">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
 					<label class="btn btn-secondary active">
-						<input type="checkbox" checked autocomplete="off"> Ontbijt
+						<input type="radio" name="options" id="All" autocomplete="off" checked> All
 					</label>
-				</div>
-				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="SnackFilter()">
-					<label class="btn btn-secondary active">
-						<input type="checkbox" checked autocomplete="off" > Snacks
+					<label class="btn btn-secondary">
+						<input type="radio" name="options" id="Ontbijt" autocomplete="off"> Onbijt
 					</label>
-				</div>
-				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="DinnerFilter()">
-					<label class="btn btn-secondary active">
-						<input type="checkbox" checked autocomplete="off" > Dinner
+					<label class="btn btn-secondary">
+						<input type="radio" name="options" id="Snack" autocomplete="off"> Snack
 					</label>
-				</div>
-				<div class="btn-group-toggle filterButton typeFilter" data-toggle="buttons" onchange="OtherFilter()">
-					<label class="btn btn-secondary active">
-						<input type="checkbox" checked autocomplete="off"> Other
+					<label class="btn btn-secondary">
+						<input type="radio" name="options" id="Dinner" autocomplete="off"> Dinner
 					</label>
 				</div>
 			</div>
@@ -363,14 +357,30 @@
         	});
         });
 
+        $('#All').change(function() {
+        	console.log("All");
+        	filter("All");
+        });
+
+        $('#Ontbijt').change(function() {
+        	console.log("Ontbijt");
+        	filter("Ontbijt");
+        });
+
+        $('#Snack').change(function() {
+        	console.log("Snack");        	
+        	filter("Snack");
+        });
+
+        $('#Dinner').change(function() {
+        	console.log("Dinner");
+        	filter("Dinner");
+        });
+
     });
 
-	var ontbijtFilter = false;
-	var snackFilter = false;
-	var dinnerFilter = false;
-	var otherFilter = false;
 
-	function filter() {
+function filter(id) {
 		 // Declare variables
 		 var ul, li, i;
 		 ul = document.getElementById("myUL");
@@ -384,36 +394,16 @@
         	typeValue = type.textContent || type.innerText;
         	gemaaktValue =  gemaakt.textContent || gemaakt.innerText;
 
-        	if (typeValue == "Ontbijt"){
-        		if(ontbijtFilter == true){
-        			li[i].style.display = "none";
-        		} else{
-        			li[i].style.display = "";
-        		}
+
+        	if (typeValue != id ){
+        		li[i].style.display = "none";
+        	}
+        	else{
+        		li[i].style.display = "";
         	}
 
-        	if (typeValue == "Snack"){
-        		if(snackFilter == true){
-        			li[i].style.display = "none";
-        		} else{
-        			li[i].style.display = "";
-        		}
-        	}
-
-        	if (typeValue == "Dinner"){
-        		if(dinnerFilter == true){
-        			li[i].style.display = "none";
-        		} else{
-        			li[i].style.display = "";
-        		}
-        	}
-
-        	if (typeValue == "Other"){
-        		if(otherFilter == true){
-        			li[i].style.display = "none";
-        		} else{
-        			li[i].style.display = "";
-        		}
+        	if(id == "All"){
+        		li[i].style.display = "";
         	}
         }
     }
@@ -435,31 +425,6 @@
         		li[i].style.display = "none";
         	}
         }
-    }
-
-
-    function alGemaaktFilter() {
-    	gemaaktFilter = !gemaaktFilter;
-    	filter();
-    }
-
-    function OntbijtFilter() {
-    	ontbijtFilter = !ontbijtFilter;
-    	filter();
-    }
-
-    function DinnerFilter() {
-    	dinnerFilter = !dinnerFilter;
-    	filter();
-    }
-
-    function SnackFilter() {
-    	snackFilter = !snackFilter;
-    	filter();
-    }
-    function OtherFilter() {
-    	otherFilter = !otherFilter;
-    	filter();
     }
 </script>
 
