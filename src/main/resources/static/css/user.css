@@ -83,3 +83,7 @@ th     { background:#eee; }
 .weightSetList::-webkit-scrollbar { 
 	width: 0 !important 
 }
+
+.chartjs-size-monitor {
+	max-height: 45vh;
+}

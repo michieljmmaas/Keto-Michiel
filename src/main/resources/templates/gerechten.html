@@ -306,7 +306,6 @@
             	type: "DELETE",
             	url: "Eten/DeleteIngredient/" + dishID + "/" + ingredientID,
             	success: function(data) {
-            		window.location.reload();
             	},
             	error: function(e) {
             		$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");

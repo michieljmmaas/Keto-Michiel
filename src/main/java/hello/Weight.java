@@ -68,7 +68,6 @@ public class Weight {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
 		String display = dateFormat.format(date);
 		return display;
-
 	}
 
 }

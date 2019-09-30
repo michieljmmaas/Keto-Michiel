@@ -6,7 +6,9 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,20 +52,12 @@ public class HelloController {
 	@Autowired
 	MealSetRepository AWMealSetRepository;
 
+	@Autowired
+	ChartsService AWChartsService;
+
 	@RequestMapping("/")
 	public RedirectView redirect() {
 		return new RedirectView("/1");
-	}
-
-	public ArrayList<Float> getLinearProgression(ArrayList<Weight> list) {
-
-		float num = 0;
-		float dem = 0;
-		for (Weight w : list) {
-
-		}
-
-		return null;
 	}
 
 	@RequestMapping("/{id}")
@@ -146,11 +140,41 @@ public class HelloController {
 	public String gewicht(Model model) {
 		ArrayList<Weight> weightList = AWWeightRepository.findAll(Sort.by(Direction.ASC, "datum"));
 		model.addAttribute("weightList", weightList);
-		getLinearProgression(weightList);
 		float[] barArray = getWeights(weightList);
 		String array = Arrays.toString(barArray);
-		String adjustedString = array.substring(1, array.length()-1);
+		String adjustedString = array.substring(1, array.length() - 1);
 		model.addAttribute("barArray", adjustedString);
+		Weight startWeightItem = weightList.get(0);
+		Weight lastWeightItem = weightList.get(weightList.size() - 1);
+
+		float[] linear = AWChartsService.getLinearRegression(weightList);
+		float linearDelta = linear[0];
+		float perSet = linearDelta * 4;
+		float perWeek = linearDelta * 7;
+		float perMaand = linearDelta * 31;
+		float linearStarting = linear[1];
+
+		float startGewicht = startWeightItem.getWeight();
+		float currentGewicht = lastWeightItem.getWeight();
+		Date currentDate = lastWeightItem.getDatum();
+		float afgevallen = startGewicht - currentGewicht;
+		float tegaan = startGewicht - 70 - afgevallen;
+		float percentage = (afgevallen / (startGewicht - 70)) * 100;
+
+		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate);
+		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate);
+		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate);
+
+		ArrayList<weightCalculations> weightItems = new ArrayList<weightCalculations>(Arrays.asList(w80, w75, w70));
+
+		model.addAttribute("weightItems", weightItems);
+		model.addAttribute("delta1", ChartsService.twoDecimail(Math.abs(linearDelta), 4));
+		model.addAttribute("delta2", 4 * ChartsService.twoDecimail(Math.abs(linearDelta), 4));
+		model.addAttribute("delta3", 7 * ChartsService.twoDecimail(Math.abs(linearDelta), 4));
+		model.addAttribute("delta4", 31 * ChartsService.twoDecimail(Math.abs(linearDelta), 4));
+		model.addAttribute("afgevallen", afgevallen);
+		model.addAttribute("tegaan", ChartsService.twoDecimail(tegaan, 1)); 
+		model.addAttribute("percentage", ChartsService.twoDecimail(percentage, 2));
 
 		return "gewicht";
 	}

@@ -46,59 +46,118 @@
 				</ul>
 			</div>
 			<div class="col-md-9">
-				<canvas id="myChart"></canvas>
+				<div class="row">
+					<div class="col-md-4 d-flex justify-content-around flex-column">
+						<h1 th:text="'Afgevallen: ' + ${afgevallen}"></h1>
+						<h1 th:text="'Te gaan: ' + ${tegaan}"></h1>
+						<h1 th:text="'Percentage: ' + ${percentage} + '%'"></h1>
+					</div>
+					<div class="col-md-4">
+						<table id="weightTable" class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th>Gewicht</th>
+									<th>Verschil</th>
+									<th>Dagen</th>
+									<th>Datum</th>
+									<th>Sets</th>
+								</tr>
+							</thead>
+							<th:block th:each="www : ${weightItems}">
+							<tr>
+								<td th:text="${www.getWeight()}"></td>
+								<td th:text="${www.getVerschil()}"></td>
+								<td th:text="${www.getDagenTot()}"></td>
+								<td th:text="${www.getDatum()}"></td>
+								<td th:text="${www.getSets()}"></td>
+							</tr>
+						</th:block>
+					</table>
+				</div>
+				<div class="col-md-4">
+					<table id="weightTable" class="table table-bordered">
+						<thead class="thead-dark">
+							<tr>
+								<th>Stap</th>
+								<th>Per</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>Per dag</td>
+							<td th:text="${delta1}"></td>
+						</tr>
+						<tr>
+							<td>Per set</td>
+							<td th:text="${delta2}"></td>
+						</tr>
+						<tr>
+							<td>Per week</td>
+							<td th:text="${delta3}"></td>
+						</tr>
+						<tr>
+							<td>Per Maand</td>
+							<td th:text="${delta4}"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-11">
+					<canvas id="myChart"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Verwijderen</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
+					<input type="text" class="form-control" id="deleteID" hidden>
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
-						<input type="text" class="form-control" id="deleteID" hidden>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-danger" id="DeleteItem">Delete</button>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-danger" id="DeleteItem">Delete</button>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="modal fade" id="voegToeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Nieuw Gewicht toevoegen</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+<div class="modal fade" id="voegToeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Nieuw Gewicht toevoegen</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label class="control-label">Datum</label>
+					<input type="date" class="form-control input-lg" name="datum" id="datumField">
+					<label class="control-label">Gewicht</label>
+					<input type="number" step="0.1" class="form-control input-lg" value="" id="weight-field">
+
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label">Datum</label>
-						<input type="date" class="form-control input-lg" name="datum" id="datumField">
-						<label class="control-label">Gewicht</label>
-						<input type="number" step="0.1" class="form-control input-lg" value="" id="weight-field">
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-success" id="VoegToeButton">Voeg Toe</button>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-success" id="VoegToeButton">Voeg Toe</button>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 <script th:inline="javascript">
 	$(document).ready(function() {
@@ -160,10 +219,7 @@
     //Haal de gegevens van de Endpoint op in JSON en zet de eigenschappen van de grafiek
     $.getJSON(endpoint).done(function(GivenData) {
     	var optionsChart = {
-    		height: '500px',
-    		width: '1000px',
     		responsive: true,
-    		maintainAspectRatio: true,
             multiTooltipTemplate: "<%=datasetLabel%> : <%= value %>", //Dit bepaald de hover tooltip
         };
 
@@ -182,13 +238,18 @@
 
     var prepareChartContext = function(chartdata) {
     	var data = {
-            labels: chartdata.lables.reverse(), //Draai de gegevens om, want ze komen omgedraaid binnen vanaf de server
+            labels: chartdata.lables, //Draai de gegevens om, want ze komen omgedraaid binnen vanaf de server
             datasets: [{
             	label: chartdata.datasets[0].name,
             	fill: false,
             	backgroundColor: 'rgba(54, 162, 235)',
             	borderColor: 'rgba(54, 162, 235)',
-            	data: chartdata.datasets[0].value.reverse()
+            	data: chartdata.datasets[0].value
+            }, 
+            {
+            	label: chartdata.datasets[1].name,
+            	fill: false,
+            	data: chartdata.datasets[1].value
             }]
         };
 
