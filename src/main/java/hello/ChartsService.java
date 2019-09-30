@@ -144,7 +144,7 @@ public class ChartsService {
 		return display;
 	}
 
-	public int getDifferenceInDays(Date start, Date end) {
+	public static int getDifferenceInDays(Date start, Date end) {
 		long diff = end.getTime() - start.getTime();
 		int days = Math.round(diff / (1000 * 60 * 60 * 24));
 		return days;

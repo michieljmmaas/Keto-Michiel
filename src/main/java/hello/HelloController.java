@@ -154,6 +154,7 @@ public class HelloController {
 		float perMaand = linearDelta * 31;
 		float linearStarting = linear[1];
 
+		Date startingDate = startWeightItem.getDatum();
 		float startGewicht = startWeightItem.getWeight();
 		float currentGewicht = lastWeightItem.getWeight();
 		Date currentDate = lastWeightItem.getDatum();
@@ -161,19 +162,19 @@ public class HelloController {
 		float tegaan = startGewicht - 70 - afgevallen;
 		float percentage = (afgevallen / (startGewicht - 70)) * 100;
 
-		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate, linearStarting);
-		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate, linearStarting);
-		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate, linearStarting);
+		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate, linearStarting, startingDate);
+		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate, linearStarting, startingDate);
+		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate, linearStarting, startingDate);
 
 		ArrayList<weightCalculations> weightItems = new ArrayList<weightCalculations>(Arrays.asList(w80, w75, w70));
 
 		model.addAttribute("weightItems", weightItems);
-		model.addAttribute("delta1", ChartsService.twoDecimail(Math.abs(linearDelta), 4));
-		model.addAttribute("delta2", 4 * ChartsService.twoDecimail(Math.abs(linearDelta), 4));
-		model.addAttribute("delta3", 7 * ChartsService.twoDecimail(Math.abs(linearDelta), 4));
-		model.addAttribute("delta4", 31 * ChartsService.twoDecimail(Math.abs(linearDelta), 4));
-		model.addAttribute("afgevallen", afgevallen);
-		model.addAttribute("tegaan", ChartsService.twoDecimail(tegaan, 1)); 
+		model.addAttribute("delta1", ChartsService.twoDecimail(Math.abs(linearDelta), 3));
+		model.addAttribute("delta2", 4 * ChartsService.twoDecimail(Math.abs(linearDelta), 3));
+		model.addAttribute("delta3", 7 * ChartsService.twoDecimail(Math.abs(linearDelta), 3));
+		model.addAttribute("delta4", 31 * ChartsService.twoDecimail(Math.abs(linearDelta), 3));
+		model.addAttribute("afgevallen", ChartsService.twoDecimail(afgevallen, 1));
+		model.addAttribute("tegaan", ChartsService.twoDecimail(tegaan, 1));
 		model.addAttribute("percentage", ChartsService.twoDecimail(percentage, 2));
 
 		return "gewicht";
