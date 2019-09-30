@@ -38,6 +38,11 @@ public class Weight {
 		Date foundDate = new SimpleDateFormat("dd-MM-yy").parse(datum);
 		this.datum = foundDate;
 	}
+	
+	public void setDatumJS(String datum) throws ParseException {
+		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
+		this.datum = foundDate;
+	}
 
 	public float getWeight() {
 		return weight;

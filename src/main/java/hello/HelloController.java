@@ -60,7 +60,6 @@ public class HelloController {
 		float num = 0;
 		float dem = 0;
 		for (Weight w : list) {
-			
 
 		}
 
@@ -145,11 +144,24 @@ public class HelloController {
 
 	@RequestMapping("/gewicht")
 	public String gewicht(Model model) {
-		ArrayList<Weight> weightList = AWWeightRepository.findAll();
+		ArrayList<Weight> weightList = AWWeightRepository.findAll(Sort.by(Direction.ASC, "datum"));
 		model.addAttribute("weightList", weightList);
 		getLinearProgression(weightList);
+		float[] barArray = getWeights(weightList);
+		String array = Arrays.toString(barArray);
+		String adjustedString = array.substring(1, array.length()-1);
+		model.addAttribute("barArray", adjustedString);
 
 		return "gewicht";
+	}
+
+	public float[] getWeights(ArrayList<Weight> weightList) {
+		float[] res = new float[weightList.size()];
+		for (int i = 0; i < weightList.size(); i++) {
+			res[i] = weightList.get(i).getWeight();
+		}
+
+		return res;
 	}
 
 	@RequestMapping("/eten")

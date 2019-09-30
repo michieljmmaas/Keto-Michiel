@@ -48,6 +48,14 @@ public class EtenController {
 		AWGerechtRepository.save(gerrecht);
 	}
 
+	@PostMapping(value = "addWeight/{date}/{weight}")
+	public void addWeight(@PathVariable String date, @PathVariable float weight) throws ParseException {
+		Weight w = new Weight();
+		w.setDatumJS(date);
+		w.setWeight(weight);
+		AWWeightRepository.save(w);
+	}
+
 	@DeleteMapping(value = "DeleteDish/{dishID}")
 	public void deleteDish(@PathVariable int dishID) {
 		Gerecht gerrecht = AWGerechtRepository.findById(dishID);
