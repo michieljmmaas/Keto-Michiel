@@ -13,6 +13,7 @@
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Keto</name>
+	<packaging>jar</packaging>
 	<description>Keto applicatie</description>
 
 	<properties>
