@@ -25,12 +25,7 @@
 	<div th:insert="fragments/header :: header">...</div>
 
 	<div class="container-fluid">
-		<div class="row pt-2">
-			<div class="col-md-12">
-				<button type="button" data-toggle="modal" data-target="#voegToeModal" class="pl-3 btn btn-success btn-lg pb-2">Voeg toe</button>
-			</div>
-		</div>
-		<div class="row pt-1">
+		<div class="row pt-2 gewichtRow">
 			<div class="col-md-3 pt-2 weightSetList">
 				<ul class="w-100" id="myUL">
 					<il class="w-100" id="weightItem" th:each="weight : ${weightList}">
@@ -48,6 +43,7 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div class="col-md-4 d-flex justify-content-around flex-column">
+						<button type="button" data-toggle="modal" data-target="#voegToeModal" class="pl-3 btn btn-success btn-lg pb-2">Voeg toe</button>
 						<h1 th:text="'Afgevallen: ' + ${afgevallen}"></h1>
 						<h1 th:text="'Te gaan: ' + ${tegaan}"></h1>
 						<h1 th:text="'Percentage: ' + ${percentage} + '%'"></h1>
@@ -102,8 +98,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-11">
-					<canvas id="myChart"></canvas>
+				<div class="col-md-12">
+					<div class="chart-container" style="position: relative; height: 65vh; width:100%">
+						<canvas id="myChart"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -220,7 +218,8 @@
     $.getJSON(endpoint).done(function(GivenData) {
     	var optionsChart = {
     		responsive: true,
-            multiTooltipTemplate: "<%=datasetLabel%> : <%= value %>", //Dit bepaald de hover tooltip
+    		maintainAspectRatio: false,
+            multiTooltipTemplate: "<%=datasetLabel%> : <%= value %>" //Dit bepaald de hover tooltip
         };
 
         var chartPrep = prepareChartContext(GivenData[0]); // Stel de opties van de grafiek goed in

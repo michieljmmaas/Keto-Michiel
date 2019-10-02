@@ -73,7 +73,7 @@ th     { background:#eee; }
 .weightSetList	 {
 	overflow-y: scroll; 
 	padding-top: 2vh;
-	height: 85vh;
+	height: 90vh;
 }
 
 .mealSetList::-webkit-scrollbar { 
@@ -85,5 +85,9 @@ th     { background:#eee; }
 }
 
 .chartjs-size-monitor {
-	max-height: 45vh;
+	min-height: 45vh;
+}
+
+.gewichtRow {
+	min-height: 85vh;
 }
