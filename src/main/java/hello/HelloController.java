@@ -1,5 +1,6 @@
 package hello;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -97,6 +98,12 @@ public class HelloController {
 		model.addAttribute("priceDay", round(priceSum / 4, 2));
 		model.addAttribute("MealSetId", id);
 
+		for (int j = allSets.size() - 4; j > 0; j--) {
+			System.out.println("J is: " + j);
+			System.out.println("Delted is: " + allSets.get(j).getId());
+			allSets.remove(j);
+		}
+
 		model.addAttribute("allSets", allSets);
 
 		model.addAttribute("set", set);
@@ -136,9 +143,21 @@ public class HelloController {
 		return bd;
 	}
 
+	public void setDelta(ArrayList<Weight> weightList) {
+		for (int i = 1; i < weightList.size(); i++) {
+			Weight w = weightList.get(i);
+			float delta = weightList.get(i - 1).getWeight() - w.getWeight();
+
+			float decimal = ChartsService.twoDecimail(Math.abs(delta), 1);
+
+			w.setDelta(decimal);
+		}
+	}
+
 	@RequestMapping("/gewicht")
 	public String gewicht(Model model) {
 		ArrayList<Weight> weightList = AWWeightRepository.findAll(Sort.by(Direction.ASC, "datum"));
+		setDelta(weightList);
 		model.addAttribute("weightList", weightList);
 		float[] barArray = getWeights(weightList);
 		String array = Arrays.toString(barArray);
@@ -162,9 +181,12 @@ public class HelloController {
 		float tegaan = startGewicht - 70 - afgevallen;
 		float percentage = (afgevallen / (startGewicht - 70)) * 100;
 
-		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate, linearStarting, startingDate);
-		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate, linearStarting, startingDate);
-		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate, linearStarting, startingDate);
+		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate, linearStarting,
+				startingDate);
+		weightCalculations w75 = new weightCalculations(75, currentGewicht, linearDelta, currentDate, linearStarting,
+				startingDate);
+		weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate, linearStarting,
+				startingDate);
 
 		ArrayList<weightCalculations> weightItems = new ArrayList<weightCalculations>(Arrays.asList(w80, w75, w70));
 

@@ -17,6 +17,7 @@ public class Weight {
 
 	private Date datum;
 	private float weight;
+	private float delta;
 
 	public int getId() {
 		return id;
@@ -62,12 +63,21 @@ public class Weight {
 	public Weight() {
 
 	}
+	
 
 	public String getDisplayDate() {
 		Date date = this.datum;
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
 		String display = dateFormat.format(date);
 		return display;
+	}
+
+	public float getDelta() {
+		return delta;
+	}
+
+	public void setDelta(float delta) {
+		this.delta = delta;
 	}
 
 }

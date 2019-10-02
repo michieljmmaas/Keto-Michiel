@@ -97,7 +97,7 @@ public class Gerecht {
 			if(duration.toDays() > 0) {
 				result = "Geplanned over: " + diff + " dagen";
 			} else {
-				result = "Dagen Sinds: " + diff;	
+				result = "Dagen Sinds: " + (diff + 1);	
 			}
 		}
 

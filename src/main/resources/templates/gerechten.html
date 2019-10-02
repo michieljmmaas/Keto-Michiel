@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Index</title>
+	<title>Gerrechten</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
 
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="row col-md-12 gerrechtenList">
+			<div class="row col-md-12 mealSetList">
 				<ul id="myUL" class="w-100">
 					<li class="w-100 gerrechtItem" th:each="dish : ${dishes}" id="gerrechtItem">
 						<a th:text="${dish.getNaam()}" hidden></a>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Index</title>
+	<title>Gewicht</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
 
@@ -32,6 +32,7 @@
 						<div class="flex-row justify-content-around mb-3 d-flex test123 w-100">
 							<div class="align-middle pt-1" th:text="${weight.getWeight()}"></div>
 							<div class="align-middle pt-1" th:text="${weight.getDisplayDate()}"></div>
+							<div class="align-middle pt-1" th:text="${weight.getDelta()}"></div>
 							<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 							<div>
 								<span th:data-id="${weight.getId()}" data-toggle="modal" data-target="#deleteModal" class="pl-3 fas fa-trash"></span>
@@ -61,11 +62,11 @@
 							</thead>
 							<th:block th:each="www : ${weightItems}">
 							<tr>
-								<td th:text="${www.getWeight()}"></td>
-								<td th:text="${www.getVerschil()}"></td>
-								<td th:text="${www.getDagenTot()}"></td>
-								<td th:text="${www.getDatum()}"></td>
-								<td th:text="${www.getSets()}"></td>
+								<td th:text="${www.getWeight()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
+								<td th:text="${www.getVerschil()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
+								<td th:text="${www.getDagenTot()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
+								<td th:text="${www.getDatum()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
+								<td th:text="${www.getSets()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
 							</tr>
 						</th:block>
 					</table>

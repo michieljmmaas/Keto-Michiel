@@ -67,7 +67,7 @@ th     { background:#eee; }
 
 .mealSetList	 {
 	overflow-y: scroll; 
-	height: 90vh;
+	height: 80vh;
 }
 
 .weightSetList	 {
@@ -86,10 +86,6 @@ th     { background:#eee; }
 
 .chartjs-size-monitor {
 	min-height: 45vh;
-}
-
-.gewichtRow {
-	min-height: 85vh;
 }
 
 .chart-container{
