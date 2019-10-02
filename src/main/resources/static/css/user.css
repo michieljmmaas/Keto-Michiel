@@ -91,3 +91,9 @@ th     { background:#eee; }
 .gewichtRow {
 	min-height: 85vh;
 }
+
+.chart-container{
+	 height: 65vh; 
+	 width:100%;
+	 /*position: relative;*/
+}
