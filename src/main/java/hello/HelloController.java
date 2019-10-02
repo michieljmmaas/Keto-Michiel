@@ -99,8 +99,6 @@ public class HelloController {
 		model.addAttribute("MealSetId", id);
 
 		for (int j = allSets.size() - 4; j > 0; j--) {
-			System.out.println("J is: " + j);
-			System.out.println("Delted is: " + allSets.get(j).getId());
 			allSets.remove(j);
 		}
 
@@ -246,30 +244,6 @@ public class HelloController {
 		model.addAttribute("types", types);
 
 		return "gerechten";
-	}
-
-	@RequestMapping("/rotation")
-	public String rotation() throws IOException {
-
-//		File file = ResourceUtils.getFile("weight.json");
-//
-//		// Read File Content
-//		String content = new String(Files.readAllBytes(file.toPath()));
-//
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		List<Weight> listWeight = objectMapper.readValue(content, new TypeReference<List<Weight>>() {
-//		});
-//
-//		int i = 1;
-//
-//		for (Weight w : listWeight) {
-//			w.setId(i);
-//			AWWeightRepository.save(w);
-//			System.out.println("Saved: " + w.getDatum());
-//			i++;
-//		}
-
-		return "rotation";
 	}
 
 	@PostMapping("/foodPost")

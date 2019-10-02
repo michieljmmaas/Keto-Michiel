@@ -39,7 +39,7 @@
 			<button id="changeDate" type="button" class="pl-3 btn btn-success btn-lg pt-1 changeDate">Update</button>
 		</div>
 		<div class="row">
-			<div class="col-md-8 mealSetList pt-2">
+			<div class="col-md-6 mealSetList pt-2">
 				<ul class=w-100 id="myUL">
 					<li class="w-100 gerrechtItem" id="gerrechtItem" th:each="dish : ${set}">
 						<div class="flex-row mb-3 d-flex gerechtHeader" aria-expanded="false" aria-controls="IngredientList" id="listItem">
@@ -103,7 +103,7 @@
 			</ul>
 			<button type="button" class="pl-3 btn btn-primary btn-lg w-100 pt-2" id="export" th:data-exportid="${MealSetId}">Export</button>
 		</div>
-		<div class="col-md-4 pt-2">
+		<div class="col-md-6 pt-2">
 			<table class="table table-bordered pt-1">
 				<thead class="thead-dark">
 					<tr>
