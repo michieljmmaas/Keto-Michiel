@@ -267,8 +267,8 @@ public class HelloController {
 		return new RedirectView("/eten");
 	}
 
-	public float PortionCalc(float value, int weight) {
-		float current = ((value * (weight / 100)) / 4);
+	public float PortionCalc(float value, float weight) {
+		float current = ((value * weight) / 100) / 4;
 		return current;
 	}
 

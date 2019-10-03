@@ -3,13 +3,20 @@ package hello;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -78,7 +85,7 @@ public class Gerecht {
 		Date foundDate = new SimpleDateFormat("yyyy/MM/dd").parse(datum);
 		this.datum = foundDate;
 	}
-	
+
 	public void setDashDatum(String datum) throws ParseException {
 		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
 		this.datum = foundDate;
@@ -88,16 +95,13 @@ public class Gerecht {
 		String result = "Nog niet gemaakt";
 		if (this.datum != null) {
 			Date datum = this.datum;
-			LocalDateTime now = LocalDateTime.now();
-			LocalDateTime lastMade = datum.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-			Duration duration = Duration.between(now, lastMade);
+			Date now = new Date();
+			int diff = ChartsService.getDifferenceInDays(now, datum);
 
-			int diff = (int) Math.abs(duration.toDays());
-			
-			if(duration.toDays() > 0) {
-				result = "Geplanned over: " + diff + " dagen";
+			if (diff >= 0) {
+				result = "Geplanned over: " + (diff + 1) + " dagen";
 			} else {
-				result = "Dagen Sinds: " + (diff + 1);	
+				result = "Dagen Sinds: " + Math.abs(diff - 1);
 			}
 		}
 
