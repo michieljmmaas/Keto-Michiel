@@ -46,16 +46,20 @@
 					<div class="col-md-4 d-flex justify-content-between flex-column">
 						<button type="button" data-toggle="modal" data-target="#voegToeModal" class="pl-3 btn btn-success btn-lg pb-2">Voeg toe</button>
 						<div class="d-flex justify-content-between">
-							<h1>Afgevallen:</h1>
-							<h1 th:text="${afgevallen}"></h1>
+							<h2>Gewicht:</h2>
+							<h2 th:text="${huidigGewicht}"></h2>
 						</div>
 						<div class="d-flex justify-content-between">
-							<h1>Te gaan:</h1>
-							<h1 th:text="${tegaan}"></h1>
+							<h2>Afgevallen:</h2>
+							<h2 th:text="${afgevallen}"></h2>
 						</div>
 						<div class="d-flex justify-content-between">
-							<h1>Percentage</h1>
-							<h1 th:text="${percentage} + '%'"></h1>
+							<h2>Te gaan:</h2>
+							<h2 th:text="${tegaan}"></h2>
+						</div>
+						<div class="d-flex justify-content-between">
+							<h2>Percentage:</h2>
+							<h2 th:text="${percentage} + '%'"></h2>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -268,30 +272,30 @@
     };
 
     $('.counter').each(function() {
-  var $this = $(this),
-      countTo = $this.attr('data-count');
-  
-  $({ countNum: $this.text()}).animate({
-    countNum: countTo
-  },
+    	var $this = $(this),
+    	countTo = $this.attr('data-count');
 
-  {
+    	$({ countNum: $this.text()}).animate({
+    		countNum: countTo
+    	},
 
-    duration: 8000,
-    easing:'linear',
-    step: function() {
-      $this.text(Math.floor(this.countNum));
-    },
-    complete: function() {
-      $this.text(this.countNum);
+    	{
+
+    		duration: 8000,
+    		easing:'linear',
+    		step: function() {
+    			$this.text(Math.floor(this.countNum));
+    		},
+    		complete: function() {
+    			$this.text(this.countNum);
       //alert('finished');
-    }
+  }
 
-  });  
-  
-  
+});  
 
-});
+
+
+    });
 </script>
 
 </html>

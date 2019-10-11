@@ -176,8 +176,10 @@ public class HelloController {
 		float currentGewicht = lastWeightItem.getWeight();
 		Date currentDate = lastWeightItem.getDatum();
 		float afgevallen = startGewicht - currentGewicht;
-		float tegaan = startGewicht - 70 - afgevallen;
-		float percentage = (afgevallen / (startGewicht - 70)) * 100;
+		float tegaan = startGewicht - 75 - afgevallen;
+		float percentage = (afgevallen / (startGewicht - 75)) * 100;
+		
+		
 
 		weightCalculations w80 = new weightCalculations(80, currentGewicht, linearDelta, currentDate, linearStarting,
 				startingDate);
@@ -193,6 +195,7 @@ public class HelloController {
 		model.addAttribute("delta2", 4 * ChartsService.twoDecimail(Math.abs(linearDelta), 3));
 		model.addAttribute("delta3", 7 * ChartsService.twoDecimail(Math.abs(linearDelta), 3));
 		model.addAttribute("delta4", 31 * ChartsService.twoDecimail(Math.abs(linearDelta), 3));
+		model.addAttribute("huidigGewicht", currentGewicht);
 		model.addAttribute("afgevallen", ChartsService.twoDecimail(afgevallen, 1));
 		model.addAttribute("tegaan", ChartsService.twoDecimail(tegaan, 1));
 		model.addAttribute("percentage", ChartsService.twoDecimail(percentage, 2));
