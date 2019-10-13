@@ -75,11 +75,11 @@
 							</thead>
 							<th:block th:each="www : ${weightItems}">
 							<tr>
-								<td th:text="${www.getWeight()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
-								<td th:text="${www.getVerschil()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
-								<td th:text="${www.getDagenTot()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
-								<td th:text="${www.getDatum()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
-								<td th:text="${www.getSets()}" th:style="${getVerschil > 0} ? ${'display: none;'}"></td>
+								<td th:text="${www.getWeight()}" 	th:style="${www.getVerschil() > 0 ? 'display: none;' : 'display: table-cell;'}"></td>
+								<td th:text="${www.getVerschil()}" 	th:style="${www.getVerschil() > 0 ? 'display: none;' : 'display: table-cell;'}"></td>
+								<td th:text="${www.getDagenTot()}" 	th:style="${www.getVerschil() > 0 ? 'display: none;' : 'display: table-cell;'}"></td>
+								<td th:text="${www.getDatum()}" 	th:style="${www.getVerschil() > 0 ? 'display: none;' : 'display: table-cell;'}"></td>
+								<td th:text="${www.getSets()}" 		th:style="${www.getVerschil() > 0 ? 'display: none;' : 'display: table-cell;'}"></td>
 							</tr>
 						</th:block>
 					</table>
