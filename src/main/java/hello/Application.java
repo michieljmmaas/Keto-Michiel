@@ -15,8 +15,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-public class Application {
-
+public class Application {	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	    Browse("http://localhost:8080/1");

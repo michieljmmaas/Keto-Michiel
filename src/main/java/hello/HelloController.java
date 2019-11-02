@@ -55,14 +55,20 @@ public class HelloController {
 
 	@Autowired
 	ChartsService AWChartsService;
+	
+	@Autowired
+	mealSetStracker AWmealSetStracker;
 
 	@RequestMapping("/")
 	public RedirectView redirect() {
-		return new RedirectView("/1");
+		String mealTracker = "/" + AWmealSetStracker.getTracker();
+		
+		return new RedirectView(mealTracker);
 	}
 
 	@RequestMapping("/{id}")
 	public String index(Model model, @PathVariable int id) {
+		AWmealSetStracker.setTracker(id);
 		List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
 		MealSet mealset = AWMealSetRepository.findById(id);
 		ArrayList<MealSet> allSets = AWMealSetRepository.findAll();
