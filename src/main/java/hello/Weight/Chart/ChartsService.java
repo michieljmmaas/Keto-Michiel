@@ -1,4 +1,4 @@
-package hello;
+package hello.Weight.Chart;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import hello.Weight.Weight;
+import hello.Weight.WeightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;

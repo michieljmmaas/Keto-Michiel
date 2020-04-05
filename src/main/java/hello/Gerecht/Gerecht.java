@@ -1,4 +1,4 @@
-package hello;
+package hello.Gerecht;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -18,6 +18,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import hello.Weight.Chart.ChartsService;
+import hello.Eten.Eten;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity

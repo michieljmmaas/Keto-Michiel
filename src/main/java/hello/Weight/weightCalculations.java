@@ -1,4 +1,6 @@
-package hello;
+package hello.Weight;
+
+import hello.Weight.Chart.ChartsService;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

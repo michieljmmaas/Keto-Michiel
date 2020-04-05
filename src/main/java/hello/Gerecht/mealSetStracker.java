@@ -1,4 +1,4 @@
-package hello;
+package hello.Gerecht;
 
 import org.springframework.stereotype.Service;
 

@@ -1,26 +1,27 @@
 package hello;
 
-import java.io.Console;
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import hello.Eten.Eten;
+import hello.Eten.EtenRepository;
+import hello.Gerecht.*;
+import hello.Weight.Chart.ChartsService;
+import hello.Weight.Weight;
+import hello.Weight.WeightRepository;
+import hello.Weight.weightCalculations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,12 +30,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @SuppressWarnings("unused")
 @Controller
-public class HelloController {
+public class MainController {
 
 	@ModelAttribute("foodForm")
 	public Eten createEten() {
@@ -42,7 +40,7 @@ public class HelloController {
 	}
 
 	@Autowired
-	EtenRepository AWEtenRepository;
+    EtenRepository AWEtenRepository;
 
 	@Autowired
 	WeightRepository AWWeightRepository;
