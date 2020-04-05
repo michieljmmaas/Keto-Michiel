@@ -1,5 +1,12 @@
 package hello.Weight.Chart;
 
+import hello.Weight.Weight;
+import hello.Weight.WeightRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
@@ -8,13 +15,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import hello.Weight.Weight;
-import hello.Weight.WeightRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.stereotype.Service;
 
 /**
  * Dit is een service die de goede gegevens van de ECManage Grafieken ophaalt,
@@ -33,8 +33,6 @@ public class ChartsService {
 	 * Deze methode pakt de ecm_aggregate gegevens van een specifieke leverancier en
 	 * maakt er een Chart Response van
 	 * 
-	 * @param name    naam van de Leverancier
-	 * @param maxSize Maximale grote van hoeveel items er in de grafiek staan
 	 * @return de Gegevens in een Chart Reponse
 	 */
 	public ChartsResponse getChartData() {
@@ -134,29 +132,24 @@ public class ChartsService {
 
 		float starting = weightMean - (dayMean * delta);
 
-		float[] res = new float[] { delta, starting };
-
-		return res;
+		return new float[]{delta, starting};
 
 	}
 
 	public String getDisplayDate(Date date) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-		String display = dateFormat.format(date);
-		return display;
+		return dateFormat.format(date);
 	}
 
 	public static int getDifferenceInDays(Date start, Date end) {
 		long diff = end.getTime() - start.getTime();
-		int days = (int) Math.ceil(diff / (1000 * 60 * 60 * 24));
-		return days;
+		return (int) Math.ceil(diff / (1000 * 60 * 60 * 24));
 	}
 
 	public static Date increaseDateBy(Date date, int days) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(Calendar.DATE, days);
-		Date newDate = c.getTime();
-		return newDate;
+		return c.getTime();
 	}
 }

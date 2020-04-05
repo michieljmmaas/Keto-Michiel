@@ -1,13 +1,12 @@
 package hello.Weight;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "weight")
@@ -36,13 +35,11 @@ public class Weight {
 	}
 
 	public void setDatum(String datum) throws ParseException {
-		Date foundDate = new SimpleDateFormat("dd-MM-yy").parse(datum);
-		this.datum = foundDate;
+		this.datum = new SimpleDateFormat("dd-MM-yy").parse(datum);
 	}
 	
 	public void setDatumJS(String datum) throws ParseException {
-		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
-		this.datum = foundDate;
+		this.datum = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
 	}
 
 	public float getWeight() {
@@ -68,8 +65,7 @@ public class Weight {
 	public String getDisplayDate() {
 		Date date = this.datum;
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-		String display = dateFormat.format(date);
-		return display;
+		return dateFormat.format(date);
 	}
 
 	public float getDelta() {
