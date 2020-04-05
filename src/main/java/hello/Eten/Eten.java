@@ -1,9 +1,10 @@
-package hello;
+package hello.Eten;
 
 import java.util.Set;
 
 import javax.persistence.*;
 
+import hello.Gerecht.Gerecht;
 import org.springframework.lang.Nullable;
 
 @Entity

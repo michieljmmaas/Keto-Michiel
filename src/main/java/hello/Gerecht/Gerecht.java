@@ -1,24 +1,15 @@
-package hello;
+package hello.Gerecht;
 
+import hello.Eten.Eten;
+import hello.Weight.Chart.ChartsService;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "gerecht")
@@ -82,13 +73,11 @@ public class Gerecht {
 	}
 
 	public void setDatum(String datum) throws ParseException {
-		Date foundDate = new SimpleDateFormat("yyyy/MM/dd").parse(datum);
-		this.datum = foundDate;
+		this.datum = new SimpleDateFormat("yyyy/MM/dd").parse(datum);
 	}
 
 	public void setDashDatum(String datum) throws ParseException {
-		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
-		this.datum = foundDate;
+		this.datum = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
 	}
 
 	public String getDays() {
@@ -189,8 +178,7 @@ public class Gerecht {
 
 	public String format2Decimals(float a) {
 		DecimalFormat decimalFormat = new DecimalFormat("#.00");
-		String numberAsString = decimalFormat.format(a);
-		return numberAsString;
+		return decimalFormat.format(a);
 	}
 
 	public String getTotalKcal() {

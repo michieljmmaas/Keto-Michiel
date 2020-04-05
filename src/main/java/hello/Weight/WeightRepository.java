@@ -1,4 +1,4 @@
-package hello;
+package hello.Weight;
 
 import java.util.ArrayList;
 

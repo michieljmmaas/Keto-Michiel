@@ -1,4 +1,4 @@
-package hello;
+package hello.Weight.Chart;
 
 import java.util.List;
 

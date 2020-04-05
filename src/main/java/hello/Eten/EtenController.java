@@ -1,8 +1,14 @@
-package hello;
+package hello.Eten;
 
 import java.text.ParseException;
 import java.util.Set;
 
+import hello.Gerecht.Gerecht;
+import hello.Gerecht.GerechtRepository;
+import hello.Gerecht.MealSet;
+import hello.Gerecht.MealSetRepository;
+import hello.Weight.Weight;
+import hello.Weight.WeightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;

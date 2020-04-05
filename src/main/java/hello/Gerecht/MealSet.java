@@ -1,13 +1,12 @@
-package hello;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package hello.Gerecht;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "mealset")
@@ -20,8 +19,7 @@ public class MealSet {
 	private Date date;
 
 	public void setDate(String datum) throws ParseException {
-		Date foundDate = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
-		this.date = foundDate;
+		this.date = new SimpleDateFormat("yyyy-MM-dd").parse(datum);
 	}
 
 	public int getId() {

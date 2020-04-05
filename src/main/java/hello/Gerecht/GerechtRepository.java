@@ -1,4 +1,4 @@
-package hello;
+package hello.Gerecht;
 
 import java.util.ArrayList;
 

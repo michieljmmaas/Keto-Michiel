@@ -1,4 +1,6 @@
-package hello;
+package hello.Weight;
+
+import hello.Weight.Chart.ChartsService;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -92,8 +94,7 @@ public class weightCalculations {
 	public String getDatum() {
 		Date d = ChartsService.increaseDateBy(this.startDate, getDagenTot());
 		DateFormat dateFormat = new SimpleDateFormat("MMM d");
-		String display = dateFormat.format(d);
-		return display;
+        return dateFormat.format(d);
 	}
 
 }
