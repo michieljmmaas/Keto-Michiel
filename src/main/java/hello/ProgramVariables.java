@@ -6,6 +6,6 @@ public class ProgramVariables {
     public static final int prot_goal = 120;
     public static final int fat_goal = 150;
 
-    public static final float goal_gewicht = 72.5f;
+    public static final float goal_gewicht = 70f;
 
 }
