@@ -1,11 +1,5 @@
 package hello;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Locale;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,12 +7,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Locale;
+
+/**
+ * Application
+ *
+ * @blame Android Team
+ */
 @EnableAutoConfiguration
 @SpringBootApplication
-public class Application {	
+public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-	    Browse("http://localhost:8080/1");
+		Browse("http://localhost:8080/1");
 	}
 
 	public static void Browse(String url) {
@@ -38,12 +43,12 @@ public class Application {
 			}
 		}
 	}
-	
+
 	@Bean
 	public LocaleResolver localeResolver() {
-	    SessionLocaleResolver slr = new SessionLocaleResolver();
-	    slr.setDefaultLocale(Locale.ITALY);
-	    return slr;
+		SessionLocaleResolver slr = new SessionLocaleResolver();
+		slr.setDefaultLocale(Locale.ITALY);
+		return slr;
 	}
 
 }
