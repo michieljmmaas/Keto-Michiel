@@ -3,7 +3,7 @@ Een Java Web Applicatie om mijn Keto Dieet bij te houden.
 
 ## Installation:
  - Clone Repo
- - Maak een MariaDB database aan op port `3066` met de naam `keto`
+ - Maak een MariaDB database aan op port `3306` met de naam `keto`
  - Load de laatse [SQL_Snapshot](demo/src/Artifacts/05042020-dump.sql) in
  - Run `mvn clean install` om alle dependecies te installeren
  
