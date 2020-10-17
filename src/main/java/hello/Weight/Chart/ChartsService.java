@@ -19,9 +19,8 @@ import java.util.List;
 /**
  * Dit is een service die de goede gegevens van de ECManage Grafieken ophaalt,
  * verwerkt en verstuurd voor de ChartJS grafieken
- * 
- * @author Michiel
  *
+ * @author Michiel
  */
 @Service
 public class ChartsService {
@@ -32,7 +31,7 @@ public class ChartsService {
 	/**
 	 * Deze methode pakt de ecm_aggregate gegevens van een specifieke leverancier en
 	 * maakt er een Chart Response van
-	 * 
+	 *
 	 * @return de Gegevens in een Chart Reponse
 	 */
 	public ChartsResponse getChartData() {
@@ -56,8 +55,7 @@ public class ChartsService {
 		float current = starting;
 
 		// Loop waar voor iedere maand de gegevens worden ingevuld in de lijsten
-		for (int i = 0; i < list.size(); i++) {
-			Weight w = list.get(i);
+		for (Weight w : list) {
 			float weight = w.getWeight();
 			int days = getDifferenceInDays(first, w.getDatum());
 			current = starting + (days * delta);
@@ -76,7 +74,7 @@ public class ChartsService {
 		int loops = Math.abs((daysToGo / 4) + 4);
 		last = increaseDateBy(last, 4);
 
-		for (int j = loops; j > 0 + 1; j--) {
+		for (int j = loops; j > 1; j--) {
 			current = current + (4 * delta);
 			BigDecimal bd = new BigDecimal(current).setScale(2, RoundingMode.HALF_UP);
 			linearValue.add(bd.floatValue());
@@ -105,7 +103,7 @@ public class ChartsService {
 
 	public float[] getLinearRegression(ArrayList<Weight> list) {
 		float weightTotal = 0;
-		int dateTotal = 0;
+		float dateTotal = 0;
 
 		Date start = list.get(0).getDatum();
 
@@ -143,7 +141,8 @@ public class ChartsService {
 
 	public static int getDifferenceInDays(Date start, Date end) {
 		long diff = end.getTime() - start.getTime();
-		return (int) Math.ceil(diff / (1000 * 60 * 60 * 24));
+		float milisecondsToDays = (1000 * 60 * 60 * 24);
+		return (int) Math.ceil(diff / milisecondsToDays);
 	}
 
 	public static Date increaseDateBy(Date date, int days) {

@@ -35,13 +35,13 @@ public class Gerecht {
 	public void printInfo() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n");
-		sb.append("ID: " + this.getId() + " \n");
-		sb.append("Naam: " + this.getNaam() + "\n");
-		sb.append("Type: " + this.getType() + "\n");
-		sb.append("Date: " + this.getDate() + "\n");
+		sb.append("ID: ").append(this.getId()).append(" \n");
+		sb.append("Naam: ").append(this.getNaam()).append("\n");
+		sb.append("Type: ").append(this.getType()).append("\n");
+		sb.append("Date: ").append(this.getDate()).append("\n");
 		sb.append("Eten: " + "\n");
 		for (Eten e : this.ingredienten) {
-			sb.append("\t " + e.getName() + "\n");
+			sb.append("\t ").append(e.getName()).append("\n");
 		}
 		String text = sb.toString() + "\n";
 		System.out.println(text);

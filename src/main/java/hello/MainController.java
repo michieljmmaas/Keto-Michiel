@@ -25,7 +25,7 @@ import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.*;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SameReturnValue"})
 @Controller
 public class MainController {
 
@@ -68,7 +68,7 @@ public class MainController {
         Gerecht ontbijt = AWGerechtRepository.findById(mealset.getOntbijtID());
         Gerecht snack = AWGerechtRepository.findById(mealset.getSnackID());
         Gerecht dinner = AWGerechtRepository.findById(mealset.getDinnerID());
-        ArrayList<Gerecht> set = new ArrayList<Gerecht>(Arrays.asList(ontbijt, snack, dinner));
+        ArrayList<Gerecht> set = new ArrayList<>(Arrays.asList(ontbijt, snack, dinner));
         model.addAttribute("dishes", gerechten);
         float kcalSum = 0;
         float carbSum = 0;
@@ -123,7 +123,7 @@ public class MainController {
         Gerecht dinner = AWGerechtRepository.findById(set.getDinnerID());
         Set<Eten> dinnerList = dinner.getIngredienten();
 
-        ArrayList<Eten> eten = new ArrayList<Eten>();
+        ArrayList<Eten> eten = new ArrayList<>();
         eten.addAll(ontbijtList);
         eten.addAll(snackList);
         eten.addAll(dinnerList);
@@ -185,7 +185,7 @@ public class MainController {
         weightCalculations w70 = new weightCalculations(70, currentGewicht, linearDelta, currentDate, linearStarting,
                 startingDate);
 
-        ArrayList<weightCalculations> weightItems = new ArrayList<weightCalculations>(Arrays.asList(w80, w75, w70));
+        ArrayList<weightCalculations> weightItems = new ArrayList<>(Arrays.asList(w80, w75, w70));
 
         model.addAttribute("weightItems", weightItems);
         model.addAttribute("delta1", ChartsService.twoDecimail(Math.abs(linearDelta), 3));
@@ -235,12 +235,12 @@ public class MainController {
 
     @RequestMapping("/gerechten")
     public String gerechten(Model model) {
-        List<Gerecht> gerechten = (List<Gerecht>) AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
+        List<Gerecht> gerechten = AWGerechtRepository.findAll(Sort.by(Direction.ASC, "datum"));
         List<Eten> foods = AWEtenRepository.findAll(Sort.by(Direction.ASC, "name"));
         model.addAttribute("Gerecht", new Gerecht());
         model.addAttribute("dishes", gerechten);
         model.addAttribute("ingredienten", foods);
-        ArrayList<String> types = new ArrayList<String>(Arrays.asList("Dinner", "Ontbijt", "Other", "Snack"));
+        ArrayList<String> types = new ArrayList<>(Arrays.asList("Dinner", "Ontbijt", "Other", "Snack"));
         model.addAttribute("types", types);
 
         return "gerechten";

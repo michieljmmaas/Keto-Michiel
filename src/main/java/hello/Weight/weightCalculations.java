@@ -65,7 +65,7 @@ public class weightCalculations {
 	}
 
 	public weightCalculations(int weight, float start, float delta, Date startDate, float linearStarting,
-			Date startingDate) {
+							  Date startingDate) {
 		super();
 		this.weight = weight;
 		this.start = start;
@@ -88,13 +88,13 @@ public class weightCalculations {
 	}
 
 	public int getSets() {
-		return (int) Math.ceil(getDagenTot() / 4);
+		return (int) Math.ceil((float) getDagenTot() / 4);
 	}
 
 	public String getDatum() {
 		Date d = ChartsService.increaseDateBy(this.startDate, getDagenTot());
 		DateFormat dateFormat = new SimpleDateFormat("MMM d");
-        return dateFormat.format(d);
+		return dateFormat.format(d);
 	}
 
 }

@@ -44,19 +44,6 @@ th     { background:#eee; }
 	background: #eee;
 }
 
-#infoContainer {
-	width: 95%;
-}
-
-.gerrechtenList {
-	overflow-y: auto; height: 80vh;
-}
-
-.filterButton{
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
 #startTable {
 	width: 95% !important;
 }
@@ -82,10 +69,6 @@ th     { background:#eee; }
 
 .weightSetList::-webkit-scrollbar { 
 	width: 0 !important 
-}
-
-.chartjs-size-monitor {
-	min-height: 45vh;
 }
 
 .chart-container{

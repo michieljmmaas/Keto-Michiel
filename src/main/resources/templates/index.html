@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!--suppress ALL -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -34,15 +35,17 @@
 		<div class="d-flex flex-row">
 			<button type="button" class="pl-3 btn btn-success btn-lg pt-1" id="Submit">Submit</button>
 			<div class="pl-3 pt-2 w-25">
-				<input type="date" class="form-control input-lg" id="datumField">
+				<label for="datumField"></label><input type="date" class="form-control input-lg" id="datumField">
 			</div>
 			<div class="pl-3 pt-1 w-50">
-				<button type="button" hidden ></button>
+				<button type="button" hidden></button>
 			</div>
-			<select class="selectpicker pb-2 pt-2 pr-2" data-width="25%" id="mealSetSelector">
-				<option th:each="set : ${allSets}" th:text="${set.getDateDisplay()}" th:value="${set.getId()}" th:selected="${MealSetId==set.getId()}">
-				</option>
-			</select>
+			<label for="mealSetSelector"></label><select class="selectpicker pb-2 pt-2 pr-2" data-width="25%"
+														 id="mealSetSelector">
+			<option th:each="set : ${allSets}" th:text="${set.getDateDisplay()}" th:value="${set.getId()}"
+					th:selected="${MealSetId==set.getId()}">
+			</option>
+		</select>
 			<button id="changeDate" type="button" class="pl-3 btn btn-success btn-lg pt-1 changeDate">Update</button>
 		</div>
 		<div class="row">
@@ -94,10 +97,13 @@
 						</div>
 						<div class="row gerrechtInfo">
 							<div class="col-md-10">
-								<select class="selectpicker pb-2 pt-1" data-width="100%" data-live-search="true" id="gerrechtSelector">
-									<option th:each="food : ${dishes}" th:text="${food.getNaam()}" th:value="${food.getId()}">
-									</option>
-								</select>
+								<label for="gerrechtSelector"></label><select class="selectpicker pb-2 pt-1"
+																			  data-width="100%" data-live-search="true"
+																			  id="gerrechtSelector">
+								<option th:each="food : ${dishes}" th:text="${food.getNaam()}"
+										th:value="${food.getId()}">
+								</option>
+							</select>
 								<div th:text="${mealSet.getId()}" hidden id="setNumber"></div>
 								<div th:text="${set.indexOf(dish)}" hidden id="mealNumber"></div>
 							</div>
@@ -154,24 +160,24 @@
 <script th:inline="javascript">
 	$(document).ready(function() {
 		$('.gerechtHeader').click(function() {
-			var modal = $(this).parent();
+			const modal = $(this).parent();
 			modal.find('#IngredientList').collapse("toggle");
 		});
 
 		$('#export').click(function(event) {
-			var button = $(this);
+			const button = $(this);
 			console.log(button);
-			var exportId = button.data('exportid');
+			const exportId = button.data('exportid');
 			console.log(exportId);
 			window.open("http://localhost:8080/export/" + exportId);
 
 		});
 
 		$('.updateButton').click(function() {
-			var meal = $(this).parent().parent().parent();
-			var dish = meal.find('#gerrechtSelector').val();
-			var setNumber = meal.find('#setNumber').text();
-			var mealNumber = meal.find('#mealNumber').text();
+			const meal = $(this).parent().parent().parent();
+			const dish = meal.find('#gerrechtSelector').val();
+			const setNumber = meal.find('#setNumber').text();
+			const mealNumber = meal.find('#mealNumber').text();
 			console.log("Gekozen Gerecht: " + dish);
 			console.log("Mealset Number:" + setNumber);
 			console.log("Meal van de dag:" + mealNumber);
@@ -179,7 +185,7 @@
 			$.ajax({
 				type: "POST",
 				url: "Eten/UpdateSet/" + setNumber + "/" + mealNumber + "/" + dish,
-				success: function(data) {
+				success: function (data) {
 					window.location.reload();
 				},
 				error: function(e) {
@@ -190,31 +196,31 @@
 
 		});
 
-		$('#changeDate').click(function(e){
-			var dateSelect = $(this).parent().find("#mealSetSelector").val();
-			console.log("Date Select: " +  dateSelect);
-			window.location.href= "http://localhost:8080/" + dateSelect;
+		$('#changeDate').click(function(e) {
+			const dateSelect = $(this).parent().find("#mealSetSelector").val();
+			console.log("Date Select: " + dateSelect);
+			window.location.href = "http://localhost:8080/" + dateSelect;
 		});
 
 		$('#Submit').click(function() {
-			var submitList = $(this).parent().parent();
-			var datum = submitList.find("#datumField").val();
+			const submitList = $(this).parent().parent();
+			const datum = submitList.find("#datumField").val();
 
-			var items = submitList.find("#myUL");
-			var lis = items.find('li');
+			const items = submitList.find("#myUL");
+			const lis = items.find('li');
 
 			// console.log(lis);
 
-			var ontbijt = lis.first(); 
+			const ontbijt = lis.first();
 
-			var setNumber = ontbijt.find('#setNumber').text();
-			var ontbijtDish = ontbijt.find('#currentDishId').text();
+			const setNumber = ontbijt.find('#setNumber').text();
+			const ontbijtDish = ontbijt.find('#currentDishId').text();
 
-			var snack = ontbijt.next();
-			var snackDish = snack.find('#currentDishId').text();
+			const snack = ontbijt.next();
+			const snackDish = snack.find('#currentDishId').text();
 
-			var dinner = snack.next();
-			var dinnerDish = dinner.find('#currentDishId').text();
+			const dinner = snack.next();
+			const dinnerDish = dinner.find('#currentDishId').text();
 
 			console.log("datum:" + datum);
 			console.log("Ontbijt:" + ontbijtDish);
@@ -224,11 +230,11 @@
 			$.ajax({
 				type: "POST",
 				url: "Eten/NewMealSet/" + datum + "/" + ontbijtDish + "/" + snackDish + "/" + dinnerDish,
-				success: function(data) {
+				success: function (data) {
 					console.log("API Call");
 					window.location.reload();
 				},
-				error: function(e) {
+				error: function (e) {
 					$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
 					$("#deleteButton").prop("disabled", false);
 				}
@@ -236,20 +242,20 @@
 
 		});
 
-		var totalCarbs = document.getElementById('totalCarbs').textContent;
-		var totalProt = document.getElementById('totalProt').textContent;
-		var totalFat = document.getElementById('totalFat').textContent;
+		const totalCarbs = document.getElementById('totalCarbs').textContent;
+		const totalProt = document.getElementById('totalProt').textContent;
+		const totalFat = document.getElementById('totalFat').textContent;
 
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var myChart = new Chart(ctx, {
+		const ctx = document.getElementById('myChart').getContext('2d');
+		const myChart = new Chart(ctx, {
 			type: 'pie',
 			data: {
 				datasets: [{
 					data: [totalCarbs, totalProt, totalFat],
 					backgroundColor: [
-					'rgba(255, 99, 132)',
-					'rgba(54, 162, 235)',
-					'rgba(255, 206, 86)'
+						'rgba(255, 99, 132)',
+						'rgba(54, 162, 235)',
+						'rgba(255, 206, 86)'
 					]
 				}],
 				labels: ['Carbs', 'Proteins', 'Fat']
@@ -258,15 +264,15 @@
 			options: {
 				tooltips: {
 					callbacks: {
-						label: function(tooltipItem, data) {
-							var dataset = data.datasets[tooltipItem.datasetIndex];
-							var meta = dataset._meta[Object.keys(dataset._meta)[0]];
-							var total = meta.total;
-							var currentValue = dataset.data[tooltipItem.index];
-							var percentage = parseFloat((currentValue / total * 100).toFixed(1));
+						label: function (tooltipItem, data) {
+							const dataset = data.datasets[tooltipItem.datasetIndex];
+							const meta = dataset._meta[Object.keys(dataset._meta)[0]];
+							const total = meta.total;
+							const currentValue = dataset.data[tooltipItem.index];
+							const percentage = parseFloat((currentValue / total * 100).toFixed(1));
 							return currentValue + ' (' + percentage + '%)';
 						},
-						title: function(tooltipItem, data) {
+						title: function (tooltipItem, data) {
 							return data.labels[tooltipItem[0].index];
 						}
 					}

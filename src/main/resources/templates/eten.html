@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!--suppress JSCheckFunctionSignatures, JSCheckFunctionSignatures, JSUnresolvedLibraryURL -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
@@ -82,7 +83,8 @@
 					<div class="container-fluid">
 						<div class="form-group" hidden>
 							<div>
-								<input type="number" class="form-control input-lg" name="id" value="" th:field="*{id}" id="id-field">
+								<label for="id-field"></label><input type="number" class="form-control input-lg"
+																	 name="id" value="" th:field="*{id}" id="id-field">
 							</div>
 						</div>
 						<div class="row">
@@ -91,7 +93,9 @@
 								<div class="form-group">
 									<label class="control-label">Naam</label>
 									<div>
-										<input type="text" class="form-control input-lg" name="name" value="" th:field="*{name}" id="name-field">
+										<label for="name-field"></label><input type="text" class="form-control input-lg"
+																			   name="name" value="" th:field="*{name}"
+																			   id="name-field">
 									</div>
 								</div>
 							</div>
@@ -101,7 +105,10 @@
 								<div class="form-group">
 									<label class="control-label">Kcal</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="kcal" value="" th:field="*{kcal}" id="kcal-field">
+										<label for="kcal-field"></label><input type="number" step="0.01"
+																			   class="form-control input-lg" name="kcal"
+																			   value="" th:field="*{kcal}"
+																			   id="kcal-field">
 
 									</div>
 								</div>
@@ -110,7 +117,10 @@
 								<div class="form-group">
 									<label class="control-label">Carbs</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="carb" value="" th:field="*{carb}" id="carb-field">
+										<label for="carb-field"></label><input type="number" step="0.01"
+																			   class="form-control input-lg" name="carb"
+																			   value="" th:field="*{carb}"
+																			   id="carb-field">
 									</div>
 								</div>
 							</div>
@@ -118,7 +128,10 @@
 								<div class="form-group">
 									<label class="control-label">Proteins</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="prot" value="" th:field="*{prot}" id="prot-field">
+										<label for="prot-field"></label><input type="number" step="0.01"
+																			   class="form-control input-lg" name="prot"
+																			   value="" th:field="*{prot}"
+																			   id="prot-field">
 									</div>
 								</div>
 							</div>
@@ -126,7 +139,9 @@
 								<div class="form-group">
 									<label class="control-label">Fat</label>
 									<div>
-										<input type="number" step="0.01" class="form-control input-lg" name="fat" value="" th:field="*{fat}" id="fat-field">
+										<label for="fat-field"></label><input type="number" step="0.01"
+																			  class="form-control input-lg" name="fat"
+																			  value="" th:field="*{fat}" id="fat-field">
 									</div>
 								</div>
 							</div>
@@ -135,23 +150,31 @@
 							<label class="control-label">Gewicht</label>
 							<div class="row">
 								<div class="col-md-1">
-									<input type="checkbox" class="form-control input-lg" id="weightCheck">
+									<label for="weightCheck"></label><input type="checkbox"
+																			class="form-control input-lg"
+																			id="weightCheck">
 								</div>
 								<div class="col-md-11">
-									<input type="number" class="form-control input-lg" name="weight" value="" disabled id="weightField" th:field="*{weight}">
+									<label for="weightField"></label><input type="number" class="form-control input-lg"
+																			name="weight" value="" disabled
+																			id="weightField" th:field="*{weight}">
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Price</label>
 							<div>
-								<input type="number" step="0.01" class="form-control input-lg" name="price" value="" th:field="*{price}" id="price-field">
+								<label for="price-field"></label><input type="number" step="0.01"
+																		class="form-control input-lg" name="price"
+																		value="" th:field="*{price}" id="price-field">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Beschrijving</label>
 							<div>
-								<input type="text" class="form-control input-lg" name="disc" value="" th:field="*{disc}" id="disc-field">
+								<label for="disc-field"></label><input type="text" class="form-control input-lg"
+																	   name="disc" value="" th:field="*{disc}"
+																	   id="disc-field">
 							</div>
 						</div>
 						<div class="form-group">
@@ -185,7 +208,7 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="recipient-name" class="col-form-label">Weet je zeker dat je dit wil verwijderen?</label>
-					<input type="text" class="form-control" id="deleteID" hidden>
+					<label for="deleteID"></label><input type="text" class="form-control" id="deleteID" hidden>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -207,70 +230,70 @@
 
         //Deze actie triggerd op het drukken van de Delete Knop
         $("#DeleteItem").click(function(event) {
-            event.preventDefault(); //De verwachte actie wordt onderschept en vervangen met een eigen API call
-            $("#deleteButton").prop("disabled", true); //Delete knopt wordt disable tot het proces is afgelopen
-            var foodID = $("#deleteID").val();
+			event.preventDefault(); //De verwachte actie wordt onderschept en vervangen met een eigen API call
+			$("#deleteButton").prop("disabled", true); //Delete knopt wordt disable tot het proces is afgelopen
+			const foodID = $("#deleteID").val();
 
-            $.ajax({
-            	type: "DELETE",
-            	url: "/Eten/" + foodID,
-            	success: function(data) {
-            		window.location.reload();
-            	},
-            	error: function(e) {
-            		$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
-            		$("#deleteButton").prop("disabled", false);
-            	}
-            });
+			$.ajax({
+				type: "DELETE",
+				url: "/Eten/" + foodID,
+				success: function (data) {
+					window.location.reload();
+				},
+				error: function (e) {
+					$("#DeleteModalBody").append("<p class='text-danger'>" + e.responseText + "</p>");
+					$("#deleteButton").prop("disabled", false);
+				}
+			});
         });
 
         $('#deleteModal').on('show.bs.modal', function(event) {
-        	var button = $(event.relatedTarget);
-        	var id = button.data('id');
-        	var name = button.data('name');
-        	var modal = $(this);
-        	modal.find('.modal-body #deleteID').val(id);
-        });
+			const button = $(event.relatedTarget);
+			const id = button.data('id');
+			const name = button.data('name');
+			const modal = $(this);
+			modal.find('.modal-body #deleteID').val(id);
+		});
 
         $('#foodModal').on('show.bs.modal', function(event) {
-        	var button = $(event.relatedTarget);
-        	var id = button.data('id');
-        	var name = button.data('name');
-        	var kcal = button.data('kcal');
-        	var carb = button.data('carb');
-        	var prot = button.data('prot');
-        	var fat = button.data('fat');
-        	var weight = button.data('weight');
-        	var price = button.data('price');
-        	var disc = button.data('disc');
-        	var modal = $(this);
-        	modal.find('.modal-body #id-field ').val(id);
-        	modal.find('.modal-body #name-field ').val(name);
-        	modal.find('.modal-body #kcal-field ').val(kcal);
-        	modal.find('.modal-body #carb-field ').val(carb);
-        	modal.find('.modal-body #prot-field ').val(prot);
-        	modal.find('.modal-body #fat-field ').val(fat);
-        	modal.find('.modal-body #weightField ').val(weight);
-        	modal.find('.modal-body #price-field ').val(price);
-        	modal.find('.modal-body #disc-field ').val(disc);
-        });
+			const button = $(event.relatedTarget);
+			const id = button.data('id');
+			const name = button.data('name');
+			const kcal = button.data('kcal');
+			const carb = button.data('carb');
+			const prot = button.data('prot');
+			const fat = button.data('fat');
+			const weight = button.data('weight');
+			const price = button.data('price');
+			const disc = button.data('disc');
+			const modal = $(this);
+			modal.find('.modal-body #id-field ').val(id);
+			modal.find('.modal-body #name-field ').val(name);
+			modal.find('.modal-body #kcal-field ').val(kcal);
+			modal.find('.modal-body #carb-field ').val(carb);
+			modal.find('.modal-body #prot-field ').val(prot);
+			modal.find('.modal-body #fat-field ').val(fat);
+			modal.find('.modal-body #weightField ').val(weight);
+			modal.find('.modal-body #price-field ').val(price);
+			modal.find('.modal-body #disc-field ').val(disc);
+		});
     });
 
 
 function searchField() {
-  // Declare variables
-  var input, filter, table, tr, a, i, txtValue;
-  input = document.getElementById('searchTerm');
-  filter = input.value.toUpperCase();
-  table = document.getElementById("foodTable");
-  tr = table.getElementsByTagName('tr');
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 1; i < tr.length; i++) {
-  	a = tr[i].getElementsByTagName('td')[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      tr[i].style.display = "";
-    } else {
+	// Declare variables
+	let input, filter, table, tr, a, i, txtValue;
+	input = document.getElementById('searchTerm');
+	filter = input.value.toUpperCase();
+	table = document.getElementById("foodTable");
+	tr = table.getElementsByTagName('tr');
+	// Loop through all list items, and hide those who don't match the search query
+	for (i = 1; i < tr.length; i++) {
+		a = tr[i].getElementsByTagName('td')[0];
+		txtValue = a.textContent || a.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			tr[i].style.display = "";
+		} else {
       tr[i].style.display = "none";
     }
   }

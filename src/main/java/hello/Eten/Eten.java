@@ -1,11 +1,10 @@
 package hello.Eten;
 
-import java.util.Set;
-
-import javax.persistence.*;
-
 import hello.Gerecht.Gerecht;
 import org.springframework.lang.Nullable;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "eten")
@@ -114,19 +113,5 @@ public class Eten {
 	public void setDisc(String disc) {
 		this.disc = disc;
 	}
-
-	public void printInfo() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Name: " + this.name + '\n');
-		sb.append("\tID: " + this.id + '\n');
-		sb.append("\tCarb: " + this.carb + '\n');
-		sb.append("\tProt: " + this.prot + '\n');
-		sb.append("\tFat: " + this.fat + '\n');
-		sb.append("\tPrice: " + this.price + '\n');
-		sb.append("\tWeight: " + this.weight + '\n');
-		sb.append("\n");
-		System.out.println(sb.toString());
-	}
-
 
 }
